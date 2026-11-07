@@ -52,7 +52,7 @@
 ### Task 2: Marca Gabs Remote no app, applicationId e keystore
 
 **Files:**
-- Create: `tools/marca/gerar-icones.py`, `tools/marca/test_gerar_icones.py`, `docs/marca/README.md` (cores e como regenerar)
+- Create: `tools/marca/cores.json`, `tools/marca/gerar-icones.py`, `tools/marca/test_gerar_icones.py`, `docs/marca/README.md` (cores e como regenerar)
 - Create: `docs/segredos.md`
 - Modify: `android/app/build.gradle` (applicationId, nomes, `signingConfigs.release`, `testImplementation`)
 - Modify: `android/app/src/main/res/mipmap-*/ic_launcher*.png`, `android/app/src/main/res/values/colors.xml` (`ic_launcher_background`), `android/app/src/main/res/drawable/app_icon.png`
@@ -61,18 +61,18 @@
 
 **Interfaces:**
 - Produces: `python tools/marca/gerar-icones.py --saida-android <res> --saida-host <dir>` gera todos os ícones a partir de **uma** função `desenhar_marca(tamanho: int, primaria: str, fundo: str, com_fundo: bool) -> PIL.Image.Image`; a linha de comando chama `gerar(saida_android: Path | None = None, saida_host: Path | None = None) -> None`, que os testes usam direto (o arquivo se chama `gerar-icones.py`, então os testes o carregam com `importlib.util.spec_from_file_location`). A Task 3 usa a mesma ferramenta para o host (`gabs-remote.ico` 16/24/32/48/256, `gabs-remote-256.png`, `favicon.ico`).
-- Produces: cores da marca, usadas também na Task 3: primária `#3D7BFF`, fundo `#0F172A` (proposta; o Gab aprova no Step 1).
+- Produces: `tools/marca/cores.json` (`{"primaria": "#RRGGBB", "fundo": "#RRGGBB"}`), a única fonte das cores da marca, lida pelo `gerar-icones.py` e usada na Task 3. A primária é o **azul elétrico do sistema visual GAB/S**, e o fundo é um tom escuro que combine com ela. O Gab passa os valores no Step 1.
 - Produces: `build-android.ps1 -Release` gera `android\app\build\outputs\apk\nonRoot\release\app-nonRoot-release.apk` assinado; sai com código 5 e mensagem em pt-BR se `%USERPROFILE%\.gabs-remote\keystore.properties` não existir.
 
-- [ ] **Step 1: Confirmar com o Gab** as duas cores. (O `applicationId` `com.gabtavares.gabsremote` já foi confirmado em 07/11/2026.) Mostrar a ele uma prévia do ícone (PNG 512 gerado pelo script do Step 3) antes de trocar os arquivos do app.
+- [ ] **Step 1: Pegar com o Gab as cores do GAB/S** (o hex do azul elétrico e, se houver, o fundo escuro que o GAB/S usa; a pasta do GAB/S no servidor não guarda a paleta) e gravar `tools/marca/cores.json`. (O `applicationId` `com.gabtavares.gabsremote` já foi confirmado em 07/11/2026.) Mostrar a ele uma prévia do ícone (PNG 512 gerado pelo script do Step 3) antes de trocar os arquivos do app.
 - [ ] **Step 2: Escrever os testes pytest que falham** em `tools/marca/test_gerar_icones.py`:
-  - `desenhar_marca(192, '#3D7BFF', '#0F172A', True).size == (192, 192)`
+  - `desenhar_marca(192, '#1E5BFF', '#0B1020', True).size == (192, 192)` (valores só de teste)
   - com `com_fundo=False`, o pixel `(0, 0)` tem alfa 0 (o primeiro plano do ícone adaptativo é transparente fora da marca)
   - `gerar(saida_android=tmp)` cria `mipmap-mdpi/ic_launcher.png` com 48 px, `mipmap-xxxhdpi/ic_launcher.png` com 192 px e `mipmap-xxxhdpi/ic_launcher_foreground.png` com 432 px (108 dp × 4)
   - `gerar(saida_host=tmp)` cria `gabs-remote.ico` contendo os tamanhos 16, 24, 32, 48 e 256
   Rodar `python -m pytest tools/marca -q`: FAIL (módulo sem funções).
 - [ ] **Step 3: Implementar `tools/marca/gerar-icones.py`** com Pillow (`pip install pillow pytest` se faltar). A marca: quadrado arredondado na cor de fundo, um "G" em arco grosso na cor primária com uma seta de cursor no vão do G. Os tamanhos legados por densidade são 48/72/96/144/192 px; os de primeiro plano, 108/162/216/324/432 px, com a marca dentro dos 66 dp centrais. Rodar os testes: PASS.
-- [ ] **Step 4: Trocar a marca no app.** Rodar o script com `--saida-android android/app/src/main/res`. Em `colors.xml`, `ic_launcher_background` = `#0F172A`. Em `build.gradle`:
+- [ ] **Step 4: Trocar a marca no app.** Rodar o script com `--saida-android android/app/src/main/res`. Em `colors.xml`, `ic_launcher_background` = o `fundo` de `cores.json`, e uma cor nova `gabs_primary` = a `primaria`, usada como `colorAccent`/`colorPrimary` no tema do upstream (`values*/styles.xml`), sem mexer em layout. Em `build.gradle`:
   - `nonRoot`: `applicationId "com.gabtavares.gabsremote"`; `root`: `"com.gabtavares.gabsremote.root"`.
   - `debug`: `app_label` = `Gabs Remote (Debug)`, `app_label_root` = `Gabs Remote (Root Debug)`; mantém `applicationIdSuffix ".debug"`.
   - `release`: tira o `applicationIdSuffix ".unofficial"` e o comentário do upstream sobre ele (o pedido do upstream é justamente trocar o ID); `app_label` = `Gabs Remote`, `app_label_root` = `Gabs Remote (Root)`.
@@ -104,12 +104,12 @@
 - Create: `tools/marca/servico.Tests.ps1`
 
 **Interfaces:**
-- Consumes: `tools/marca/gerar-icones.py --saida-host` (Task 2) e as cores `#3D7BFF` / `#0F172A`.
+- Consumes: `tools/marca/gerar-icones.py --saida-host` e `tools/marca/cores.json` (Task 2).
 - Produces: serviço `GabsRemote` (nome exibido `Gabs Remote`), que a Task 4 instala.
 
 - [ ] **Step 1: Escrever o teste Pester que falha** em `tools/marca/servico.Tests.ps1`: nenhum arquivo em `host/src`, `host/tools` e `host/src_assets/windows/misc` contém `SunshineService` (busca com `Select-String -SimpleMatch`), e `install-service.bat` contém `set SERVICE_NAME=GabsRemote`. Rodar: FAIL.
 - [ ] **Step 2: Trocar o nome do serviço** para `GabsRemote` nos cinco arquivos, e o `DisplayName` do `sc create` para `Gabs Remote`. O `install-service.bat` ganha também a remoção do serviço antigo `SunshineService`, como ele já faz com o legado `sunshinesvc`. Rodar o teste: PASS.
-- [ ] **Step 3: Bandeja e painel.** Gerar os ícones do host com o script da Task 2 e substituir os que `system_tray.cpp` carrega (achar os caminhos pelo `GetResourcePath`/nomes de arquivo usados ali) e os do painel (`web/public/`). Textos da bandeja: "Open Sunshine" → "Abrir Gabs Remote", tooltip "Gabs Remote". Título do painel: "Gabs Remote". Cor primária do painel = `#3D7BFF` (variável de tema no `sunshine.css`). Os textos da bandeja ficam em pt-BR direto no código; o painel usa os arquivos de locale do upstream, sem renomear chaves.
+- [ ] **Step 3: Bandeja e painel.** Gerar os ícones do host com o script da Task 2 e substituir os que `system_tray.cpp` carrega (achar os caminhos pelo `GetResourcePath`/nomes de arquivo usados ali) e os do painel (`web/public/`). Textos da bandeja: "Open Sunshine" → "Abrir Gabs Remote", tooltip "Gabs Remote". Título do painel: "Gabs Remote". Cor primária do painel = a `primaria` de `cores.json` (variável de tema no `sunshine.css`). Os textos da bandeja ficam em pt-BR direto no código; o painel usa os arquivos de locale do upstream, sem renomear chaves.
 - [ ] **Step 4: Verificar.** `build-host.ps1 -Testes` sem falha nova (linha de base: 895 rodados, 882 passaram, 13 pulados). Subir em modo console como administrador e conferir bandeja e painel `https://localhost:47990`.
 - [ ] **Step 5: Commit** — no submódulo `feat(marca): Gabs Remote na bandeja, no painel e no serviço`; no principal o ponteiro e o teste.
 
