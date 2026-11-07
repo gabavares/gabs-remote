@@ -27,7 +27,7 @@ cmd /c mklink /J C:\gr "C:\Users\Gabriel\Desktop\Acesso remoto"
 | Android command-line tools | 15859902 | dl.google.com (SHA-256 conferido) | `C:\Android\sdk\cmdline-tools\latest` |
 | Android platform-tools (adb) | 1.0.41 | sdkmanager | `C:\Android\sdk\platform-tools` |
 | Android platform | android-37.0 | sdkmanager | `C:\Android\sdk\platforms` |
-| Android build-tools | 37.0.0 | sdkmanager | `C:\Android\sdk\build-tools` |
+| Android build-tools | 37.0.0 e 36.0.0 (este instalado pelo Gradle) | sdkmanager | `C:\Android\sdk\build-tools` |
 | Android NDK | 29.0.14206865 | sdkmanager | `C:\Android\sdk\ndk` |
 | Node.js | 24.19.0 | já existia (nativo) | `PATH` (painel web do Sunshine) |
 | Pester | 6.2.0 | `Install-Module Pester -Scope CurrentUser` | módulos do usuário |
@@ -46,6 +46,16 @@ pacman -S --needed git mingw-w64-$T-boost mingw-w64-$T-cmake mingw-w64-$T-ninja 
 ```
 
 O Node.js do MSYS2 **não** serve, porque o Sunshine exige o Node nativo do Windows.
+
+O `qt6-static` ainda precisa destes pacotes, que o `building.md` não lista (descobertos no primeiro build):
+
+```bash
+pacman -S --needed mingw-w64-$T-libtiff mingw-w64-$T-pkgconf mingw-w64-$T-harfbuzz mingw-w64-$T-freetype \
+  mingw-w64-$T-libjpeg-turbo mingw-w64-$T-brotli mingw-w64-$T-libwebp mingw-w64-$T-vulkan-headers \
+  mingw-w64-$T-md4c mingw-w64-$T-double-conversion
+```
+
+O build do host usa o **Git for Windows** (`C:\Program Files\Git`) dentro do CMake, porque o git do MSYS2 quebra quando é chamado por um processo nativo.
 
 ## Pacotes do Android SDK
 Versões tiradas do `android/app/build.gradle` (`compileSdk 37`, `ndkVersion "29.0.14206865"`):
