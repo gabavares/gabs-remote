@@ -4,3 +4,8 @@ graphify-out/cache/
 segredos/
 graphify-out/.graphify_python
 graphify-out/.graphify_root
+build/
+*.apk
+local.properties
+.gradle/
+!/tools/build/
