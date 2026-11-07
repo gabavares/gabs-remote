@@ -12,6 +12,12 @@
       "output_tokens": 0,
       "files": 509,
       "note": "tokens = total do subagente semântico (entrada+saída), sem divisão"
+    },
+    {
+      "date": "2026-11-07T18:56:25.901455+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 80
     }
   ],
   "total_input_tokens": 266232,

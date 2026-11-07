@@ -12,10 +12,10 @@
     "semantic_hash": "960afc3847121bbfb75ea3250fcd69bc"
   },
   "docs/superpowers/specs/2026-11-06-gabs-remote-design.md": {
-    "mtime": 1794016686.9614148,
-    "seen": 1794022071.972782,
-    "ast_hash": "2f3ca962d71e55cff5e185c2a39a0beb",
-    "semantic_hash": "2f3ca962d71e55cff5e185c2a39a0beb"
+    "mtime": 1794077279.8084643,
+    "seen": 1794077705.5289352,
+    "ast_hash": "0ec635523edde41ab83f68f58bfd04d8",
+    "semantic_hash": "0ec635523edde41ab83f68f58bfd04d8"
   },
   "android/app/src/main/java/com/limelight/AppView.java": {
     "mtime": 1794018052.616425,
@@ -24,10 +24,10 @@
     "semantic_hash": "57283d8ef3c27e9e2d1a11bef35cf398"
   },
   "android/app/src/main/java/com/limelight/Game.java": {
-    "mtime": 1794018052.617425,
-    "seen": 1794022071.971783,
-    "ast_hash": "c1b8ae353a514c3e467db9544938f174",
-    "semantic_hash": "c1b8ae353a514c3e467db9544938f174"
+    "mtime": 1794071318.311697,
+    "seen": 1794077705.527935,
+    "ast_hash": "eb7c67cb24c70bf40c7de4654f7b6430",
+    "semantic_hash": "eb7c67cb24c70bf40c7de4654f7b6430"
   },
   "android/app/src/main/java/com/limelight/HelpActivity.java": {
     "mtime": 1794018052.617425,
@@ -402,10 +402,10 @@
     "semantic_hash": "4ad6593f2ffcf8b2118c49a1512aa579"
   },
   "android/app/src/main/java/com/limelight/nvstream/StreamConfiguration.java": {
-    "mtime": 1794018052.6524253,
-    "seen": 1794022071.9722822,
-    "ast_hash": "f2463081da72c961a76b198d352c2875",
-    "semantic_hash": "f2463081da72c961a76b198d352c2875"
+    "mtime": 1794040923.4035523,
+    "seen": 1794077705.527935,
+    "ast_hash": "ad92ab274e225e23f21ec139f96f84d2",
+    "semantic_hash": "ad92ab274e225e23f21ec139f96f84d2"
   },
   "android/app/src/main/java/com/limelight/nvstream/av/ByteBufferDescriptor.java": {
     "mtime": 1794018052.6529438,
@@ -450,10 +450,10 @@
     "semantic_hash": "0f3e5e828886258b04681c30d0993900"
   },
   "android/app/src/main/java/com/limelight/nvstream/http/NvHTTP.java": {
-    "mtime": 1794018052.6565487,
-    "seen": 1794022071.9722822,
-    "ast_hash": "14126363ddd3aeecc9ac7b7ab9819dee",
-    "semantic_hash": "14126363ddd3aeecc9ac7b7ab9819dee"
+    "mtime": 1794040923.412552,
+    "seen": 1794077705.527935,
+    "ast_hash": "dae353e9206042d8bb8b53631ae06956",
+    "semantic_hash": "dae353e9206042d8bb8b53631ae06956"
   },
   "android/app/src/main/java/com/limelight/nvstream/http/PairingManager.java": {
     "mtime": 1794018052.6575487,
@@ -546,10 +546,10 @@
     "semantic_hash": "bb0ca029025c1827d513ac1ecb49cc00"
   },
   "android/app/src/main/java/com/limelight/preferences/PreferenceConfiguration.java": {
-    "mtime": 1794018052.666062,
-    "seen": 1794022071.9722822,
-    "ast_hash": "4f1479004b8d396149e3b32a0d5b3205",
-    "semantic_hash": "4f1479004b8d396149e3b32a0d5b3205"
+    "mtime": 1794072748.2443862,
+    "seen": 1794077705.527935,
+    "ast_hash": "5fb6ed7318fd0653424b51514683ecae",
+    "semantic_hash": "5fb6ed7318fd0653424b51514683ecae"
   },
   "android/app/src/main/java/com/limelight/preferences/SeekBarPreference.java": {
     "mtime": 1794018052.666062,
@@ -2136,10 +2136,10 @@
     "semantic_hash": "bc435901132d312cf921aecb77a4e880"
   },
   "host/src/confighttp.cpp": {
-    "mtime": 1794018044.737424,
-    "seen": 1794022071.9722822,
-    "ast_hash": "e34579b48c7443fe964f094d1375901d",
-    "semantic_hash": "e34579b48c7443fe964f094d1375901d"
+    "mtime": 1794026576.1279068,
+    "seen": 1794077705.527935,
+    "ast_hash": "d1c3c77ad223ead7819d09e8774af351",
+    "semantic_hash": "d1c3c77ad223ead7819d09e8774af351"
   },
   "host/src/confighttp.h": {
     "mtime": 1794018044.7384238,
@@ -2160,22 +2160,22 @@
     "semantic_hash": "118f7b9ef3c1056d47390e05e32e4437"
   },
   "host/src/display_device.cpp": {
-    "mtime": 1794018044.740424,
-    "seen": 1794022071.9722822,
-    "ast_hash": "667b4c7d34a8dd0971becaf7e2ac403c",
-    "semantic_hash": "667b4c7d34a8dd0971becaf7e2ac403c"
+    "mtime": 1794073743.1413004,
+    "seen": 1794077705.527935,
+    "ast_hash": "6335d587718c68f07f4b8f04e22a873a",
+    "semantic_hash": "6335d587718c68f07f4b8f04e22a873a"
   },
   "host/src/display_device.h": {
-    "mtime": 1794018044.740424,
-    "seen": 1794022071.9722822,
-    "ast_hash": "718ce559139c495cb9dc86da643d6dbc",
-    "semantic_hash": "718ce559139c495cb9dc86da643d6dbc"
+    "mtime": 1794028987.1679125,
+    "seen": 1794077705.527935,
+    "ast_hash": "963cc895f1b2897eab8dc5c5d24327ef",
+    "semantic_hash": "963cc895f1b2897eab8dc5c5d24327ef"
   },
   "host/src/entry_handler.cpp": {
-    "mtime": 1794018044.7414238,
-    "seen": 1794022071.9722822,
-    "ast_hash": "44d5442587e349c21ad40b7537e67b77",
-    "semantic_hash": "44d5442587e349c21ad40b7537e67b77"
+    "mtime": 1794026481.2000306,
+    "seen": 1794077705.527935,
+    "ast_hash": "ecfe20d5381c969f3f0122fe6d6a4307",
+    "semantic_hash": "ecfe20d5381c969f3f0122fe6d6a4307"
   },
   "host/src/entry_handler.h": {
     "mtime": 1794018044.7414238,
@@ -2244,10 +2244,10 @@
     "semantic_hash": "c0322b9f41073f5aa7daa8591ede33de"
   },
   "host/src/main.cpp": {
-    "mtime": 1794018044.7479384,
-    "seen": 1794022071.9722822,
-    "ast_hash": "328227d8a8bf30893184765cc2ca2a30",
-    "semantic_hash": "328227d8a8bf30893184765cc2ca2a30"
+    "mtime": 1794068338.880287,
+    "seen": 1794077705.527935,
+    "ast_hash": "30821dcf6395c9e6f5c87399ce2d2ba2",
+    "semantic_hash": "30821dcf6395c9e6f5c87399ce2d2ba2"
   },
   "host/src/main.h": {
     "mtime": 1794018044.7479384,
@@ -2406,10 +2406,10 @@
     "semantic_hash": "e9c3952bc63ee5fc63a9c154a2aa03c0"
   },
   "host/src/nvhttp.cpp": {
-    "mtime": 1794018044.7619398,
-    "seen": 1794022071.9722822,
-    "ast_hash": "0ca50fbe9e4f35d7008cc58820a4207b",
-    "semantic_hash": "0ca50fbe9e4f35d7008cc58820a4207b"
+    "mtime": 1794073743.142276,
+    "seen": 1794077705.5289352,
+    "ast_hash": "75744addf3a9be4481c1fc4d07c55ff5",
+    "semantic_hash": "75744addf3a9be4481c1fc4d07c55ff5"
   },
   "host/src/nvhttp.h": {
     "mtime": 1794018044.7619398,
@@ -2844,10 +2844,10 @@
     "semantic_hash": "83a6538f3dd955be2a25cef06898f075"
   },
   "host/src/process.cpp": {
-    "mtime": 1794018044.8039699,
-    "seen": 1794022071.9722822,
-    "ast_hash": "6721d6e37bcfdf6db217a805b4150a2b",
-    "semantic_hash": "6721d6e37bcfdf6db217a805b4150a2b"
+    "mtime": 1794071295.8288531,
+    "seen": 1794077705.5289352,
+    "ast_hash": "16e6423c8c239eb246aca874c739c5ab",
+    "semantic_hash": "16e6423c8c239eb246aca874c739c5ab"
   },
   "host/src/process.h": {
     "mtime": 1794018044.8049693,
@@ -2868,10 +2868,10 @@
     "semantic_hash": "67e1a98cc7fc0691456de102547fb2f5"
   },
   "host/src/rtsp.h": {
-    "mtime": 1794018044.805971,
-    "seen": 1794022071.9722822,
-    "ast_hash": "64f4b54d6ae27853cb3db9c2c807337f",
-    "semantic_hash": "64f4b54d6ae27853cb3db9c2c807337f"
+    "mtime": 1794040632.369061,
+    "seen": 1794077705.5289352,
+    "ast_hash": "607470b3657a23eb255270bef45c7c19",
+    "semantic_hash": "607470b3657a23eb255270bef45c7c19"
   },
   "host/src/stat_trackers.cpp": {
     "mtime": 1794018044.806971,
@@ -2886,10 +2886,10 @@
     "semantic_hash": "da34d5091e4aa9b58fa355a7a1d1a8df"
   },
   "host/src/stream.cpp": {
-    "mtime": 1794018044.8079693,
-    "seen": 1794022071.9722822,
-    "ast_hash": "cd07573d2164588b0e56a36626245a0c",
-    "semantic_hash": "cd07573d2164588b0e56a36626245a0c"
+    "mtime": 1794071288.2957382,
+    "seen": 1794077705.5289352,
+    "ast_hash": "d200a59340f4d1128e1e76a82f9b8730",
+    "semantic_hash": "d200a59340f4d1128e1e76a82f9b8730"
   },
   "host/src/stream.h": {
     "mtime": 1794018044.8079693,
@@ -2910,10 +2910,10 @@
     "semantic_hash": "10b4be055c73839b953748a2038963e8"
   },
   "host/src/system_tray.cpp": {
-    "mtime": 1794018044.8099697,
-    "seen": 1794022071.9722822,
-    "ast_hash": "82ec58caceced19d4281ad9a04154e55",
-    "semantic_hash": "82ec58caceced19d4281ad9a04154e55"
+    "mtime": 1794026576.1269073,
+    "seen": 1794077705.5289352,
+    "ast_hash": "5607b8537eeab196652bbde44501a4a9",
+    "semantic_hash": "5607b8537eeab196652bbde44501a4a9"
   },
   "host/src/system_tray.h": {
     "mtime": 1794018044.8109696,
@@ -2964,10 +2964,10 @@
     "semantic_hash": "f149ee3ade427327c72b979f0f3b9ee8"
   },
   "host/src/video.cpp": {
-    "mtime": 1794018044.8149698,
-    "seen": 1794022071.9722822,
-    "ast_hash": "3ef323b95661b15ec830fb78d042ee9b",
-    "semantic_hash": "3ef323b95661b15ec830fb78d042ee9b"
+    "mtime": 1794027378.1981282,
+    "seen": 1794077705.5289352,
+    "ast_hash": "26d06c1adc1f4c9a228d45eebfea7b46",
+    "semantic_hash": "26d06c1adc1f4c9a228d45eebfea7b46"
   },
   "host/src/video.h": {
     "mtime": 1794018044.8159692,
@@ -3006,10 +3006,10 @@
     "semantic_hash": "a5e53e2cc32c3a043a7084d81a90ff8a"
   },
   "CLAUDE.md": {
-    "mtime": 1794021549.7158527,
-    "seen": 1794022071.972782,
-    "ast_hash": "a91c43d6d66a7bef725607b9dc84b0a6",
-    "semantic_hash": "a91c43d6d66a7bef725607b9dc84b0a6"
+    "mtime": 1794077307.8479793,
+    "seen": 1794077705.5289352,
+    "ast_hash": "2238e32718042fb03a8332609cb10e65",
+    "semantic_hash": "2238e32718042fb03a8332609cb10e65"
   },
   "README.md": {
     "mtime": 1794021663.5738685,
@@ -3030,10 +3030,10 @@
     "semantic_hash": "f43cddd96a96bb8940b22a47f8aaa4bc"
   },
   "docs/ambiente.md": {
-    "mtime": 1794020274.4717884,
-    "seen": 1794022071.972782,
-    "ast_hash": "19ef52251db2c9d3f7b3b2dad123641a",
-    "semantic_hash": "19ef52251db2c9d3f7b3b2dad123641a"
+    "mtime": 1794026399.5760925,
+    "seen": 1794077705.5289352,
+    "ast_hash": "0bd7f6b1b33418dcb498cc6a11ce2888",
+    "semantic_hash": "0bd7f6b1b33418dcb498cc6a11ce2888"
   },
   "docs/decisoes/0001-base-dos-forks.md": {
     "mtime": 1794017037.1645405,
@@ -3042,10 +3042,10 @@
     "semantic_hash": "a720cc89360a7a6a8607726cd0271171"
   },
   "docs/sessoes.md": {
-    "mtime": 1794021556.408854,
-    "seen": 1794022071.972782,
-    "ast_hash": "b14ccc7d45feab41fc072839987790ea",
-    "semantic_hash": "b14ccc7d45feab41fc072839987790ea"
+    "mtime": 1794077307.8389773,
+    "seen": 1794077705.5289352,
+    "ast_hash": "ba2b51016d8b8551d5304f0d6afc7f2d",
+    "semantic_hash": "ba2b51016d8b8551d5304f0d6afc7f2d"
   },
   "docs/superpowers/plans/2026-11-06-fase-1-ambiente-e-forks.md": {
     "mtime": 1794016853.798393,
@@ -3064,5 +3064,371 @@
     "seen": 1794022071.972782,
     "ast_hash": "66657a726661ef6eb9197aeb33caa118",
     "semantic_hash": "66657a726661ef6eb9197aeb33caa118"
+  },
+  "android/app/src/main/java/com/limelight/gabs/display/DisplayProfile.java": {
+    "mtime": 1794031255.0037508,
+    "seen": 1794077705.527935,
+    "ast_hash": "5302ff2b09ca9241e23e0e0649e8c6a8",
+    "semantic_hash": "5302ff2b09ca9241e23e0e0649e8c6a8"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/KeyboardLayout.java": {
+    "mtime": 1794072741.025284,
+    "seen": 1794077705.527935,
+    "ast_hash": "2507bfa8cf8b0fd756656a09d88595a7",
+    "semantic_hash": "2507bfa8cf8b0fd756656a09d88595a7"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/LocalZoom.java": {
+    "mtime": 1794027776.5820918,
+    "seen": 1794077705.527935,
+    "ast_hash": "4f5e33c3f4ae891775285acff6b66acd",
+    "semantic_hash": "4f5e33c3f4ae891775285acff6b66acd"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/MenuAnchor.java": {
+    "mtime": 1794068422.231752,
+    "seen": 1794077705.527935,
+    "ast_hash": "300757ef32a70ea770fbd5cb0ba543b6",
+    "semantic_hash": "300757ef32a70ea770fbd5cb0ba543b6"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/PenOnlyGestures.java": {
+    "mtime": 1794027525.1275566,
+    "seen": 1794077705.527935,
+    "ast_hash": "e9131d373f6c364b8847b7bcce8de09b",
+    "semantic_hash": "e9131d373f6c364b8847b7bcce8de09b"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/SessionMenu.java": {
+    "mtime": 1794068423.5992532,
+    "seen": 1794077705.527935,
+    "ast_hash": "071671bb70c6d943dce55dd4fcf2dca2",
+    "semantic_hash": "071671bb70c6d943dce55dd4fcf2dca2"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/TouchMode.java": {
+    "mtime": 1794027776.584092,
+    "seen": 1794077705.527935,
+    "ast_hash": "ba2067be55b3cf2ea533cdcced5e1bd0",
+    "semantic_hash": "ba2067be55b3cf2ea533cdcced5e1bd0"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/TouchModePolicy.java": {
+    "mtime": 1794029259.4199557,
+    "seen": 1794077705.527935,
+    "ast_hash": "402084e807df017eda89846e63986652",
+    "semantic_hash": "402084e807df017eda89846e63986652"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/TouchpadGestures.java": {
+    "mtime": 1794070323.695948,
+    "seen": 1794077705.527935,
+    "ast_hash": "51700c55416bba8fe9a074a4ad1b6d78",
+    "semantic_hash": "51700c55416bba8fe9a074a4ad1b6d78"
+  },
+  "android/app/src/main/java/com/limelight/gabs/input/TrackpadRotation.java": {
+    "mtime": 1794032330.2795746,
+    "seen": 1794077705.527935,
+    "ast_hash": "e63309d71028cfa7f787fb4f3b55dadb",
+    "semantic_hash": "e63309d71028cfa7f787fb4f3b55dadb"
+  },
+  "android/app/src/main/java/com/limelight/gabs/latency/ClockSync.java": {
+    "mtime": 1794027841.2959714,
+    "seen": 1794077705.527935,
+    "ast_hash": "e06d83fe9a27b37e1773fe6a9d725da3",
+    "semantic_hash": "e06d83fe9a27b37e1773fe6a9d725da3"
+  },
+  "android/app/src/main/java/com/limelight/gabs/latency/LatencyProbe.java": {
+    "mtime": 1794028772.5310638,
+    "seen": 1794077705.527935,
+    "ast_hash": "ba484514a03dad93a642757f32cd73c0",
+    "semantic_hash": "ba484514a03dad93a642757f32cd73c0"
+  },
+  "android/app/src/main/java/com/limelight/gabs/latency/LatencyStats.java": {
+    "mtime": 1794027841.3179715,
+    "seen": 1794077705.527935,
+    "ast_hash": "2ab8f99ece4d4ccad820b3f1499d1da2",
+    "semantic_hash": "2ab8f99ece4d4ccad820b3f1499d1da2"
+  },
+  "android/app/src/main/java/com/limelight/gabs/latency/StampCodec.java": {
+    "mtime": 1794027841.2739716,
+    "seen": 1794077705.527935,
+    "ast_hash": "7e3165db9548402f2f0c31e4dc3c92a2",
+    "semantic_hash": "7e3165db9548402f2f0c31e4dc3c92a2"
+  },
+  "android/app/src/main/java/com/limelight/gabs/session/SessionExit.java": {
+    "mtime": 1794071311.995473,
+    "seen": 1794077705.527935,
+    "ast_hash": "ba9e3c437d3d6e551c3041887db2b9bf",
+    "semantic_hash": "ba9e3c437d3d6e551c3041887db2b9bf"
+  },
+  "android/app/src/test/java/com/limelight/gabs/display/DisplayProfileTest.java": {
+    "mtime": 1794030967.6717467,
+    "seen": 1794077705.527935,
+    "ast_hash": "22e09fa288ecad9be62e69e313b43ae1",
+    "semantic_hash": "22e09fa288ecad9be62e69e313b43ae1"
+  },
+  "android/app/src/test/java/com/limelight/gabs/input/KeyboardLayoutTest.java": {
+    "mtime": 1794072727.3281603,
+    "seen": 1794077705.527935,
+    "ast_hash": "db3e2ce7b8ba875938b86e53ad19583f",
+    "semantic_hash": "db3e2ce7b8ba875938b86e53ad19583f"
+  },
+  "android/app/src/test/java/com/limelight/gabs/input/LocalZoomTest.java": {
+    "mtime": 1794027251.352566,
+    "seen": 1794077705.527935,
+    "ast_hash": "caca10bea9973e0dc5b395d814955e4d",
+    "semantic_hash": "caca10bea9973e0dc5b395d814955e4d"
+  },
+  "android/app/src/test/java/com/limelight/gabs/input/MenuAnchorTest.java": {
+    "mtime": 1794068364.6382532,
+    "seen": 1794077705.527935,
+    "ast_hash": "25a9fc66202c9949dab4ae8b0560c5a6",
+    "semantic_hash": "25a9fc66202c9949dab4ae8b0560c5a6"
+  },
+  "android/app/src/test/java/com/limelight/gabs/input/TouchModePolicyTest.java": {
+    "mtime": 1794028744.808899,
+    "seen": 1794077705.527935,
+    "ast_hash": "27fe4d3164bfa797d359cd9a78a0a8fb",
+    "semantic_hash": "27fe4d3164bfa797d359cd9a78a0a8fb"
+  },
+  "android/app/src/test/java/com/limelight/gabs/input/TouchpadGesturesTest.java": {
+    "mtime": 1794070295.7591493,
+    "seen": 1794077705.527935,
+    "ast_hash": "bf2e5c3686f7eea62e4e004ce2e47fcd",
+    "semantic_hash": "bf2e5c3686f7eea62e4e004ce2e47fcd"
+  },
+  "android/app/src/test/java/com/limelight/gabs/input/TrackpadRotationTest.java": {
+    "mtime": 1794032306.9072063,
+    "seen": 1794077705.527935,
+    "ast_hash": "c18e2904a8d2549e9bfa0b2132b5c783",
+    "semantic_hash": "c18e2904a8d2549e9bfa0b2132b5c783"
+  },
+  "android/app/src/test/java/com/limelight/gabs/latency/ClockSyncTest.java": {
+    "mtime": 1794027815.5933592,
+    "seen": 1794077705.527935,
+    "ast_hash": "2682a5cf801f93c5cd8a4a590c22d96b",
+    "semantic_hash": "2682a5cf801f93c5cd8a4a590c22d96b"
+  },
+  "android/app/src/test/java/com/limelight/gabs/latency/LatencyStatsTest.java": {
+    "mtime": 1794027815.6153586,
+    "seen": 1794077705.527935,
+    "ast_hash": "84a118935310fdf5861c4d38dec6eaeb",
+    "semantic_hash": "84a118935310fdf5861c4d38dec6eaeb"
+  },
+  "android/app/src/test/java/com/limelight/gabs/latency/StampCodecTest.java": {
+    "mtime": 1794027815.5713599,
+    "seen": 1794077705.527935,
+    "ast_hash": "279c7434e56e84aab250cbe14a3cd77f",
+    "semantic_hash": "279c7434e56e84aab250cbe14a3cd77f"
+  },
+  "android/app/src/test/java/com/limelight/gabs/session/SessionExitTest.java": {
+    "mtime": 1794071263.368278,
+    "seen": 1794077705.527935,
+    "ast_hash": "b9fad1f7a3aea1999279c4cf93f326b1",
+    "semantic_hash": "b9fad1f7a3aea1999279c4cf93f326b1"
+  },
+  "host/src/gabs/keyboard_layout.cpp": {
+    "mtime": 1794070505.8882735,
+    "seen": 1794077705.527935,
+    "ast_hash": "29ee20340440dcb54ca66d3d1302affd",
+    "semantic_hash": "29ee20340440dcb54ca66d3d1302affd"
+  },
+  "host/src/gabs/keyboard_layout.h": {
+    "mtime": 1794070505.8882735,
+    "seen": 1794077705.527935,
+    "ast_hash": "b26bd70eb3d4b1a70cc216e3a091b904",
+    "semantic_hash": "b26bd70eb3d4b1a70cc216e3a091b904"
+  },
+  "host/src/gabs/virtual_display.cpp": {
+    "mtime": 1794073999.0598226,
+    "seen": 1794077705.527935,
+    "ast_hash": "17fc408aa49385305fd5931ee9766d12",
+    "semantic_hash": "17fc408aa49385305fd5931ee9766d12"
+  },
+  "host/src/gabs/virtual_display.h": {
+    "mtime": 1794073724.3299098,
+    "seen": 1794077705.527935,
+    "ast_hash": "ee991084e9b9802b3c93cb3db964c6c6",
+    "semantic_hash": "ee991084e9b9802b3c93cb3db964c6c6"
+  },
+  "host/src/platform/windows/gabs/keyboard_layout_win.cpp": {
+    "mtime": 1794070511.6388178,
+    "seen": 1794077705.5289352,
+    "ast_hash": "87c8d99bdb72173c91d18172c3adc003",
+    "semantic_hash": "87c8d99bdb72173c91d18172c3adc003"
+  },
+  "host/src/platform/windows/gabs/sudovda_driver.cpp": {
+    "mtime": 1794031226.2847517,
+    "seen": 1794077705.5289352,
+    "ast_hash": "26a0d5f008894c38ea9cbb927159e1a3",
+    "semantic_hash": "26a0d5f008894c38ea9cbb927159e1a3"
+  },
+  "tools/latencia/Marcador.Tests/Marcador.Tests.csproj": {
+    "mtime": 1794027658.0114133,
+    "seen": 1794077705.5289352,
+    "ast_hash": "ca3b1ad5fa4647a64a97f7652d3ad36c",
+    "semantic_hash": "ca3b1ad5fa4647a64a97f7652d3ad36c"
+  },
+  "tools/latencia/Marcador.Tests/StampCodecTests.cs": {
+    "mtime": 1794028715.2803397,
+    "seen": 1794077705.5289352,
+    "ast_hash": "3162d9aa690f867d40ca2066b4a48d4e",
+    "semantic_hash": "3162d9aa690f867d40ca2066b4a48d4e"
+  },
+  "tools/latencia/Marcador/Marcador.csproj": {
+    "mtime": 1794027657.9864137,
+    "seen": 1794077705.5289352,
+    "ast_hash": "ef0f28d1ac987a38174bab22265fddfa",
+    "semantic_hash": "ef0f28d1ac987a38174bab22265fddfa"
+  },
+  "tools/latencia/Marcador/MarcadorForm.cs": {
+    "mtime": 1794027978.0348556,
+    "seen": 1794077705.5289352,
+    "ast_hash": "29532cbe6924e08cf4d90b0e38d079ba",
+    "semantic_hash": "29532cbe6924e08cf4d90b0e38d079ba"
+  },
+  "tools/latencia/Marcador/Program.cs": {
+    "mtime": 1794027977.967342,
+    "seen": 1794077705.5289352,
+    "ast_hash": "a6d053b88a2c07cf2abfa6cae4c80c00",
+    "semantic_hash": "a6d053b88a2c07cf2abfa6cae4c80c00"
+  },
+  "tools/latencia/Marcador/Relogio.cs": {
+    "mtime": 1794027977.9883406,
+    "seen": 1794077705.5289352,
+    "ast_hash": "9b56345ec68a937ca917ac92775989ec",
+    "semantic_hash": "9b56345ec68a937ca917ac92775989ec"
+  },
+  "tools/latencia/Marcador/RelogioUdp.cs": {
+    "mtime": 1794028725.0328474,
+    "seen": 1794077705.5289352,
+    "ast_hash": "cb07b8fd59bf003ac929b7fe74ac49f8",
+    "semantic_hash": "cb07b8fd59bf003ac929b7fe74ac49f8"
+  },
+  "tools/latencia/Marcador/StampCodec.cs": {
+    "mtime": 1794027675.405468,
+    "seen": 1794077705.5289352,
+    "ast_hash": "2cb4b3bfa9cf74d549cbdddcb247322f",
+    "semantic_hash": "2cb4b3bfa9cf74d549cbdddcb247322f"
+  },
+  "tools/marca/cores.json": {
+    "mtime": 1794024429.9028015,
+    "seen": 1794077705.5289352,
+    "ast_hash": "70bdc2b4145a527093ca067ec4c90245",
+    "semantic_hash": "70bdc2b4145a527093ca067ec4c90245"
+  },
+  "tools/marca/gerar-icones.py": {
+    "mtime": 1794026548.4805372,
+    "seen": 1794077705.5289352,
+    "ast_hash": "3158ec4522dcfec79033a2f410a17724",
+    "semantic_hash": "3158ec4522dcfec79033a2f410a17724"
+  },
+  "tools/marca/servico.Tests.ps1": {
+    "mtime": 1794026465.8899152,
+    "seen": 1794077705.5289352,
+    "ast_hash": "6c2fe7a331a4de114ee4b655591c7dd4",
+    "semantic_hash": "6c2fe7a331a4de114ee4b655591c7dd4"
+  },
+  "tools/marca/test_gerar_icones.py": {
+    "mtime": 1794026535.0016932,
+    "seen": 1794077705.5289352,
+    "ast_hash": "99740d81e77b14dcdc6e64352a62c555",
+    "semantic_hash": "99740d81e77b14dcdc6e64352a62c555"
+  },
+  "tools/setup/instalar-host.Tests.ps1": {
+    "mtime": 1794026641.7721822,
+    "seen": 1794077705.5289352,
+    "ast_hash": "32667d441f2bd961928adcf0de643d62",
+    "semantic_hash": "32667d441f2bd961928adcf0de643d62"
+  },
+  "tools/setup/instalar-host.ps1": {
+    "mtime": 1794026692.0604002,
+    "seen": 1794077705.5289352,
+    "ast_hash": "8fa5e044bbfa010f4b9ed4dcdbe519cf",
+    "semantic_hash": "8fa5e044bbfa010f4b9ed4dcdbe519cf"
+  },
+  "tools/setup/testar-tela-virtual.ps1": {
+    "mtime": 1794026320.0372794,
+    "seen": 1794077705.5289352,
+    "ast_hash": "05d92448747afeac82923f0a0151dfea",
+    "semantic_hash": "05d92448747afeac82923f0a0151dfea"
+  },
+  "docs/decisoes/0002-marca-e-application-id.md": {
+    "mtime": 1794024190.094497,
+    "seen": 1794077705.5289352,
+    "ast_hash": "21280131a380cca3ccc71800f78316c6",
+    "semantic_hash": "21280131a380cca3ccc71800f78316c6"
+  },
+  "docs/decisoes/0003-driver-tela-virtual.md": {
+    "mtime": 1794026390.626494,
+    "seen": 1794077705.5289352,
+    "ast_hash": "1196bb43b2c2d4a18f5ba06058b7d705",
+    "semantic_hash": "1196bb43b2c2d4a18f5ba06058b7d705"
+  },
+  "docs/decisoes/0004-pc-pronto-em-segundo-plano.md": {
+    "mtime": 1794077278.736916,
+    "seen": 1794077705.5289352,
+    "ast_hash": "81dc018c65752fea8d94167efba72492",
+    "semantic_hash": "81dc018c65752fea8d94167efba72492"
+  },
+  "docs/latencia.md": {
+    "mtime": 1794028003.0869913,
+    "seen": 1794077705.5289352,
+    "ast_hash": "b6f61f0458be27dcf7a3a46be16dab9f",
+    "semantic_hash": "b6f61f0458be27dcf7a3a46be16dab9f"
+  },
+  "docs/marca/README.md": {
+    "mtime": 1794025129.6224346,
+    "seen": 1794077705.5289352,
+    "ast_hash": "5e03e66dacb323f588edba4c0f11b6ee",
+    "semantic_hash": "5e03e66dacb323f588edba4c0f11b6ee"
+  },
+  "docs/marca/gabs-design-system/DESIGN.md": {
+    "mtime": 1794024094.1588838,
+    "seen": 1794077705.5289352,
+    "ast_hash": "82377728649a69a9d7e4e318491c807b",
+    "semantic_hash": "82377728649a69a9d7e4e318491c807b"
+  },
+  "docs/segredos.md": {
+    "mtime": 1794026206.4417136,
+    "seen": 1794077705.5289352,
+    "ast_hash": "7201d3b5af582d17fdf38f55d9bd87f5",
+    "semantic_hash": "7201d3b5af582d17fdf38f55d9bd87f5"
+  },
+  "docs/superpowers/plans/2026-11-07-fase-2-streaming.md": {
+    "mtime": 1794024190.0934958,
+    "seen": 1794077705.5289352,
+    "ast_hash": "e53d8dbb9ea3dac623b340cf323d5cc6",
+    "semantic_hash": "e53d8dbb9ea3dac623b340cf323d5cc6"
+  },
+  "docs/tailscale.md": {
+    "mtime": 1794076524.8056927,
+    "seen": 1794077705.5289352,
+    "ast_hash": "3567489977cbf803a3d8dfd7c1ac1177",
+    "semantic_hash": "3567489977cbf803a3d8dfd7c1ac1177"
+  },
+  "docs/testes/fase-2-checklist.md": {
+    "mtime": 1794077279.807463,
+    "seen": 1794077705.5289352,
+    "ast_hash": "6e68d1b6dc0792eeef55dadc1e04436a",
+    "semantic_hash": "6e68d1b6dc0792eeef55dadc1e04436a"
+  },
+  "docs/testes/fase-2-entrada.md": {
+    "mtime": 1794074980.7295241,
+    "seen": 1794077705.5289352,
+    "ast_hash": "ff112a254b91e24a65299f272de238d3",
+    "semantic_hash": "ff112a254b91e24a65299f272de238d3"
+  },
+  "tools/marca/fontes/OFL.txt": {
+    "mtime": 1794024431.5568018,
+    "seen": 1794077705.5289352,
+    "ast_hash": "f77a6739188f623654c0a7ad6c11f82b",
+    "semantic_hash": "f77a6739188f623654c0a7ad6c11f82b"
+  },
+  "docs/marca/previa-icone.png": {
+    "mtime": 1794024525.1316593,
+    "seen": 1794077705.5289352,
+    "ast_hash": "2fccedc96b0b54396e33869af659ca0f",
+    "semantic_hash": "2fccedc96b0b54396e33869af659ca0f"
+  },
+  "docs/marca/referencia-gabs.webp": {
+    "mtime": 1794024094.1938822,
+    "seen": 1794077705.5289352,
+    "ast_hash": "827587e57c7f7b24b0d6c75ec41587f7",
+    "semantic_hash": "827587e57c7f7b24b0d6c75ec41587f7"
   }
 }
