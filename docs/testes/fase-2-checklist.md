@@ -26,3 +26,16 @@ Rascunho das verificações feitas no tablet. A Task 11 transforma este arquivo 
 | Alt+Tab ou Home no tablet: o PC continua com a tela virtual e o teclado; voltar reaproveita a tela (log: `reusing the virtual display`) | ✓ |
 | Voltar ou Desconectar no menu: o PC volta aos monitores físicos | ✓ |
 | Teclado pt-BR na sessão, depois do login e do Win+L; volta ao inglês internacional ao desconectar | ✓ |
+
+## Perfis de tela (Task 6, 07/11/2026)
+
+| Perfil | Tela virtual (log do host) | Resultado |
+|---|---|---|
+| Nativo 100% a 120 fps | 2800×1752 @ 120 | ✓ sem barras; monitores físicos voltam ao desconectar |
+| Nativo 67% | 1866×1168 @ 120 | ✓ |
+| Nativo 50% | 1400×876 @ 120 | ✓ |
+| Fixo 1080p | 1920×1080 @ 120 | ✓ com barras pretas (aceito pelo Gab: uso raro) |
+| Fixo 720p | 1280×720 @ 120 | ✓ com barras pretas (aceito pelo Gab: uso raro) |
+| Espelhar monitor | nenhuma; monitores físicos restaurados antes da sessão | ✓ mostra o TCL |
+
+Defeito achado e corrigido no teste: o padrão do teclado pt-BR (`00010416`) era compilado como o número 10416; a tela de configurações gravava "10416" e o app deixava de pedir o português. Agora o padrão é texto e um valor inválido volta ao padrão (conferido no tablet).
