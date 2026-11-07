@@ -54,4 +54,5 @@ Se o One UI não deixar o app capturar Alt+Tab ou Win, o menu da sessão (toque 
 
 ## Limitações aceitas pelo Gab
 
-_(preencher, se houver)_
+- Na tela de login do Windows o teclado fica no layout do próprio Windows; o português vale a partir da área de trabalho.
+- Teclado Bluetooth não testado (o Gab usa o Book Cover).
