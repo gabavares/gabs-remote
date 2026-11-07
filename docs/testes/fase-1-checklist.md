@@ -29,4 +29,38 @@ Ajustes que o build pediu (sem tocar no código do fork):
 
 ## Ponta a ponta
 
-_(Task 7: preenchido no teste com o Tab S10+.)_
+Teste feito em 07/11/2026, por volta da 0h, no Wi-Fi de casa. Host em modo console como administrador (`C:\gr\host\build\sunshine.exe`) e app `Moonlight (Debug)` instalado no Tab S10+ pelo APK. Log completo do host em [`fase-1-log-host.md`](fase-1-log-host.md).
+
+### Firewall e rede
+- [x] A rede do PC estava como **Pública**. O Gab mudou para **Privada**.
+- [x] Regras de entrada `Gabs Remote (dev) TCP/UDP`, só no perfil Privado, criadas pelo Gab com `tools\setup\firewall-dev.ps1` como administrador. Para desfazer: `Remove-NetFirewallRule -DisplayName 'Gabs Remote (dev)*'`.
+
+### Monitores que o host listou
+| Saída | Monitor | Resolução | Taxa | Principal |
+|---|---|---|---|---|
+| `\\.\DISPLAY1` | TCL 27G64 | 2560×1440 | 180 Hz | **sim** |
+| `\\.\DISPLAY2` | SAMSUNG | 4096×2160 | 120 Hz | não |
+| `\\.\DISPLAY3` | ARZOPA (portátil) | 1920×1080 | 60 Hz | não |
+
+- [x] **Monitor capturado: o físico principal, TCL 27G64 2560×1440** (`Capture size 2560x1440`, `Desktop resolution [2560x1440]`, 180 Hz).
+- Nenhum adaptador virtual do Parsec ou do SuperDisplay apareceu na lista (estavam inativos no momento do teste).
+- GPU: **NVIDIA GeForce RTX 5060 Ti** (NVENC), com HAGS ligado. Encoders encontrados: H.264, HEVC e AV1 (todos `nvenc`). O YUV444 em AV1 não é suportado por essa GPU; HEVC e H.264 suportam.
+
+### Linha de base (overlay de estatísticas do Moonlight)
+| Medida | 1080p | 2560×1440 |
+|---|---|---|
+| FPS recebidos e renderizados | 33,58 | 64,44 |
+| Decodificador | `c2.mtk.hevc.decoder.lowlatency` (HEVC) | `c2.mtk.hevc.decoder.lowlatency` (HEVC) |
+| Quadros perdidos na rede | 0,00% | 0,00% |
+| Latência média da rede | 8 ms (variação 0 ms) | 7 ms (variação 2 ms) |
+| Processamento no host (mín/máx/média) | 1,6 / 2,4 / 1,8 ms | 2,3 / 92,6 / 5,6 ms |
+| Tempo médio de decodificação | 8,51 ms | 0,31 ms |
+
+- [x] Pareamento por PIN pelo painel `https://localhost:47990` funcionou.
+- [x] Sessão "Desktop" abriu nas duas resoluções. Toque e teclado: o Gab relatou "tudo testado".
+
+### Observações para a fase 2
+- O FPS ficou abaixo do pedido (33 em 1080p, 64 em 1440p). O Sunshine só manda quadro quando a tela muda, então área de trabalho parada derruba o número. Na fase 2, medir com algo em movimento (vídeo ou janela arrastada) e conferir se a opção de 120 FPS estava ativa no app.
+- O pico de 92,6 ms de processamento no host em 1440p é isolado (a média foi 5,6 ms), mas vale acompanhar.
+- O tempo de decodificação em 1080p (8,51 ms) saiu bem maior que em 1440p (0,31 ms), o que é estranho. Provavelmente é medida de poucos quadros com a tela parada. Repetir na fase 2 com o medidor de latência (§9.3 da spec).
+- O monitor certo foi escolhido sem configuração nenhuma, porque o TCL é o principal. A tela virtual da fase 2 muda isso.
