@@ -21,7 +21,7 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 > Gabs Remote — escrever o plano da **fase 3 (Fora de casa completo)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (§5 Rede e conexão, §7 Disponibilidade, §10 linha da fase 3, §11 Riscos), `docs/decisoes/` (a 0004 explica o PC pronto em segundo plano), `docs/testes/fase-2-checklist.md` (linha de base e observações para a fase 3), `docs/tailscale.md`, `docs/resposta servidor.md` e `graphify-out/GRAPH_REPORT.md`. Use o graphify para achar nos forks onde mexer. Escreva com a skill writing-plans, terminando com a seção "Próxima sessão".
 
 Estado ao fechar a fase 2 (07/11/2026):
-- Host como serviço `GabsRemote` e APK de release instalados, na versão atual (host `eaa0d85a`, app `d666d2cb`). Nada foi enviado ao GitHub: push dos submódulos e do principal só com o ok do Gab.
+- Host como serviço `GabsRemote` e APK de release instalados, na versão atual (host `eaa0d85a`, app `d666d2cb`). Host, app e principal enviados ao GitHub em 07/11/2026, com o ok do Gab.
 - Linha de base: em casa a 120 fps, clique até a imagem 32 ms em média (p95 39 ms; meta do critério 1: ≤ 30 ms) e carimbo 28,7 ms; a 60 fps o carimbo sobe para 50 ms (decodificador da MediaTek mais lento com menos quadros). Fora de casa: Tailscale funcionando, sem números (o 4G do Gab limitou; ele usa o Wi-Fi do escritório).
 - Pontos para o plano da fase 3:
   - Medir o critério 1 fora de casa (Wi-Fi do escritório), com o caminho do Tailscale (direto ou DERP) registrado; o caminho no 4G não foi registrado.
