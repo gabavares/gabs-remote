@@ -11,3 +11,6 @@ local.properties
 !/tools/build/
 keystore.properties
 .superpowers/
+tools/latencia/bin/
+tools/latencia/**/bin/
+tools/latencia/**/obj/
