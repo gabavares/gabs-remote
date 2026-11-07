@@ -65,6 +65,17 @@ sdkmanager --licenses
 sdkmanager "platform-tools" "platforms;android-37.0" "build-tools;37.0.0" "ndk;29.0.14206865"
 ```
 
+## Driver de tela virtual (fase 2)
+- **SudoVDA 1.10.9.289**, instalado em 07/11/2026. Por que este e de onde veio: `docs/decisoes/0003-driver-tela-virtual.md`. O pacote fica em `drivers/sudovda/`.
+- Reinstalar (PowerShell como administrador): `C:\gr\drivers\sudovda\install.bat`. Desinstalar: `C:\gr\drivers\sudovda\uninstall.bat`.
+- Testar sem o host: `powershell -File C:\gr\tools\setup\testar-tela-virtual.ps1` cria um monitor 2800×1752 @ 120 Hz por 20 s e remove.
+- Convive com o Parsec Virtual Display e o SuperDisplay (os três adaptadores ativos ao mesmo tempo).
+
+## Ferramentas da fase 2
+- **Pillow e pytest** (Python 3.12): `python -m pip install pillow pytest`, para `tools/marca/gerar-icones.py`.
+- **7-Zip** do MSYS2: `pacman -S mingw-w64-ucrt-x86_64-7zip` (`C:\msys64\ucrt64\bin\7z.exe`). Usado para extrair o driver do instalador do Apollo e para o backup cifrado da keystore. O `p7zip` do MSYS2 não abre instaladores NSIS.
+- **Windows Defender:** um comando do bash com a palavra "certutil" junto de um download foi bloqueado como `Trojan:Win32/Ceprolad.A` (falso positivo, 07/11/2026). Nada foi removido; basta não juntar os dois num comando.
+
 ## GitHub CLI
 Login feito pelo Gab (`gh auth login`, pelo navegador), na conta `gabavares`.
 
