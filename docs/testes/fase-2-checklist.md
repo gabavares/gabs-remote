@@ -74,3 +74,15 @@ Tudo ✓ em `docs/testes/fase-2-entrada.md` (S Pen no Photoshop, Illustrator, Fi
 | `c2.mtk.avc.decoder.lowlatency` | Main, High, High10 |
 
 Nenhum anuncia 4:4:4 (`HEVCProfileMain444`, AV1 High/Professional, AVC High444). Conclusão: a spec fica com HEVC 4:2:0 de bitrate alto, e o modo texto 4:4:4 sai do escopo.
+
+## Tailscale (Task 10, 07/11/2026)
+
+| Verificação | Resultado |
+|---|---|
+| PC e tablet na mesma rede Tailscale; chave do PC sem expiração; interface `Tailscale` no Windows | ✓ |
+| Regras `Gabs Remote Tailscale TCP/UDP` ativas em todos os perfis, só para `100.64.0.0/10` e `fd7a:115c:a1e0::/48` | ✓ |
+| Do tablet, `GET /serverinfo` em `100.99.120.91:47989` responde `200 OK`; `tailscale ping` direto em 9 ms (em casa) | ✓ |
+| No 4G, com o Wi-Fi desligado: PC adicionado pelo nome MagicDNS, sessões Nativo a 60 e 120 fps com 20, 35 e 50 Mbps | ✓ abre e funciona; qualidade limitada pelo 4G do Gab (o Google Remote Desktop, na mesma hora, ficou igual ou pior). Aceito pelo Gab, que usa o Wi-Fi do escritório fora de casa |
+| Direto ou DERP no 4G | Não registrado (o tablet já tinha voltado ao Wi-Fi na conferência) |
+
+Observações para a fase 3: no início de cada sessão pelo Tailscale o host registra centenas de `WSASendMsg() failed: 10022`; com o app na lista de PCs, o host registra `Unable to find MAC address for 100.99.120.91` a cada 1,5 s. Nenhum dos dois atrapalhou o uso.
