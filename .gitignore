@@ -2,3 +2,5 @@ graphify-out/cache/
 *.keystore
 *.jks
 segredos/
+graphify-out/.graphify_python
+graphify-out/.graphify_root

@@ -1,0 +1,20 @@
+{
+  "docs/prompt-servidor.md": {
+    "mtime": 1794014778.5169375,
+    "seen": 1794016446.9589696,
+    "ast_hash": "d11c04ae05fc45025408f5ece430b4ec",
+    "semantic_hash": "d11c04ae05fc45025408f5ece430b4ec"
+  },
+  "docs/resposta servidor.md": {
+    "mtime": 1794015484.9137056,
+    "seen": 1794016446.9589696,
+    "ast_hash": "960afc3847121bbfb75ea3250fcd69bc",
+    "semantic_hash": "960afc3847121bbfb75ea3250fcd69bc"
+  },
+  "docs/superpowers/specs/2026-11-06-gabs-remote-design.md": {
+    "mtime": 1794016266.1551988,
+    "seen": 1794016446.9589696,
+    "ast_hash": "310b0044816dc9bf260671f93cb4688a",
+    "semantic_hash": "310b0044816dc9bf260671f93cb4688a"
+  }
+}

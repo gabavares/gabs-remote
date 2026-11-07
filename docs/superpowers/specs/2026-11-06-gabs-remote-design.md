@@ -36,7 +36,7 @@ Saídas:
 | Tablet | Galaxy Tab S10+ — 2800×1752 @ 120 Hz, decodificação AV1/HEVC por hardware, S Pen (pressão, inclinação, hover, botão) |
 | Rede | Vivo Fibra, roteador Askey RTF3505VW-N1 (CGNAT possível; IPv6 provável) |
 | WoL | Já funciona hoje (Alexa); o mecanismo é genérico e independe do modelo do roteador |
-| Hospedagem | Hostinger compartilhada (CloudLinux, PHP, Node 22 sem portas abertas, sem UDP — aprendido no projeto vagabs). Confirmar com `docs/prompt-servidor.md` se há algo além disso |
+| Hospedagem | Hostinger Premium compartilhada, servidor no Brasil (verificado em `docs/resposta servidor.md`): PHP e um processo Node mantido por vigia, **nenhuma porta de entrada (TCP/UDP) alcançável**, sem root/Docker, IPv4 compartilhado, `wss://` improvável. DNS na Hostinger com subdomínios livres. **Não serve para sinalização WebSocket nem TURN**; para isso seria preciso uma VPS (ex.: Hostinger KVM 1) |
 | GitHub | conta `gabavares`, commits com `43415454+gabavares@users.noreply.github.com` |
 | Ferramentas no PC hoje | Git, Node, Python, .NET. Faltam Visual Studio Build Tools/MSYS2 (para o Sunshine), Android Studio + SDK/NDK, JDK |
 
@@ -235,4 +235,4 @@ O grafo do projeto (`graphify-out/`) é gerado e atualizado a cada fase, para o 
 - **Divergência do upstream:** manter as mudanças em módulos e commits pequenos para facilitar merges do Sunshine e do Moonlight. Merge do upstream a cada release estável deles.
 - **Conflito com Parsec/SuperDisplay** já instalados: conferir na fase 2 se os drivers de tela virtual convivem. Desinstalar só com o ok do Gab.
 - **WoL de fora de casa:** descobrir na fase 5 qual mecanismo a Alexa usa hoje (skill, app do roteador, serviço) para o app chamar o mesmo; se não der para reaproveitar, usar port forward para broadcast ou um aparelho da rede via Tailscale.
-- **Resultado do prompt do servidor** (`docs/prompt-servidor.md`) pode mudar §5.2 se houver VPS.
+- **Sem VPS hoje** (confirmado em `docs/resposta servidor.md`): o relay próprio (§5.2 item 4) fica condicionado a contratar uma VPS. A presença na hospedagem usa só HTTPS/PHP, sem atrapalhar o site, o Vagabs e o executor que já rodam lá.
