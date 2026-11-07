@@ -9,7 +9,7 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 |---|---|---|
 | 0. Design | spec aprovada (06/11/2026) | — |
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
-| 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **próxima sessão** |
+| 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **em andamento (07/11/2026)**: código das Tasks 1–7 e 9 pronto, testado e revisado; serviço instalado; faltam os testes no tablet (Tasks 2, 4–9), o Tailscale (Task 10) e o fechamento (Task 11) |
 | 3. Fora de casa completo | — | — |
 | 4. Atualização e CI | — | — |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
@@ -17,14 +17,14 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 2, execução)
-> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (prévia do ícone, instalar driver/serviço/firewall, keystore, push). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
+## Próxima sessão (fase 2, continuação)
+> Gabs Remote — continuar a execução de `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o ledger `.superpowers/sdd/2026-11-07-fase-2-streaming/progress.md` (o que já foi feito, rulings e minors adiados) e `git log` do principal e dos submódulos. O código está pronto; siga pelos testes no tablet: reinstalar o host (`instalar-host.ps1`), instalar o APK de release, Tasks 2 (Step 8), 4 (Step 4), 5–7 (verificações), 8 (matriz em `docs/testes/fase-2-entrada.md`), 9 (Step 5), 10 e 11. Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da fase 3.
 
-Decisões tomadas no plano da fase 2 (07/11/2026):
-- A marca troca nome, ícone e cores; o `applicationId` definitivo é `com.gabtavares.gabsremote` (confirmado pelo Gab em 07/11/2026) e não muda depois da primeira Release. Layout próprio das telas: fase 7. Ver `docs/decisoes/0002-marca-e-application-id.md`.
-- A identidade visual segue o design system GAB/S (`docs/marca/README.md`): ícone e cores já estão definidos no plano; o Gab só aprova a prévia do ícone.
-- A keystore de release é criada na fase 2, com backup cifrado no Google Drive e num pendrive; os locais ficam em `docs/segredos.md` (Task 2).
-- O upstream do Sunshine não tem tela virtual: a Task 1 escolhe o driver (SudoVDA por padrão) e registra na decisão 0003.
+Estado em 07/11/2026 (sessão de execução):
+- Driver de tela virtual: **SudoVDA 1.10.9.289** (decisão 0003), instalado; o certificado da SudoMaker foi aceito pelo Gab.
+- Keystore de release criada, com backup no Drive e no pendrive; falta a prova do backup (hash do `.jks` extraído do Drive) em `docs/segredos.md`.
+- Serviço `GabsRemote` instalado em `C:\Program Files\Gabs Remote`, mas **com o build anterior às correções da revisão**: rodar de novo `instalar-host.ps1` como administrador antes de testar.
+- Revisão final feita (1 crítico e 6 importantes corrigidos com teste); 9 minors adiados no ledger.
 
 ## Prompts-modelo
 
