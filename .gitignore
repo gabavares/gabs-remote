@@ -9,3 +9,5 @@ build/
 local.properties
 .gradle/
 !/tools/build/
+keystore.properties
+.superpowers/

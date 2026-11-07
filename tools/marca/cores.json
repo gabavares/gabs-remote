@@ -1,0 +1,20 @@
+{
+  "claro": {
+    "azul": "#1b34f5",
+    "acido": "#e4f53a",
+    "laranja": "#ff3b1d",
+    "tinta": "#0d0d0d",
+    "papel": "#f1efe9",
+    "folha": "#fbfaf7",
+    "sobre_azul": "#ffffff"
+  },
+  "escuro": {
+    "azul": "#2a45ff",
+    "acido": "#dcf02c",
+    "laranja": "#ff5533",
+    "tinta": "#f1efe9",
+    "papel": "#000000",
+    "folha": "#0c0c0c",
+    "sobre_azul": "#ffffff"
+  }
+}
