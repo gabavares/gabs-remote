@@ -9,7 +9,7 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 |---|---|---|
 | 0. Design | spec aprovada (06/11/2026) | — |
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
-| 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **em andamento (07/11/2026)**: código das Tasks 1–7 e 9 pronto, testado e revisado; serviço instalado; faltam os testes no tablet (Tasks 2, 4–9), o Tailscale (Task 10) e o fechamento (Task 11) |
+| 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
 | 3. Fora de casa completo | — | — |
 | 4. Atualização e CI | — | — |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
@@ -17,19 +17,20 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 2, continuação)
-> Gabs Remote — continuar a execução de `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o ledger `.superpowers/sdd/2026-11-07-fase-2-streaming/progress.md` (o que já foi feito, rulings e minors adiados) e `git log` do principal e dos submódulos. Comece pelos problemas abertos listados abaixo (menu de três dedos, trackpad rotacionado, layout pt-BR), com teste antes de cada correção; depois siga pelos testes no tablet: Tasks 2 (Step 8), 4 (Step 4), 5–7 (verificações restantes: perfis 67/50/1080/720, Espelhar, driver desabilitado), 8 (matriz em `docs/testes/fase-2-entrada.md`), 9 (Step 5), 10 e 11. Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da fase 3.
+## Próxima sessão (fase 3, plano)
+> Gabs Remote — escrever o plano da **fase 3 (Fora de casa completo)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (§5 Rede e conexão, §7 Disponibilidade, §10 linha da fase 3, §11 Riscos), `docs/decisoes/` (a 0004 explica o PC pronto em segundo plano), `docs/testes/fase-2-checklist.md` (linha de base e observações para a fase 3), `docs/tailscale.md`, `docs/resposta servidor.md` e `graphify-out/GRAPH_REPORT.md`. Use o graphify para achar nos forks onde mexer. Escreva com a skill writing-plans, terminando com a seção "Próxima sessão".
 
-Estado em 07/11/2026 (sessão de execução):
-- Driver de tela virtual: **SudoVDA 1.10.9.289** (decisão 0003), instalado; o certificado da SudoMaker foi aceito pelo Gab.
-- Keystore de release criada, com backup no Drive e no pendrive; falta a prova do backup (hash do `.jks` extraído do Drive) em `docs/segredos.md`.
-- Serviço `GabsRemote` instalado em `C:\Program Files\Gabs Remote` (build das 13:20, com escala do Windows e `grKeyboard`).
-- Revisão final feita (1 crítico e 6 importantes corrigidos com teste); 9 minors adiados no ledger.
-- Testado no tablet (07/11, 03:09): Nativo 2800×1752 a **120 fps**, escala do Windows 150% (pedido do Gab, já implementado: preferência "Escala do Windows na tela virtual"), monitores físicos voltam ao desconectar, caneta funcionando. Host e APK instalados são os da versão atual.
-- **Problemas da sessão anterior resolvidos e testados no tablet (07/11, 13:25):** (1) o menu de três dedos abria fora da tela (o PopupMenu descia da tela da sessão, que ocupa tudo); agora abre no ponto do toque; (2) trackpad do Book Cover na direção certa; (3) teclado pt-BR (`grKeyboard`, padrão ABNT2): o host pede o layout de novo por 10 s, porque a troca de tela tira o foco da janela; o PC volta ao inglês ao desconectar. Host e APK instalados são os da versão atual.
-- **Pedidos do Gab testados no tablet (07/11, 14:25):** trackpad do Book Cover com gestos (dois dedos rolam, toques clicam, arrastar com o botão físico); app em segundo plano mantém o PC pronto (tela virtual e teclado) e só Voltar ou Desconectar liberam o PC (decisão do Gab: sem tempo limite; se o app for fechado à força, encerrar o app no painel do host libera); teclado pt-BR também depois do login e do Win+L. Task 2 Step 8 e Task 4 Step 4 conferidos (nome e pacote do APK, tela de login, UAC, `AUTO_START`, reinício em até 5 s); o Moonlight (Debug) já não estava no tablet. Perfis 67/50/1080/720 e Espelhar conferidos (barras pretas no Fixo aceitas); corrigido o padrão do teclado gravado como "10416". Driver desativado conferido (cai no espelhamento do TCL). Corrigido o registro de telas que guardava a tela virtual (reversões falhando depois da reinstalação); se um dia as sessões derem `DevicePrepFailed` sem motivo, apagar `C:\Program Files\Gabs Remote\config\display_device.state` com o serviço parado.
-
-Roteiro do próximo teste no tablet, nesta ordem (depuração USB ligada, tablet no cabo, para ler o log): fechamento (Task 11: medições a 60/90/120 fps e Espelhar com a tela em movimento, checklist final, spec).
+Estado ao fechar a fase 2 (07/11/2026):
+- Host como serviço `GabsRemote` e APK de release instalados, na versão atual (host `eaa0d85a`, app `d666d2cb`). Nada foi enviado ao GitHub: push dos submódulos e do principal só com o ok do Gab.
+- Linha de base: em casa a 120 fps, clique até a imagem 32 ms em média (p95 39 ms; meta do critério 1: ≤ 30 ms) e carimbo 28,7 ms; a 60 fps o carimbo sobe para 50 ms (decodificador da MediaTek mais lento com menos quadros). Fora de casa: Tailscale funcionando, sem números (o 4G do Gab limitou; ele usa o Wi-Fi do escritório).
+- Pontos para o plano da fase 3:
+  - Medir o critério 1 fora de casa (Wi-Fi do escritório), com o caminho do Tailscale (direto ou DERP) registrado; o caminho no 4G não foi registrado.
+  - `WSASendMsg() failed: 10022` às centenas no início das sessões (casa e Tailscale, a 90 e 120 fps): investigar no envio de vídeo do host.
+  - `Unable to find MAC address for 100.99.120.91` a cada 1,5 s com o app na lista de PCs pelo Tailscale: relevante para o WoL de fora.
+  - Reconexão na troca de rede (Wi-Fi ↔ 4G) e o PC pronto sem tempo limite (decisão 0004): se a reconexão automática mudar isso, perguntar ao Gab.
+  - Se a tela virtual sumir com o host rodando (reinício do driver), o registro em memória fica preso até reiniciar o serviço (raro; documentado no checklist).
+- Pendências fora do código: prova do backup da keystore (hash do `.jks` baixado do Drive) em `docs/segredos.md`; minors adiados no ledger `.superpowers/sdd/2026-11-07-fase-2-streaming/progress.md` (entre eles: host que cai no meio da sessão deixa o teclado pt-BR no PC).
+- Problemas conhecidos e saídas: se as sessões derem `DevicePrepFailed` sem motivo, apagar `C:\Program Files\Gabs Remote\config\display_device.state` com o serviço parado; se o teclado ficar em português depois de usar outro app, o PC ainda está "pronto": entrar na sessão e Desconectar.
 
 ## Prompts-modelo
 

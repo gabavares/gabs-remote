@@ -134,7 +134,7 @@ O app testa os caminhos em paralelo e usa o primeiro que responder com menor RTT
   - *Espelhar monitor:* 2560×1440 reduzido ou recortado.
   - *Fixos:* 1080p, 720p.
   - *Segundo monitor:* tela virtual estendida, com o monitor físico continuando ativo (substitui o SuperDisplay).
-- Codec: AV1 → HEVC → H.264, negociado. Bitrate automático com limite manual. **Modo texto 4:4:4** se o decodificador do Tab S10+ suportar (a conferir na fase 2); senão, HEVC 4:2:0 com bitrate alto.
+- Codec: AV1 → HEVC → H.264, negociado. Bitrate automático com limite manual. O Tab S10+ não decodifica 4:4:4 em nenhum codec (conferido na fase 2), então fica **HEVC 4:2:0 com bitrate alto**; o modo texto 4:4:4 saiu do escopo. 120 fps é o perfil indicado: com mais quadros o decodificador da MediaTek entrega mais rápido (fase 2: carimbo de 50 ms a 60 fps e 29 ms a 120 fps).
 - HDR opcional (desligado por padrão).
 - Overlay de estatísticas (latência, fps, bitrate, perda, caminho de rede).
 - Opção de apagar o monitor físico durante a sessão (privacidade).
@@ -163,9 +163,9 @@ O app testa os caminhos em paralelo e usa o primeiro que responder com menor RTT
 
 ## 7. Disponibilidade e robustez
 - Host como **serviço do Windows** (SYSTEM, início automático, recuperação automática se cair) com um processo de sessão para captura e entrada, como o Sunshine já faz. Funciona na tela de login e no UAC.
-- O app reconecta sozinho após queda de rede (troca de Wi-Fi para 4G) e mantém a sessão no host por um tempo configurável.
+- O app reconecta sozinho após queda de rede (troca de Wi-Fi para 4G). Com o app em segundo plano o host mantém a tela virtual e o teclado até o Gab desconectar, sem tempo limite (decisão 0004).
 - Watchdog: se o encoder ou a captura falhar, o host reinicia o pipeline sem derrubar a sessão; tudo vai para log com rotação.
-- Tela virtual removida ao fim da sessão; resolução original do monitor restaurada mesmo se o host cair (restauração na próxima subida).
+- Tela virtual removida ao fim da sessão; resolução original do monitor restaurada mesmo se o host cair (restauração na próxima subida; conferido na fase 2). O registro de telas salvo em disco nunca cita a tela virtual.
 
 ## 8. Atualização automática
 
@@ -237,8 +237,8 @@ O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem l
 ## 11. Riscos e decisões em aberto
 - **CGNAT da Vivo:** se houver CGNAT e não houver IPv6 utilizável, o caminho remoto padrão é Tailscale (§5.2). Conferir na fase 3.
 - **Drivers no Windows 10:** os drivers de tela, mic e webcam precisam ser assinados. Usar drivers já assinados (VirtualDrivers, SudoVDA). Driver próprio só se for inevitável, e então com test-signing apenas no PC do Gab.
-- **4:4:4 no Tab S10+:** depende do decodificador. Conferir na fase 2.
+- ~~**4:4:4 no Tab S10+**~~ — resolvido na fase 2: nenhum decodificador do tablet anuncia 4:4:4; fica HEVC 4:2:0 (§6.1).
 - **Divergência do upstream:** manter as mudanças em módulos e commits pequenos para facilitar merges do Sunshine e do Moonlight. Merge do upstream a cada release estável deles.
-- **Conflito com Parsec/SuperDisplay** já instalados: conferir na fase 2 se os drivers de tela virtual convivem. Desinstalar só com o ok do Gab.
+- ~~**Conflito com Parsec/SuperDisplay**~~ — resolvido na fase 2: os três adaptadores virtuais convivem (decisão 0003), e com o Parsec e o SuperDisplay abertos o Espelhar usa o monitor principal.
 - **WoL de fora de casa:** descobrir na fase 3 qual mecanismo a Alexa usa hoje (skill, app do roteador, serviço) para o app chamar o mesmo; se não der para reaproveitar, usar port forward para broadcast ou um aparelho da rede via Tailscale.
 - **Sem VPS hoje** (confirmado em `docs/resposta servidor.md`): o relay próprio (§5.2 item 4) fica condicionado a contratar uma VPS. A presença na hospedagem usa só HTTPS/PHP, sem atrapalhar o site, o Vagabs e o executor que já rodam lá.

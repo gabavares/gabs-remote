@@ -1,6 +1,35 @@
-# Fase 2: checklist (rascunho)
+# Fase 2: checklist
 
-Rascunho das verificações feitas no tablet. A Task 11 transforma este arquivo no checklist final, com os critérios da spec.
+Fase 2 (streaming em casa e fora pelo Tailscale) testada no Galaxy Tab S10+ em 07/11/2026, com o host como serviço e o app de release. Cada critério da spec (§1.1) que a fase cobre, com a evidência; o detalhe de cada teste vem depois.
+
+## Critérios da spec
+
+| Critério | Resultado | Evidência |
+|---|---|---|
+| 2. Imagem: texto nítido em IDE e Figma em movimento; 60/90/120 fps escolhíveis | ✓ | Gab rolou o VS Code e o Figma a 120 fps sem borrão; medições a 60, 90 e 120 fps abaixo |
+| 3. Resolução: tela na resolução do tablet sem barras; perfis fixos; resolução original de volta ao desconectar e depois de matar o host | ✓ | Perfis (Task 6); host derrubado no meio da sessão: os monitores voltam sozinhos (abaixo) |
+| 4. Entrada: S Pen completa, toque direto e trackpad, teclado com todos os atalhos | ✓ | `docs/testes/fase-2-entrada.md` (Task 8) |
+| 6. Disponibilidade (parte da fase 2): sessão na tela de login e no UAC; serviço volta sozinho | ✓ | Task 4 abaixo. WoL e reconexão automática são da fase 3 |
+| Fora de casa: sessão no 4G/5G pelo Tailscale | ✓ com ressalva | Funciona; qualidade limitada pelo 4G do Gab (o Google Remote Desktop ficou igual ou pior); fora de casa o Gab usa Wi-Fi |
+| Parsec e SuperDisplay ativos: qual saída o Espelhar usa (pendência da fase 1) | ✓ | Com os dois apps abertos, o Espelhar mostra o monitor principal (TCL, 2560×1440) |
+| Linha de base para a fase 3: clique até a imagem | registrado | Em casa a 120 fps: média 32 ms, p95 39 ms (meta do critério 1: ≤ 30 ms em média; fica para a fase 3). Fora: não medido com números (4G ruim) |
+
+## Medições com a tela em movimento (Task 11 Step 2, 07/11/2026, em casa, Wi-Fi)
+
+Vídeo do YouTube tocando na tela; estatísticas do app (média da sessão) e medidor de carimbo (captura até a exibição, 10 s, ~1190 amostras, 0 perdidas). CSVs em `docs/testes/fase-2-latencia/`.
+
+| Perfil | FPS recebidos / renderizados | Quadros perdidos | Latência de rede | Processamento no host (médio) | Decodificação (média) | Carimbo: média / p95 / máx. |
+|---|---|---|---|---|---|---|
+| Nativo 100% a 60 fps | 60,2 / 59,7 | 0 % | 8–10 ms | 2,8 ms | 11–13 ms | 50,1 / 59 / 90 ms |
+| Nativo 100% a 90 fps | 90,0 / 88,0–89,9 | 0 % | 9–11 ms | 2,8–2,9 ms | 5,7–6,6 ms | 37,0 / 46 / 88 ms |
+| Nativo 100% a 120 fps | 117,3–120,1 / 117,3–119,6 | 0 % | 7–10 ms | 2,8–2,9 ms | 0,4–0,6 ms | 28,7 / 30 / 63 ms |
+| Espelhar a 120 fps | — | — | — | — | — | sessão aberta, sem captura das estatísticas |
+
+Decodificador: `c2.mtk.hevc.decoder.lowlatency` em todas. O tempo de decodificação cai com a taxa de quadros (o decodificador da MediaTek entrega mais rápido quando recebe quadros mais seguidos); a latência total cai junto: 120 fps é o perfil indicado. Clique até a imagem a 120 fps: 32,0 ms de média (medido mais cedo, abaixo).
+
+## Host derrubado no meio da sessão (Review Focus 2, 07/11/2026)
+
+`sunshine.exe` finalizado pelo Gerenciador de Tarefas durante uma sessão Nativo: o serviço o subiu de novo, o driver removeu a tela virtual (watchdog) e o host novo restaurou os três monitores físicos na partida (`Recovered display topology after original devices disappeared`), sem registro sobrando. A sessão seguinte abriu normalmente. ✓
 
 ## Host como serviço (Task 4, 07/11/2026)
 
@@ -85,4 +114,4 @@ Nenhum anuncia 4:4:4 (`HEVCProfileMain444`, AV1 High/Professional, AVC High444).
 | No 4G, com o Wi-Fi desligado: PC adicionado pelo nome MagicDNS, sessões Nativo a 60 e 120 fps com 20, 35 e 50 Mbps | ✓ abre e funciona; qualidade limitada pelo 4G do Gab (o Google Remote Desktop, na mesma hora, ficou igual ou pior). Aceito pelo Gab, que usa o Wi-Fi do escritório fora de casa |
 | Direto ou DERP no 4G | Não registrado (o tablet já tinha voltado ao Wi-Fi na conferência) |
 
-Observações para a fase 3: no início de cada sessão pelo Tailscale o host registra centenas de `WSASendMsg() failed: 10022`; com o app na lista de PCs, o host registra `Unable to find MAC address for 100.99.120.91` a cada 1,5 s. Nenhum dos dois atrapalhou o uso.
+Observações para a fase 3: no início das sessões (pelo Tailscale e também em casa, a 90 e 120 fps) o host registra centenas de `WSASendMsg() failed: 10022`; com o app na lista de PCs, o host registra `Unable to find MAC address for 100.99.120.91` a cada 1,5 s. Nenhum dos dois atrapalhou o uso.
