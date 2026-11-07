@@ -217,22 +217,24 @@ O grafo do projeto (`graphify-out/`) é gerado e atualizado a cada fase, para o 
 
 ## 10. Fases (cada uma ganha plano próprio)
 
+O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem logo depois do streaming básico, e não no fim. A latência em casa continua servindo de referência técnica (é o melhor caso), mas o critério que importa é o de fora.
+
 | Fase | Entrega | Pronto quando |
 |---|---|---|
 | 1. Ambiente e forks | Ferramentas instaladas, repositórios criados, host e app compilando sem mudanças, base reconfirmada | O build original conecta do Tab ao PC |
-| 2. Streaming em casa | Marca Gabs Remote, perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, WoL na LAN, medidor de latência | Critérios 1–4 e 6 atendidos na LAN |
-| 3. Atualização e CI | Updater do host e do app, manifesto assinado, Actions, primeira Release | Critério 7 testado com duas versões reais |
-| 4. Áudio, mic, clipboard, arquivos | Driver de mic, uplink de mic, clipboard, arquivos, ações remotas | Critério 5 (exceto câmera) |
-| 5. Fora de casa | IPv6/port forward/Tailscale, presença na hospedagem, WoL remoto, 2º fator | Sessão estável no 4G/5G e PC ligado de fora |
+| 2. Streaming (casa e fora) | Marca Gabs Remote, perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, medidor de latência; **acesso de fora já via Tailscale** | Critérios 2–4 e 6 atendidos; sessão funcionando no 4G/5G pelo Tailscale |
+| 3. Fora de casa completo | Escolha automática do caminho (IPv6 → port forward → Tailscale), presença na hospedagem, WoL de casa e de fora, 2º fator, bloqueio ao desconectar, reconexão na troca de rede | Critério 1 medido fora de casa; PC ligado de fora e sessão estável no 4G/5G |
+| 4. Atualização e CI | Updater do host e do app, manifesto assinado, Actions, primeira Release | Critério 7 testado com duas versões reais |
+| 5. Áudio, mic, clipboard, arquivos | Driver de mic, uplink de mic, clipboard, arquivos, ações remotas | Critério 5 (exceto câmera) |
 | 6. Webcam | Uplink de câmera, webcam virtual DirectShow | Câmera do tablet em Meet/Discord/OBS |
 | 7. Extras | Segundo monitor, perfis por app, barra personalizável, mesa digitalizadora, privacidade | Cada extra com checklist próprio |
 | 8. Cliente web | Gateway WebRTC + página no domínio | Sessão pelo navegador do notebook |
 
 ## 11. Riscos e decisões em aberto
-- **CGNAT da Vivo:** se houver CGNAT e não houver IPv6 utilizável, o caminho remoto padrão é Tailscale (§5.2). Conferir na fase 5.
+- **CGNAT da Vivo:** se houver CGNAT e não houver IPv6 utilizável, o caminho remoto padrão é Tailscale (§5.2). Conferir na fase 3.
 - **Drivers no Windows 10:** os drivers de tela, mic e webcam precisam ser assinados. Usar drivers já assinados (VirtualDrivers, SudoVDA). Driver próprio só se for inevitável, e então com test-signing apenas no PC do Gab.
 - **4:4:4 no Tab S10+:** depende do decodificador. Conferir na fase 2.
 - **Divergência do upstream:** manter as mudanças em módulos e commits pequenos para facilitar merges do Sunshine e do Moonlight. Merge do upstream a cada release estável deles.
 - **Conflito com Parsec/SuperDisplay** já instalados: conferir na fase 2 se os drivers de tela virtual convivem. Desinstalar só com o ok do Gab.
-- **WoL de fora de casa:** descobrir na fase 5 qual mecanismo a Alexa usa hoje (skill, app do roteador, serviço) para o app chamar o mesmo; se não der para reaproveitar, usar port forward para broadcast ou um aparelho da rede via Tailscale.
+- **WoL de fora de casa:** descobrir na fase 3 qual mecanismo a Alexa usa hoje (skill, app do roteador, serviço) para o app chamar o mesmo; se não der para reaproveitar, usar port forward para broadcast ou um aparelho da rede via Tailscale.
 - **Sem VPS hoje** (confirmado em `docs/resposta servidor.md`): o relay próprio (§5.2 item 4) fica condicionado a contratar uma VPS. A presença na hospedagem usa só HTTPS/PHP, sem atrapalhar o site, o Vagabs e o executor que já rodam lá.
