@@ -49,3 +49,16 @@ Defeito achado e corrigido no teste: o padrão do teclado pt-BR (`00010416`) era
 | Driver religado: `SudoVDA ready` e tela virtual de novo | ✓ |
 
 Defeito achado e corrigido no teste (host `eaa0d85a`): o registro de telas do upstream guardava a tela virtual como parte da configuração inicial do PC. Depois da reinstalação do host com uma sessão mantida em segundo plano, a tela sumiu e toda reversão passou a falhar (`DevicePrepFailed` nas sessões seguintes, tela virtual sobrando). Agora o arquivo nunca cita uma tela virtual, e trocar de perfil com o PC mantido desfaz a configuração antes. Conferido: sessão, Alt+Tab e Desconectar desfazem tudo sem erro e sem registro sobrando. O registro antigo foi apagado uma vez com o serviço parado.
+
+## Medidor de latência (Task 9 Step 5, 07/11/2026, em casa, Nativo 100% a 120 fps)
+
+| Modo | Amostras | Perdidas | Média | p50 | p95 | Máx. | Resultado |
+|---|---|---|---|---|---|---|---|
+| Clique (clique até a imagem) | 40 | 0 % | 32,0 ms | 33 ms | 39 ms | 43 ms | ✓ |
+| Carimbo (captura até a exibição) | 1193 | 0 % | 27,4 ms | 28 ms | 37 ms | 63 ms | ✓ |
+
+Critério: perdidas abaixo de 5 % e valores entre 5 e 200 ms. CSVs em `docs/testes/fase-2-latencia/`.
+
+## Matriz de entrada (Task 8, 07/11/2026)
+
+Tudo ✓ em `docs/testes/fase-2-entrada.md` (S Pen no Photoshop, Illustrator, Figma e Windows Ink; atalhos no Book Cover; modos de toque). Teclado Bluetooth não testado.
