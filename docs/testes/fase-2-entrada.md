@@ -30,6 +30,9 @@ Data do teste: _(preencher)_
 | Esc | | | |
 | Setas | | | |
 | Print Screen | | | |
+| Português (ABNT2, opção "Teclado do Windows durante a sessão"): ç, acentos (´ ` ~ ^ ¨), / ? ; : | | | |
+| Ao desconectar, o teclado do PC volta ao inglês | | | |
+| Trackpad do Book Cover: cursor na direção do dedo (opção "Rotação do trackpad do teclado", padrão 90°) | | | |
 
 Se o One UI não deixar o app capturar Alt+Tab ou Win, o menu da sessão (toque de três dedos) tem os itens **Alt+Tab** e **Win**.
 

@@ -26,7 +26,11 @@ Estado em 07/11/2026 (sessão de execução):
 - Serviço `GabsRemote` instalado em `C:\Program Files\Gabs Remote`, mas **com o build anterior às correções da revisão**: rodar de novo `instalar-host.ps1` como administrador antes de testar.
 - Revisão final feita (1 crítico e 6 importantes corrigidos com teste); 9 minors adiados no ledger.
 - Testado no tablet (07/11, 03:09): Nativo 2800×1752 a **120 fps**, escala do Windows 150% (pedido do Gab, já implementado: preferência "Escala do Windows na tela virtual"), monitores físicos voltam ao desconectar, caneta funcionando. Host e APK instalados são os da versão atual.
-- **Problemas abertos:** (1) o toque de três dedos não abre o menu da sessão; investigar com `adb logcat` (o Gab liga a depuração USB); (2) trackpad do Book Cover girado 90°: **corrigido no código** (preferência "Rotação do trackpad do teclado", padrão 90°), falta instalar o APK novo e testar; (3) pedido novo, **ainda não começado**: trocar o layout de teclado do Windows para português (ABNT2, KLID 00010416) durante a sessão, com parâmetro grKeyboard no /launch e preferência no app, e voltar ao layout anterior ao desconectar (o PC usa inglês por causa do teclado físico).
+- **Problemas abertos (atualizado 07/11, 05:50):** (1) toque de três dedos não abre o menu: código revisado sem causa clara (suspeita: o One UI marca os três dedos como palma e cancela o toque); o app novo escreve linhas `Gabs menu:` no log, falta ler com `adb logcat` (depuração USB ligada, tablet no cabo); (2) trackpad do Book Cover girado: **corrigido**, falta testar; (3) teclado pt-BR: **feito** (host `grKeyboard` + opção "Teclado do Windows durante a sessão" no app, padrão Português ABNT2; volta ao layout anterior quando a sessão termina), falta testar.
+- **Builds prontos e ainda não instalados:** host com `grKeyboard` (rodar `instalar-host.ps1` como administrador) e APK release com teclado, trackpad e logs do menu (`C:\grndroidppuild\outputspk
+onRooteleasepp-nonRoot-release.apk`, instalar por cima).
+
+Roteiro do próximo teste no tablet, nesta ordem: instalar host e APK → ligar o cabo USB com depuração (logcat do menu de três dedos) → trackpad e teclado pt-BR (ç, acentos, e o PC volta ao inglês ao desconectar) → Task 2 Step 8 (nome e ícone) → Task 4 Step 4 → perfis 67/50/1080/720, Espelhar e driver desabilitado → matriz `docs/testes/fase-2-entrada.md` → medidor (Task 9 Step 5) → Tailscale (Task 10) → fechamento (Task 11).
 
 ## Prompts-modelo
 
