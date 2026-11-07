@@ -41,3 +41,23 @@ public class RelogioUdpTests
         Assert.Equal(new byte[] { 8, 7, 6, 5, 4, 3, 2, 1 }, b);
     }
 }
+
+public class RelogioUdpRedeTests
+{
+    [Fact]
+    public async Task RespondeAoPingPorIPv4()
+    {
+        // O tablet pinga por IPv4 (LAN 192.168.x ou Tailscale 100.x).
+        var porta = 48000 + Random.Shared.Next(200, 900);
+        var relogio = Relogio.Iniciar();
+        using var servidor = new RelogioUdp(relogio, porta);
+        servidor.Iniciar();
+
+        using var cliente = new System.Net.Sockets.UdpClient(System.Net.Sockets.AddressFamily.InterNetwork);
+        await cliente.SendAsync(new byte[] { 0x01 }, 1, new System.Net.IPEndPoint(System.Net.IPAddress.Loopback, porta));
+        var recebe = cliente.ReceiveAsync();
+        var venceu = await Task.WhenAny(recebe, Task.Delay(2000));
+        Assert.Same(recebe, venceu);
+        Assert.Equal(8, recebe.Result.Buffer.Length);
+    }
+}

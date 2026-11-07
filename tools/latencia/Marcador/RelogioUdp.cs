@@ -18,8 +18,10 @@ public sealed class RelogioUdp : IDisposable
     public RelogioUdp(Relogio relogio, int porta)
     {
         _relogio = relogio;
-        _udp = new UdpClient(new IPEndPoint(IPAddress.IPv6Any, porta));
-        _udp.Client.DualMode = true;
+        // IPv4 e IPv6 no mesmo socket: o DualMode precisa ser ligado antes do bind.
+        var socket = new Socket(AddressFamily.InterNetworkV6, SocketType.Dgram, ProtocolType.Udp) { DualMode = true };
+        socket.Bind(new IPEndPoint(IPAddress.IPv6Any, porta));
+        _udp = new UdpClient { Client = socket };
     }
 
     public void Iniciar() => _ = Task.Run(LaçoAsync);
