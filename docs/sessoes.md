@@ -10,15 +10,17 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 0. Design | spec aprovada (06/11/2026) | — |
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
 | 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
-| 3. Fora de casa completo | — | — |
+| 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | — |
 | 4. Atualização e CI | — | — |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
 | 6. Webcam | — | — |
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 3, plano)
-> Gabs Remote — escrever o plano da **fase 3 (Fora de casa completo)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (§5 Rede e conexão, §7 Disponibilidade, §10 linha da fase 3, §11 Riscos), `docs/decisoes/` (a 0004 explica o PC pronto em segundo plano), `docs/testes/fase-2-checklist.md` (linha de base e observações para a fase 3), `docs/tailscale.md`, `docs/resposta servidor.md` e `graphify-out/GRAPH_REPORT.md`. Use o graphify para achar nos forks onde mexer. Escreva com a skill writing-plans, terminando com a seção "Próxima sessão".
+## Próxima sessão (fase 3, execução)
+> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-3-fora-de-casa.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (roteador, firewall, serviço, hospedagem, token, push). A Task 1 precisa de mim no tablet e no app Alexa. Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
+
+Decisões do Gab ao planejar a fase 3 (07/11/2026): sem 2º fator e sem bloqueio do PC ao desconectar (mora sozinho; vira a decisão 0005 na Task 1); a Alexa liga o PC hoje por uma skill/app de WoL; a reconexão automática não muda a decisão 0004.
 
 Estado ao fechar a fase 2 (07/11/2026):
 - Host como serviço `GabsRemote` e APK de release instalados, na versão atual (host `eaa0d85a`, app `d666d2cb`). Host, app e principal enviados ao GitHub em 07/11/2026, com o ok do Gab.
