@@ -14,6 +14,11 @@ Sistema próprio de acesso remoto: PC Windows do Gab (host) ↔ Galaxy Tab S10+ 
 - Commits com `gabavares <43415454+gabavares@users.noreply.github.com>`.
 - Segredos (keystore do APK, chave Ed25519 do manifesto, senhas) nunca entram no repositório.
 
+## Sessões
+- Cada fase = uma sessão para o plano e outra para a execução. Roteiro e prompts-modelo em `docs/sessoes.md`.
+- Todo plano termina com "Próxima sessão" (prompt pronto). Ao fechar uma sessão, atualize `docs/sessoes.md` e diga ao Gab qual prompt usar.
+- Não refaça o que está nos arquivos: a spec, os planos, `docs/decisoes/` e os checklists são a memória do projeto.
+
 ## graphify
 Este projeto tem um grafo de conhecimento em `graphify-out/`.
 - Antes de perguntas de arquitetura ou de "onde fica X", leia `graphify-out/GRAPH_REPORT.md` e use `/graphify query "<pergunta>"`.
