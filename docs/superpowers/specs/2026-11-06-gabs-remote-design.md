@@ -179,7 +179,8 @@ Padrão igual ao do vagabs: Releases do GitHub, notas em pt-BR, ok do Gab para p
 - **Assinatura própria:** um par de chaves Ed25519 do Gab (fora do repositório). O updater só instala o que bate com o SHA-256 do manifesto assinado. Isso protege mesmo sem certificado de assinatura de código do Windows: na primeira instalação o Windows mostra o aviso do SmartScreen, como no vagabs.
 - **Host:** o updater confere ao iniciar e a cada 24 h, mostra as notas na bandeja, baixa, verifica e instala em silêncio quando não há sessão ativa. O serviço reinicia sozinho e as configurações ficam em `%ProgramData%\GabsRemote`, fora da pasta do programa.
 - **App:** confere ao abrir; mostra as notas; baixa o APK, verifica e instala por `PackageInstaller`.
-  - O APK é sempre assinado com a mesma keystore do Gab, guardada fora do repositório com backup.
+  - O APK é sempre assinado com a mesma keystore do Gab, guardada fora do repositório com backup (onde fica cada cópia: `docs/segredos.md`, criado na fase 2).
+  - O `applicationId` é definido na fase 2 e **não muda depois da primeira Release**: trocar o ID faz o Android tratar o app como outro, e o updater deixa de funcionar (decisão 0002).
   - Na primeira instalação o Android pede para permitir "instalar apps desta fonte". Depois que o próprio app for o instalador registrado, as atualizações podem ser feitas com menos toques (Android 12+ `USER_ACTION_NOT_REQUIRED`).
 - **Compatibilidade:** o manifesto diz a versão mínima de cada lado. Se host e app forem incompatíveis, o app avisa e oferece atualizar antes de conectar.
 - **CI:** GitHub Actions compila o host (Windows) e o APK e gera o rascunho da Release. Publicar é sempre ação do Gab.
@@ -222,12 +223,12 @@ O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem l
 | Fase | Entrega | Pronto quando |
 |---|---|---|
 | 1. Ambiente e forks | Ferramentas instaladas, repositórios criados, host e app compilando sem mudanças, base reconfirmada | O build original conecta do Tab ao PC |
-| 2. Streaming (casa e fora) | Marca Gabs Remote, perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, medidor de latência; **acesso de fora já via Tailscale** | Critérios 2–4 e 6 atendidos; sessão funcionando no 4G/5G pelo Tailscale |
+| 2. Streaming (casa e fora) | Marca Gabs Remote (nome, ícone, cores e `applicationId` definitivo; sem layout próprio), perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, medidor de latência; **acesso de fora já via Tailscale** | Critérios 2–4 e 6 atendidos; sessão funcionando no 4G/5G pelo Tailscale |
 | 3. Fora de casa completo | Escolha automática do caminho (IPv6 → port forward → Tailscale), presença na hospedagem, WoL de casa e de fora, 2º fator, bloqueio ao desconectar, reconexão na troca de rede | Critério 1 medido fora de casa; PC ligado de fora e sessão estável no 4G/5G |
 | 4. Atualização e CI | Updater do host e do app, manifesto assinado, Actions, primeira Release | Critério 7 testado com duas versões reais |
 | 5. Áudio, mic, clipboard, arquivos | Driver de mic, uplink de mic, clipboard, arquivos, ações remotas | Critério 5 (exceto câmera) |
 | 6. Webcam | Uplink de câmera, webcam virtual DirectShow | Câmera do tablet em Meet/Discord/OBS |
-| 7. Extras | Segundo monitor, perfis por app, barra personalizável, mesa digitalizadora, privacidade | Cada extra com checklist próprio |
+| 7. Extras | Layout próprio das telas do app, segundo monitor, perfis por app, barra personalizável, mesa digitalizadora, privacidade | Cada extra com checklist próprio |
 | 8. Cliente web | Gateway WebRTC + página no domínio | Sessão pelo navegador do notebook |
 
 ## 11. Riscos e decisões em aberto

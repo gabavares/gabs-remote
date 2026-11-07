@@ -9,7 +9,7 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 |---|---|---|
 | 0. Design | spec aprovada (06/11/2026) | — |
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
-| 2. Streaming (casa e fora via Tailscale) | **próxima sessão** | — |
+| 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **próxima sessão** |
 | 3. Fora de casa completo | — | — |
 | 4. Atualização e CI | — | — |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
@@ -17,13 +17,13 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 2, plano)
-> Gabs Remote — escrever o plano da **fase 2 (Streaming em casa e fora via Tailscale)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (§4, §5.2 item 3, §6.1, §6.2, §7, §9.3, §10), `docs/decisoes/`, `docs/testes/fase-1-checklist.md` (linha de base) e `graphify-out/GRAPH_REPORT.md`. Use o graphify para achar no fork do host e do app onde ficam a tela virtual, a entrada de caneta/toque e o serviço. Escreva o plano com a skill writing-plans, terminando com a seção "Próxima sessão".
+## Próxima sessão (fase 2, execução)
+> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (applicationId, instalar driver/serviço/firewall, keystore, push). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
 
-Notas da fase 1 para o plano da fase 2:
-- Refazer a medição da linha de base com a tela em movimento: com a área de trabalho parada, o FPS caiu para 33 e 64.
-- O host atual roda em modo console como administrador. Rodar como serviço fica para a fase 2.
-- As regras de firewall de desenvolvimento (`Gabs Remote (dev)`) valem só na rede Privada. Na fase 2, decidir se o instalador cria regras próprias.
+Decisões tomadas no plano da fase 2 (07/11/2026):
+- A marca troca nome, ícone e cores; o `applicationId` definitivo é `com.gabtavares.gabsremote` (o Gab confirma na Task 2) e não muda depois da primeira Release. Layout próprio das telas: fase 7. Ver `docs/decisoes/0002-marca-e-application-id.md`.
+- A keystore de release é criada na fase 2, com backup cifrado no Google Drive e num pendrive; os locais ficam em `docs/segredos.md` (Task 2).
+- O upstream do Sunshine não tem tela virtual: a Task 1 escolhe o driver (SudoVDA por padrão) e registra na decisão 0003.
 
 ## Prompts-modelo
 
