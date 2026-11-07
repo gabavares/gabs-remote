@@ -1,0 +1,6 @@
+[submodule "host"]
+	path = host
+	url = https://github.com/gabavares/gabs-remote-host.git
+[submodule "android"]
+	path = android
+	url = https://github.com/gabavares/gabs-remote-android.git
