@@ -62,3 +62,15 @@ Critério: perdidas abaixo de 5 % e valores entre 5 e 200 ms. CSVs em `docs/test
 ## Matriz de entrada (Task 8, 07/11/2026)
 
 Tudo ✓ em `docs/testes/fase-2-entrada.md` (S Pen no Photoshop, Illustrator, Figma e Windows Ink; atalhos no Book Cover; modos de toque). Teclado Bluetooth não testado.
+
+## 4:4:4 no Tab S10+ (Task 11 Step 1, 07/11/2026)
+
+`adb shell dumpsys media.player`, perfis anunciados pelos decodificadores:
+
+| Decodificador | Perfis |
+|---|---|
+| `c2.mtk.hevc.decoder.lowlatency` (o que o app usa) | Main, MainStill, Main10, Main10HDR10, Main10HDR10Plus |
+| `c2.mtk.av1.decoder` (sem variante de baixa latência) | Main8, Main10, Main10HDR10, Main10HDRPlus |
+| `c2.mtk.avc.decoder.lowlatency` | Main, High, High10 |
+
+Nenhum anuncia 4:4:4 (`HEVCProfileMain444`, AV1 High/Professional, AVC High444). Conclusão: a spec fica com HEVC 4:2:0 de bitrate alto, e o modo texto 4:4:4 sai do escopo.
