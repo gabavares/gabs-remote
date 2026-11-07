@@ -39,3 +39,13 @@ Rascunho das verificações feitas no tablet. A Task 11 transforma este arquivo 
 | Espelhar monitor | nenhuma; monitores físicos restaurados antes da sessão | ✓ mostra o TCL |
 
 Defeito achado e corrigido no teste: o padrão do teclado pt-BR (`00010416`) era compilado como o número 10416; a tela de configurações gravava "10416" e o app deixava de pedir o português. Agora o padrão é texto e um valor inválido volta ao padrão (conferido no tablet).
+
+## Driver da tela virtual (Task 6, 07/11/2026)
+
+| Verificação | Resultado |
+|---|---|
+| Host iniciado com o SudoVDA desativado: log `SudoVDA virtual display driver not found`; a sessão Nativo cai no espelhamento do TCL (2560×1440) com `virtual display unavailable; streaming the physical monitor instead` | ✓ |
+| Com o host rodando, o Windows não deixa desativar o driver (o host mantém o driver aberto; evento 225 do sistema) | Esperado: para testar, parar o serviço antes |
+| Driver religado: `SudoVDA ready` e tela virtual de novo | ✓ |
+
+Defeito achado e corrigido no teste (host `eaa0d85a`): o registro de telas do upstream guardava a tela virtual como parte da configuração inicial do PC. Depois da reinstalação do host com uma sessão mantida em segundo plano, a tela sumiu e toda reversão passou a falhar (`DevicePrepFailed` nas sessões seguintes, tela virtual sobrando). Agora o arquivo nunca cita uma tela virtual, e trocar de perfil com o PC mantido desfaz a configuração antes. Conferido: sessão, Alt+Tab e Desconectar desfazem tudo sem erro e sem registro sobrando. O registro antigo foi apagado uma vez com o serviço parado.
