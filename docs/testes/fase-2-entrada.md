@@ -33,6 +33,9 @@ Data do teste: _(preencher)_
 | Português (ABNT2, opção "Teclado do Windows durante a sessão"): ç, acentos (´ ` ~ ^ ¨), / ? ; : | ✓ ç e acentos (07/11); / ? ; : a conferir | | O host pede o layout de novo por 10 s, porque a troca de tela tira o foco da janela |
 | Ao desconectar, o teclado do PC volta ao inglês | ✓ (07/11) | | |
 | Trackpad do Book Cover: cursor na direção do dedo (opção "Rotação do trackpad do teclado", padrão 90°) | ✓ (07/11) | — | |
+| Trackpad do Book Cover: rolagem com dois dedos, toque = clique, toque de dois dedos = clique direito | ✓ (07/11) | — | Gestos feitos pelo app (`TouchpadGestures`), porque o trackpad capturado chega sem eles |
+| Trackpad do Book Cover: arrastar janela segurando o botão físico | ✓ (07/11) | — | |
+| Teclado em português depois da tela de login e do Win+L | ✓ (07/11) | — | Na própria tela de login fica o layout do Windows (limitação aceita) |
 
 Se o One UI não deixar o app capturar Alt+Tab ou Win, o menu da sessão (toque de três dedos) tem os itens **Alt+Tab** e **Win**.
 
