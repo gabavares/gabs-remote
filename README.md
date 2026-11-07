@@ -31,8 +31,15 @@ O caminho do projeto tem espaço, e MSYS2, CMake e Gradle quebram com isso. **To
 cmd /c mklink /J C:\gr "C:\Users\Gabriel\Desktop\Acesso remoto"
 ```
 
-1. Clone com os submódulos:
-   `git -c core.longpaths=true -c core.autocrlf=false clone --recurse-submodules https://github.com/gabavares/gabs-remote.git`
+1. Clone com os submódulos e grave em cada um a configuração de fim de linha e de caminhos longos. O `-c` do clone vale só para aquele comando; sem o `foreach`, um `git submodule update` futuro faz checkout com CRLF e quebra scripts e patches do upstream:
+   ```powershell
+   git -c core.longpaths=true -c core.autocrlf=false clone --recurse-submodules https://github.com/gabavares/gabs-remote.git
+   cd gabs-remote
+   git config core.longpaths true
+   git submodule foreach --recursive "git config core.autocrlf false && git config core.longpaths true"
+   git -C host remote add upstream https://github.com/LizardByte/Sunshine.git
+   git -C android remote add upstream https://github.com/moonlight-stream/moonlight-android.git
+   ```
 2. Confira o ambiente: `powershell -File C:\gr\tools\setup\verificar-ambiente.ps1` (o que estiver faltando está em [`docs/ambiente.md`](docs/ambiente.md)).
 3. Host: `powershell -File C:\gr\tools\build\build-host.ps1 [-Testes]`
 4. App: `powershell -File C:\gr\tools\build\build-android.ps1 [-Testes] [-Instalar]`

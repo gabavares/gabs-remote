@@ -44,6 +44,7 @@ Teste feito em 07/11/2026, por volta da 0h, no Wi-Fi de casa. Host em modo conso
 
 - [x] **Monitor capturado: o físico principal, TCL 27G64 2560×1440** (`Capture size 2560x1440`, `Desktop resolution [2560x1440]`, 180 Hz).
 - Nenhum adaptador virtual do Parsec ou do SuperDisplay apareceu na lista (estavam inativos no momento do teste).
+- [ ] **Não verificado: captura com o Parsec Virtual Display ou o SuperDisplay ativos.** O risco do item 4 do Review Focus (um adaptador virtual mudar a ordem ou a escolha da saída) não existia no teste. Fica para a fase 2, que já mexe na tela virtual: repetir com os dois ativos e conferir qual saída o host escolhe.
 - GPU: **NVIDIA GeForce RTX 5060 Ti** (NVENC), com HAGS ligado. Encoders encontrados: H.264, HEVC e AV1 (todos `nvenc`). O YUV444 em AV1 não é suportado por essa GPU; HEVC e H.264 suportam.
 
 ### Linha de base (overlay de estatísticas do Moonlight)

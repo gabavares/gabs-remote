@@ -13,6 +13,14 @@ Describe 'Test-CaminhoSemEspaco' {
     }
 }
 
+Describe 'Invoke-Verificacao' {
+    It 'confere o Node nativo e o Git for Windows, que o build do host exige' {
+        $nomes = (Invoke-Verificacao -SemAndroid).Nome
+        $nomes | Should -Contain 'node'
+        $nomes | Should -Contain 'git-for-windows'
+    }
+}
+
 Describe 'Test-Ferramenta' {
     It 'aprova versão acima do mínimo e extrai o número' {
         $r = Test-Ferramenta -Nome 'git' -Comando { 'git version 2.45.1' } -VersaoMinima '2.40'

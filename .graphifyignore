@@ -1,0 +1,30 @@
+# Exclusões do graphify (sintaxe do .gitignore).
+# Dos forks, entra só o código-fonte: host/src e android/app/src.
+host/*
+!host/src/
+android/*
+!android/app/
+android/app/*
+!android/app/src/
+# Imagens e recursos dos forks não ajudam a achar onde mexer.
+host/**/*.png
+host/**/*.jpg
+host/**/*.ico
+host/**/*.svg
+android/**/*.png
+android/**/*.jpg
+android/**/*.webp
+android/**/*.svg
+# Gerados e caches
+host/third-party/
+host/build/
+android/**/build/
+node_modules/
+.gradle/
+.superpowers/
+# Metadados de bibliotecas embutidas no app
+android/**/.github/
+android/**/*.yml
+android/**/LICENSE*
+android/**/CMakeLists.txt
+android/**/Build.txt

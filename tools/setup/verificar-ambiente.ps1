@@ -72,6 +72,13 @@ function Invoke-Verificacao {
         -Dica 'winget install --id Git.Git'
     $r += Test-Ferramenta -Nome 'gh' -Comando { gh --version } -VersaoMinima '2.40' `
         -Dica 'winget install --id GitHub.cli'
+    # O CMake do host usa o Git for Windows (o git do MSYS2 quebra o FetchContent).
+    $gitWin = 'C:\Program Files\Git\cmd\git.exe'
+    $r += Test-Ferramenta -Nome 'git-for-windows' -Comando { & $gitWin --version } -VersaoMinima '2.40' `
+        -Dica 'winget install --id Git.Git (o build-host usa C:\Program Files\Git\cmd\git.exe)'
+    # O painel web do Sunshine exige o Node nativo do Windows (o do MSYS2 não serve).
+    $r += Test-Ferramenta -Nome 'node' -Comando { node --version } -VersaoMinima '20.0' `
+        -Dica 'winget install --id OpenJS.NodeJS.LTS'
 
     $gcc = Join-Path $ucrt 'gcc.exe'
     $r += New-Resultado -Nome 'msys2-ucrt64' -Ok (Test-Path $gcc) -Versao $(if (Test-Path $gcc) { 'gcc' } else { '' }) `
