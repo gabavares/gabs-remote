@@ -64,7 +64,7 @@
 - Produces: cores da marca, usadas também na Task 3: primária `#3D7BFF`, fundo `#0F172A` (proposta; o Gab aprova no Step 1).
 - Produces: `build-android.ps1 -Release` gera `android\app\build\outputs\apk\nonRoot\release\app-nonRoot-release.apk` assinado; sai com código 5 e mensagem em pt-BR se `%USERPROFILE%\.gabs-remote\keystore.properties` não existir.
 
-- [ ] **Step 1: Confirmar com o Gab** o `applicationId` `com.gabtavares.gabsremote` (irreversível depois da primeira Release) e as duas cores. Mostrar a ele uma prévia do ícone (PNG 512 gerado pelo script do Step 3) antes de trocar os arquivos do app.
+- [ ] **Step 1: Confirmar com o Gab** as duas cores. (O `applicationId` `com.gabtavares.gabsremote` já foi confirmado em 07/11/2026.) Mostrar a ele uma prévia do ícone (PNG 512 gerado pelo script do Step 3) antes de trocar os arquivos do app.
 - [ ] **Step 2: Escrever os testes pytest que falham** em `tools/marca/test_gerar_icones.py`:
   - `desenhar_marca(192, '#3D7BFF', '#0F172A', True).size == (192, 192)`
   - com `com_fundo=False`, o pixel `(0, 0)` tem alfa 0 (o primeiro plano do ícone adaptativo é transparente fora da marca)
@@ -351,7 +351,7 @@ O host já trata `100.64.0.0/10` como LAN (`host/src/network.cpp:33`), então pa
 
 Para **executar este plano**, comece uma sessão nova e use:
 
-> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (applicationId, instalar driver/serviço/firewall, keystore, push). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
+> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (cores, instalar driver/serviço/firewall, keystore, push). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
 
 Se a execução parar no meio:
 

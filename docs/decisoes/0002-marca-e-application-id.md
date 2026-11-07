@@ -1,6 +1,6 @@
 # 0002 — Marca Gabs Remote, applicationId e layout
 
-**Data:** 07/11/2026 · **Fase:** 2 · **Status:** decidida (o valor do `applicationId` é confirmado pelo Gab na Task 2 do plano da fase 2, antes do primeiro commit que o usa)
+**Data:** 07/11/2026 · **Fase:** 2 · **Status:** decidida (`applicationId` confirmado pelo Gab em 07/11/2026)
 
 ## Contexto
 O fork do moonlight-android ainda se chama "Moonlight", usa o ícone e as cores do upstream e o `applicationId` `com.limelight` (com o sufixo `.unofficial` no build de release). O upstream pede expressamente que forks troquem o ID. O Android identifica um app pelo `applicationId` mais a assinatura: se um dos dois mudar, a atualização vira "outro app", os dados (PCs pareados, preferências) se perdem e o updater da fase 4 não consegue instalar por cima.
