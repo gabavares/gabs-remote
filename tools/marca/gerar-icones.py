@@ -107,6 +107,23 @@ def desenhar_marca(tamanho: int, cores: dict, com_fundo: bool, suave: bool = Tru
     return img
 
 
+# Selo de estado da bandeja do host: quadrado chapado no canto, com borda dura em tinta.
+ESTADOS = {"transmitindo": "acido", "pausado": "papel", "pareando": "laranja"}
+
+
+def desenhar_estado(tamanho: int, cores: dict, estado: str) -> Image.Image:
+    """Ícone completo com o selo do estado (transmitindo, pausado, pareando) no canto inferior direito."""
+    img = desenhar_marca(tamanho, cores, True)
+    d = ImageDraw.Draw(img)
+    lado = round(tamanho * 0.36)
+    borda = max(1, round(tamanho * 0.03))
+    x1 = y1 = tamanho - 1
+    x0 = y0 = tamanho - lado
+    d.rectangle((x0, y0, x1, y1), fill=_rgb(cores["tinta"]))
+    d.rectangle((x0 + borda, y0 + borda, x1, y1), fill=_rgb(cores[ESTADOS[estado]]))
+    return img
+
+
 def _salvar_png(img: Image.Image, caminho: Path) -> None:
     caminho.parent.mkdir(parents=True, exist_ok=True)
     img.save(caminho, optimize=True)
@@ -132,7 +149,10 @@ def gerar(saida_android: Path | None = None, saida_host: Path | None = None) -> 
         saida_host.mkdir(parents=True, exist_ok=True)
         _salvar_ico(saida_host / "gabs-remote.ico", cores)
         _salvar_png(desenhar_marca(256, cores, True), saida_host / "gabs-remote-256.png")
+        _salvar_png(desenhar_marca(45, cores, True), saida_host / "gabs-remote-45.png")
         _salvar_ico(saida_host / "favicon.ico", cores, (16, 32, 48))
+        for estado in ESTADOS:
+            _salvar_png(desenhar_estado(256, cores, estado), saida_host / f"gabs-remote-{estado}.png")
 
 
 def main() -> None:

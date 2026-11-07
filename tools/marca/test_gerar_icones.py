@@ -56,3 +56,22 @@ def test_gerar_host_ico(tmp_path):
     ico = Image.open(tmp_path / "gabs-remote.ico")
     tamanhos = {s[0] for s in ico.info["sizes"]}
     assert {16, 24, 32, 48, 256} <= tamanhos
+
+
+def test_gerar_host_painel_e_bandeja(tmp_path):
+    gi.gerar(saida_host=tmp_path)
+    assert Image.open(tmp_path / "gabs-remote-256.png").size == (256, 256)
+    assert Image.open(tmp_path / "gabs-remote-45.png").size == (45, 45)
+    assert (tmp_path / "favicon.ico").exists()
+    for estado in ("transmitindo", "pausado", "pareando"):
+        assert Image.open(tmp_path / f"gabs-remote-{estado}.png").size == (256, 256)
+
+
+def test_selo_de_estado_no_canto(tmp_path):
+    # O selo é um quadrado chapado no canto inferior direito, com a cor do estado.
+    claro = CORES["claro"]
+    esperado = {"transmitindo": "acido", "pausado": "papel", "pareando": "laranja"}
+    for estado, token in esperado.items():
+        img = gi.desenhar_estado(256, claro, estado).convert("RGB")
+        assert img.getpixel((236, 236)) == _rgb(claro[token]), estado
+        assert img.getpixel((2, 2)) == _rgb(claro["azul"]), estado
