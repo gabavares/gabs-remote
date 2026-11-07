@@ -26,7 +26,7 @@ Estado em 07/11/2026 (sessão de execução):
 - Serviço `GabsRemote` instalado em `C:\Program Files\Gabs Remote`, mas **com o build anterior às correções da revisão**: rodar de novo `instalar-host.ps1` como administrador antes de testar.
 - Revisão final feita (1 crítico e 6 importantes corrigidos com teste); 9 minors adiados no ledger.
 - Testado no tablet (07/11, 03:09): Nativo 2800×1752 a **120 fps**, escala do Windows 150% (pedido do Gab, já implementado: preferência "Escala do Windows na tela virtual"), monitores físicos voltam ao desconectar, caneta funcionando. Host e APK instalados são os da versão atual.
-- **Problemas abertos:** (1) o toque de três dedos não abre o menu da sessão; investigar com `adb logcat` (o Gab liga a depuração USB); (2) o trackpad do teclado físico do tablet (Book Cover) chega rotacionado 90° (arrastar para a esquerda sobe o cursor, para baixo vai à esquerda); (3) pedido novo: trocar o layout de teclado do Windows para português durante a sessão (o PC usa inglês por causa do teclado físico) e voltar ao desconectar.
+- **Problemas abertos:** (1) o toque de três dedos não abre o menu da sessão; investigar com `adb logcat` (o Gab liga a depuração USB); (2) trackpad do Book Cover girado 90°: **corrigido no código** (preferência "Rotação do trackpad do teclado", padrão 90°), falta instalar o APK novo e testar; (3) pedido novo, **ainda não começado**: trocar o layout de teclado do Windows para português (ABNT2, KLID 00010416) durante a sessão, com parâmetro grKeyboard no /launch e preferência no app, e voltar ao layout anterior ao desconectar (o PC usa inglês por causa do teclado físico).
 
 ## Prompts-modelo
 
