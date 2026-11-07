@@ -30,9 +30,9 @@ Data do teste: _(preencher)_
 | Esc | | | |
 | Setas | | | |
 | Print Screen | | | |
-| Português (ABNT2, opção "Teclado do Windows durante a sessão"): ç, acentos (´ ` ~ ^ ¨), / ? ; : | | | |
-| Ao desconectar, o teclado do PC volta ao inglês | | | |
-| Trackpad do Book Cover: cursor na direção do dedo (opção "Rotação do trackpad do teclado", padrão 90°) | | | |
+| Português (ABNT2, opção "Teclado do Windows durante a sessão"): ç, acentos (´ ` ~ ^ ¨), / ? ; : | ✓ ç e acentos (07/11); / ? ; : a conferir | | O host pede o layout de novo por 10 s, porque a troca de tela tira o foco da janela |
+| Ao desconectar, o teclado do PC volta ao inglês | ✓ (07/11) | | |
+| Trackpad do Book Cover: cursor na direção do dedo (opção "Rotação do trackpad do teclado", padrão 90°) | ✓ (07/11) | — | |
 
 Se o One UI não deixar o app capturar Alt+Tab ou Win, o menu da sessão (toque de três dedos) tem os itens **Alt+Tab** e **Win**.
 
@@ -47,7 +47,7 @@ Se o One UI não deixar o app capturar Alt+Tab ou Win, o menu da sessão (toque 
 | Só caneta: desenhar com a mão apoiada, sem traço de palma | |
 | Só caneta: pinça amplia só no tablet; dois dedos movem a imagem ampliada | |
 | Só caneta: toque de dois dedos = clique direito; toque duplo de dois dedos volta o zoom | |
-| Três dedos abrem o menu da sessão; trocar o modo pelo menu vale na hora | |
+| Três dedos abrem o menu da sessão; trocar o modo pelo menu vale na hora | ✓ menu abre no ponto do toque (07/11); troca de modo a conferir |
 
 ## Limitações aceitas pelo Gab
 

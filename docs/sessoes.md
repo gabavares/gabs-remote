@@ -23,13 +23,12 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 Estado em 07/11/2026 (sessão de execução):
 - Driver de tela virtual: **SudoVDA 1.10.9.289** (decisão 0003), instalado; o certificado da SudoMaker foi aceito pelo Gab.
 - Keystore de release criada, com backup no Drive e no pendrive; falta a prova do backup (hash do `.jks` extraído do Drive) em `docs/segredos.md`.
-- Serviço `GabsRemote` instalado em `C:\Program Files\Gabs Remote` (build das 03:03, com a escala do Windows; sem o `grKeyboard`).
+- Serviço `GabsRemote` instalado em `C:\Program Files\Gabs Remote` (build das 13:20, com escala do Windows e `grKeyboard`).
 - Revisão final feita (1 crítico e 6 importantes corrigidos com teste); 9 minors adiados no ledger.
 - Testado no tablet (07/11, 03:09): Nativo 2800×1752 a **120 fps**, escala do Windows 150% (pedido do Gab, já implementado: preferência "Escala do Windows na tela virtual"), monitores físicos voltam ao desconectar, caneta funcionando. Host e APK instalados são os da versão atual.
-- **Problemas abertos (atualizado 07/11, 05:50):** (1) toque de três dedos não abre o menu: código revisado sem causa clara (suspeita: o One UI marca os três dedos como palma e cancela o toque); o app novo escreve linhas `Gabs menu:` no log, falta ler com `adb logcat` (depuração USB ligada, tablet no cabo); (2) trackpad do Book Cover girado: **corrigido**, falta testar; (3) teclado pt-BR: **feito** (host `grKeyboard` + opção "Teclado do Windows durante a sessão" no app, padrão Português ABNT2; volta ao layout anterior quando a sessão termina), falta testar.
-- **Builds prontos e ainda não instalados:** host com `grKeyboard` (rodar `instalar-host.ps1` como administrador) e APK release com teclado, trackpad e logs do menu (`C:\gr\android\app\build\outputs\apk\nonRoot\release\app-nonRoot-release.apk`, instalar por cima).
+- **Problemas da sessão anterior resolvidos e testados no tablet (07/11, 13:25):** (1) o menu de três dedos abria fora da tela (o PopupMenu descia da tela da sessão, que ocupa tudo); agora abre no ponto do toque; (2) trackpad do Book Cover na direção certa; (3) teclado pt-BR (`grKeyboard`, padrão ABNT2): o host pede o layout de novo por 10 s, porque a troca de tela tira o foco da janela; o PC volta ao inglês ao desconectar. Host e APK instalados são os da versão atual.
 
-Roteiro do próximo teste no tablet, nesta ordem: instalar host e APK → ligar o cabo USB com depuração (logcat do menu de três dedos) → trackpad e teclado pt-BR (ç, acentos, e o PC volta ao inglês ao desconectar) → Task 2 Step 8 (nome e ícone) → Task 4 Step 4 → perfis 67/50/1080/720, Espelhar e driver desabilitado → matriz `docs/testes/fase-2-entrada.md` → medidor (Task 9 Step 5) → Tailscale (Task 10) → fechamento (Task 11).
+Roteiro do próximo teste no tablet, nesta ordem (depuração USB ligada, tablet no cabo, para ler o log): Task 2 Step 8 (nome e ícone) → Task 4 Step 4 → perfis 67/50/1080/720, Espelhar e driver desabilitado → matriz `docs/testes/fase-2-entrada.md` → medidor (Task 9 Step 5) → Tailscale (Task 10) → fechamento (Task 11).
 
 ## Prompts-modelo
 
