@@ -4,6 +4,7 @@ Sistema próprio de acesso remoto: PC Windows do Gab (host) ↔ Galaxy Tab S10+ 
 
 - **Spec (fonte da verdade do design):** `docs/superpowers/specs/2026-11-06-gabs-remote-design.md`
 - **Planos de implementação:** `docs/superpowers/plans/` (um por fase)
+- **Identidade visual:** design system GAB/S. Tokens, ícone e regras em `docs/marca/README.md` (cópia do DESIGN.md e do tokens.css em `docs/marca/gabs-design-system/`). No código, cores só de `tools/marca/cores.json`.
 - **Hospedagem do Gab:** `docs/resposta servidor.md` — Hostinger compartilhada, sem portas de entrada; não serve de relay.
 
 ## Como trabalhar aqui

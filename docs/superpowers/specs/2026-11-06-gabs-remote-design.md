@@ -185,6 +185,9 @@ Padrão igual ao do vagabs: Releases do GitHub, notas em pt-BR, ok do Gab para p
 - **Compatibilidade:** o manifesto diz a versão mínima de cada lado. Se host e app forem incompatíveis, o app avisa e oferece atualizar antes de conectar.
 - **CI:** GitHub Actions compila o host (Windows) e o APK e gera o rascunho da Release. Publicar é sempre ação do Gab.
 
+### 8.1 Identidade visual
+O app, o painel do host e o instalador seguem o **design system GAB/S** (cartaz neo-brutalista: cor chapada com significado, borda de 2px, sombra dura, cantos retos). Tokens, ícone e o que entra em cada fase: `docs/marca/README.md`.
+
 ## 9. Organização, testes e qualidade
 
 ### 9.1 Estrutura do repositório principal
@@ -223,7 +226,7 @@ O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem l
 | Fase | Entrega | Pronto quando |
 |---|---|---|
 | 1. Ambiente e forks | Ferramentas instaladas, repositórios criados, host e app compilando sem mudanças, base reconfirmada | O build original conecta do Tab ao PC |
-| 2. Streaming (casa e fora) | Marca Gabs Remote (nome, ícone, cores e `applicationId` definitivo; sem layout próprio), perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, medidor de latência; **acesso de fora já via Tailscale** | Critérios 2–4 e 6 atendidos; sessão funcionando no 4G/5G pelo Tailscale |
+| 2. Streaming (casa e fora) | Marca Gabs Remote (nome, ícone, cores do design system GAB/S e `applicationId` definitivo; sem layout próprio), perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, medidor de latência; **acesso de fora já via Tailscale** | Critérios 2–4 e 6 atendidos; sessão funcionando no 4G/5G pelo Tailscale |
 | 3. Fora de casa completo | Escolha automática do caminho (IPv6 → port forward → Tailscale), presença na hospedagem, WoL de casa e de fora, 2º fator, bloqueio ao desconectar, reconexão na troca de rede | Critério 1 medido fora de casa; PC ligado de fora e sessão estável no 4G/5G |
 | 4. Atualização e CI | Updater do host e do app, manifesto assinado, Actions, primeira Release | Critério 7 testado com duas versões reais |
 | 5. Áudio, mic, clipboard, arquivos | Driver de mic, uplink de mic, clipboard, arquivos, ações remotas | Critério 5 (exceto câmera) |

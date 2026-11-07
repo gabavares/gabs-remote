@@ -18,10 +18,11 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 8. Cliente web | — | — |
 
 ## Próxima sessão (fase 2, execução)
-> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (cores, instalar driver/serviço/firewall, keystore, push). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
+> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-2-streaming.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (prévia do ícone, instalar driver/serviço/firewall, keystore, push). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
 
 Decisões tomadas no plano da fase 2 (07/11/2026):
 - A marca troca nome, ícone e cores; o `applicationId` definitivo é `com.gabtavares.gabsremote` (confirmado pelo Gab em 07/11/2026) e não muda depois da primeira Release. Layout próprio das telas: fase 7. Ver `docs/decisoes/0002-marca-e-application-id.md`.
+- A identidade visual segue o design system GAB/S (`docs/marca/README.md`): ícone e cores já estão definidos no plano; o Gab só aprova a prévia do ícone.
 - A keystore de release é criada na fase 2, com backup cifrado no Google Drive e num pendrive; os locais ficam em `docs/segredos.md` (Task 2).
 - O upstream do Sunshine não tem tela virtual: a Task 1 escolhe o driver (SudoVDA por padrão) e registra na decisão 0003.
 

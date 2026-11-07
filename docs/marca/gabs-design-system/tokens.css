@@ -1,0 +1,67 @@
+/* GAB/S — tokens do design system (cartaz neo-brutalista).
+   Copiar para o projeto e importar antes de qualquer outro CSS.
+   Tema escuro: <html data-tema="escuro">. */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  /* superfícies e texto */
+  --papel:#f1efe9; --folha:#fbfaf7;
+  --tinta:#0d0d0d; --tinta-2:#3a3a37; --tinta-3:#5a5a56;
+  --fio:#0d0d0d; --fio-fraco:#cfccc3; --sombra:#0d0d0d;
+  /* cor com significado */
+  --azul:#1b34f5; --azul-texto:#1b34f5;          /* ação, prazo próximo */
+  --laranja:#ff3b1d; --laranja-texto:#c42a0e;    /* urgente */
+  --acido:#e4f53a;                               /* destaque, sem prazo */
+  --sobre-azul:#ffffff; --sobre-laranja:#0d0d0d; --sobre-acido:#0d0d0d;
+  /* tipo */
+  --grotesca:"Archivo","Arial Narrow",sans-serif;
+  --texto:"Space Grotesk","Archivo",system-ui,sans-serif;
+  --mono:"Space Grotesk","Archivo",system-ui,sans-serif;
+  /* forma e movimento */
+  --borda:2px solid var(--fio);
+  --sombra-dura:3px 3px 0 var(--sombra);
+  --sombra-dura-g:6px 6px 0 var(--sombra);
+  --gutter:clamp(16px,3vw,44px);
+  --sai:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+:root[data-tema="escuro"]{
+  --papel:#000000; --folha:#0c0c0c;
+  --tinta:#f1efe9; --tinta-2:#c6c4bd; --tinta-3:#9c9a94;
+  --fio:#f1efe9; --fio-fraco:#2b2b2b; --sombra:#f1efe9;
+  --azul:#2a45ff; --azul-texto:#97a6ff;
+  --laranja:#ff5533; --laranja-texto:#ff8b6d;
+  --acido:#dcf02c;
+  color-scheme:dark;
+}
+
+/* base */
+*{box-sizing:border-box}
+html{background:var(--papel);scrollbar-color:var(--tinta) var(--papel)}
+body{margin:0;color:var(--tinta);font-family:var(--texto);font-size:16px;line-height:1.5;
+  font-variant-numeric:tabular-nums;transition:background-color .3s var(--sai),color .3s var(--sai)}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1.5px}
+::selection{background:var(--acido);color:#0d0d0d}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-thumb{background:var(--tinta);border:3px solid var(--papel)}
+::-webkit-scrollbar-track{background:var(--papel)}
+
+/* vozes tipográficas */
+.cartaz{font-family:var(--grotesca);font-stretch:62%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.86}
+.titulo-largo{font-family:var(--grotesca);font-stretch:108%;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:.92}
+.rotulo{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+
+/* peças */
+.painel{background:var(--folha);border:var(--borda);box-shadow:var(--sombra-dura)}
+.botao{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:var(--borda);border-radius:0;
+  background:var(--folha);box-shadow:var(--sombra-dura);font-weight:600;cursor:pointer;
+  transition:translate .2s var(--sai),box-shadow .2s var(--sai)}
+.botao:hover{translate:-1px -1px;box-shadow:4px 4px 0 var(--sombra)}
+.botao:active{translate:3px 3px;box-shadow:0 0 0 var(--sombra)}
+.botao.azul{background:var(--azul);color:var(--sobre-azul)}
+.botao.laranja{background:var(--laranja);color:var(--sobre-laranja)}
+.botao.acido{background:var(--acido);color:var(--sobre-acido)}
+.marco{display:flex;align-items:center;gap:12px;color:var(--tinta-3)}
+.marco::after{content:"";flex:1;height:1px;background:var(--tinta)}
