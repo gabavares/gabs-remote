@@ -47,4 +47,9 @@ confere($r['uuid'] === $corpo['uuid'] && $r['tailscale'] === $corpo['tailscale']
 $r6 = presenca_registro($corpo, '2804:1b3::9', 1700000000);
 confere(!array_key_exists('ipv4', $r6), 'remoteAddr IPv6 não vira ipv4');
 
+confere(presenca_authorization(['HTTP_AUTHORIZATION' => 'Bearer a'], []) === 'Bearer a', 'cabeçalho direto');
+confere(presenca_authorization(['REDIRECT_HTTP_AUTHORIZATION' => 'Bearer b'], []) === 'Bearer b', 'cabeçalho pelo rewrite');
+confere(presenca_authorization([], ['authorization' => 'Bearer c']) === 'Bearer c', 'cabeçalho pelo getallheaders');
+confere(presenca_authorization([], []) === null, 'sem cabeçalho');
+
 echo "todos os testes passaram\n";

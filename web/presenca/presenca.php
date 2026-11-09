@@ -32,7 +32,7 @@ if ($dados === null) {
     responder(503, ['erro' => 'presença não configurada']);
 }
 
-$auth = $_SERVER['HTTP_AUTHORIZATION'] ?? ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null);
+$auth = presenca_authorization($_SERVER, function_exists('getallheaders') ? (getallheaders() ?: []) : []);
 if (!presenca_token_ok($auth, (string) file_get_contents($dados . '/token.sha256'))) {
     responder(401, ['erro' => 'não autorizado']);
 }

@@ -17,6 +17,21 @@ function presenca_token_ok(?string $authorization, string $hashSalvo): bool {
     return hash_equals(strtolower(trim($hashSalvo)), hash('sha256', $token));
 }
 
+// O LiteSpeed da Hostinger pode não repassar o Authorization em $_SERVER; getallheaders() cobre esse caso.
+function presenca_authorization(array $server, array $headers): ?string {
+    foreach (['HTTP_AUTHORIZATION', 'REDIRECT_HTTP_AUTHORIZATION'] as $chave) {
+        if (isset($server[$chave]) && $server[$chave] !== '') {
+            return (string) $server[$chave];
+        }
+    }
+    foreach ($headers as $nome => $valor) {
+        if (strcasecmp((string) $nome, 'Authorization') === 0 && $valor !== '') {
+            return (string) $valor;
+        }
+    }
+    return null;
+}
+
 function presenca_uuid_ok($uuid): bool {
     return is_string($uuid) && preg_match('/^[0-9A-Fa-f-]{36}$/', $uuid) === 1;
 }
