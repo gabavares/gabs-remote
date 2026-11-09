@@ -112,19 +112,22 @@ A hospedagem compartilhada da Hostinger **não aceita UDP nem portas próprias**
 
 O app testa os caminhos em paralelo e usa o primeiro que responder com menor RTT (estilo ICE), e mostra qual está em uso.
 
+**Resultado da fase 3 (09/11/2026, decisão 0005, `docs/rede-fora.md`):** IPv6 de entrada barrado pelo roteador da Vivo, sem opção para liberar; IPv4 público (sem CGNAT), mas as portas do host **não** são abertas para a internet (o host roda como SYSTEM). Fora de casa o caminho é o **Tailscale**; o app escolhe entre rede de casa, Tailscale e endereço manual. A presença na hospedagem guarda o IPv4 público de casa para o WoL de fora.
+
 **Papel da hospedagem do Gab:** página de "onde está o PC" (endereço atual, estado), registro de ligar o PC (fila de WoL), e no futuro hospedar o cliente web. Tudo por HTTPS, sem processos persistentes.
 
 ### 5.3 Wake-on-LAN
 - **Em casa:** o app envia o pacote mágico por broadcast (UDP 9) com o MAC do PC, que o host registra no pareamento.
-- **Fora de casa:** o app chama o mesmo mecanismo que já funciona hoje com a Alexa (genérico, independente de modelo de roteador). Como alternativa: pacote mágico pela internet via port forward para o broadcast, ou pelo Tailscale para outro aparelho da rede.
+- **Fora de casa (decisão 0005):** o próprio app manda o pacote mágico por UDP para o IPv4 público de casa, porta 8080, que o roteador redireciona ao PC (a mesma regra que a WOLskill da Alexa usava; o PC tem IP reservado no DHCP). Sem Alexa e sem serviço de terceiros. O IPv4 público vem da presença na hospedagem.
 - Depois de enviar, o app mostra "Ligando…" e conecta sozinho quando o host responder.
 - O host confere no primeiro uso se o WoL está ativo na placa (Realtek PCIe GbE) e se o "Início rápido" do Windows atrapalha, e orienta o ajuste.
 
 ### 5.4 Segurança
-- Pareamento por PIN e certificados (Sunshine), e **2º fator opcional para conexões de fora de casa** (código no app + confirmação na bandeja do PC, configurável).
+- Pareamento por PIN e certificados (Sunshine). ~~2º fator para conexões de fora de casa~~: retirado pela decisão 0005 (o Gab mora sozinho).
 - Notificação no PC quando alguém conecta; log de acessos no painel.
 - Painel web só em localhost por padrão.
-- Bloquear o PC automaticamente ao desconectar (opcional, ligado por padrão para conexões externas).
+- ~~Bloquear o PC automaticamente ao desconectar~~: retirado pela decisão 0005.
+- Nenhuma porta do host aberta para a internet: fora de casa só pelo Tailscale (decisão 0005).
 
 ## 6. Mídia e entrada
 
@@ -227,7 +230,7 @@ O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem l
 |---|---|---|
 | 1. Ambiente e forks | Ferramentas instaladas, repositórios criados, host e app compilando sem mudanças, base reconfirmada | O build original conecta do Tab ao PC |
 | 2. Streaming (casa e fora) | Marca Gabs Remote (nome, ícone, cores do design system GAB/S e `applicationId` definitivo; sem layout próprio), perfis de resolução com tela virtual, 120 fps, S Pen completa, modos de toque, teclado, serviço com início automático, medidor de latência; **acesso de fora já via Tailscale** | Critérios 2–4 e 6 atendidos; sessão funcionando no 4G/5G pelo Tailscale |
-| 3. Fora de casa completo | Escolha automática do caminho (IPv6 → port forward → Tailscale), presença na hospedagem, WoL de casa e de fora, 2º fator, bloqueio ao desconectar, reconexão na troca de rede | Critério 1 medido fora de casa; PC ligado de fora e sessão estável no 4G/5G |
+| 3. Fora de casa completo | Escolha automática do caminho (IPv6 → port forward → Tailscale), presença na hospedagem, WoL de casa e de fora, reconexão na troca de rede (2º fator e bloqueio ao desconectar saíram pela decisão 0005) | Critério 1 medido fora de casa; PC ligado de fora e sessão estável no 4G/5G |
 | 4. Atualização e CI | Updater do host e do app, manifesto assinado, Actions, primeira Release | Critério 7 testado com duas versões reais |
 | 5. Áudio, mic, clipboard, arquivos | Driver de mic, uplink de mic, clipboard, arquivos, ações remotas | Critério 5 (exceto câmera) |
 | 6. Webcam | Uplink de câmera, webcam virtual DirectShow | Câmera do tablet em Meet/Discord/OBS |
@@ -235,10 +238,10 @@ O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem l
 | 8. Cliente web | Gateway WebRTC + página no domínio | Sessão pelo navegador do notebook |
 
 ## 11. Riscos e decisões em aberto
-- **CGNAT da Vivo:** se houver CGNAT e não houver IPv6 utilizável, o caminho remoto padrão é Tailscale (§5.2). Conferir na fase 3.
+- ~~**CGNAT da Vivo**~~ — resolvido na fase 3: sem CGNAT (IPv4 público por PPPoE); IPv6 de entrada barrado pelo roteador; caminho de fora pelo Tailscale (decisão 0005).
 - **Drivers no Windows 10:** os drivers de tela, mic e webcam precisam ser assinados. Usar drivers já assinados (VirtualDrivers, SudoVDA). Driver próprio só se for inevitável, e então com test-signing apenas no PC do Gab.
 - ~~**4:4:4 no Tab S10+**~~ — resolvido na fase 2: nenhum decodificador do tablet anuncia 4:4:4; fica HEVC 4:2:0 (§6.1).
 - **Divergência do upstream:** manter as mudanças em módulos e commits pequenos para facilitar merges do Sunshine e do Moonlight. Merge do upstream a cada release estável deles.
 - ~~**Conflito com Parsec/SuperDisplay**~~ — resolvido na fase 2: os três adaptadores virtuais convivem (decisão 0003), e com o Parsec e o SuperDisplay abertos o Espelhar usa o monitor principal.
-- **WoL de fora de casa:** descobrir na fase 3 qual mecanismo a Alexa usa hoje (skill, app do roteador, serviço) para o app chamar o mesmo; se não der para reaproveitar, usar port forward para broadcast ou um aparelho da rede via Tailscale.
+- ~~**WoL de fora de casa**~~ — resolvido na fase 3: a WOLskill da Alexa usava um redirecionamento UDP 8080 do roteador para o PC; o app manda o pacote mágico para essa porta (decisão 0005).
 - **Sem VPS hoje** (confirmado em `docs/resposta servidor.md`): o relay próprio (§5.2 item 4) fica condicionado a contratar uma VPS. A presença na hospedagem usa só HTTPS/PHP, sem atrapalhar o site, o Vagabs e o executor que já rodam lá.
