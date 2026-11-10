@@ -28,7 +28,7 @@ O Gab quase não usa o tablet em casa: chega ao trabalho, conecta no Wi-Fi do es
 ## Pendente — roteiro para o escritório
 1. **Caminho e latência (Task 10 Step 1):** no Wi-Fi do escritório, Nativo 120 fps. Anotar o Toast (deve ser Tailscale) e, no PC, `tailscale status` (direto ou DERP). Medidor (`docs/latencia.md`): clique e carimbo, 40 amostras. Comparar à mão com o Acesso Remoto do Google.
 2. **15 min de uso real (Task 10 Step 2):** VS Code e navegador; anotar quedas e se a sessão voltou sozinha ("Reconectando…").
-3. **WoL de fora (Task 7 Step 4):** antes de sair de casa, desligar o PC pelo Iniciar. No escritório (o app precisa ter aprendido o IP de casa estando na rede de casa ou pela presença): tocar no PC → Enviar WoL → "Ligando o PC… mm:ss" → a lista de apps abre sozinha. Anotar o tempo. Se aparecer "MAC ou IP de casa desconhecido", anotar.
+3. **WoL de fora (Task 7 Step 4):** antes de sair de casa, desligar o PC pelo Iniciar. No escritório (o app aprende o IP de casa pelo `ExternalIP` que o host descobre por STUN, host `f02a71f3`; conferido em 09/11: `191.32.66.196`): tocar no PC → Enviar WoL → "Ligando o PC… mm:ss" → a lista de apps abre sozinha. Anotar o tempo. Se aparecer "MAC ou IP de casa desconhecido", anotar.
 4. **Task 9 (em casa, ~20 min):** latência ≤ 30 ms, um ajuste por vez.
 
 ## Fora da fase (decisões de 09/11/2026)

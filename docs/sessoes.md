@@ -17,15 +17,21 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 3, verificação e fechamento)
-> Gabs Remote — continuar a fase 3 (`docs/superpowers/plans/2026-11-07-fase-3-fora-de-casa.md`): as Tasks 1–8 estão feitas; falta a Task 9 (latência em casa) e a Task 10 (medição no escritório, checklist e fechamento). Leia o `CLAUDE.md`, a decisão 0005, `docs/testes/fase-3-checklist.md` (roteiro do escritório e o que já foi verificado) e o ledger `.superpowers/sdd/2026-11-07-fase-3-fora-de-casa/progress.md` (rulings e minors adiados). Execução nativa (executing-plans), pedindo meu ok nos passos marcados (serviço, firewall, push). Trago os números do escritório (Toast, `tailscale status`, medidor, 15 min de uso, WoL de fora). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
+## Próxima sessão (fase 4, plano)
+O Gab decidiu (09/11/2026) seguir para a fase 4 e testar em lote depois: as verificações de campo da fase 3 (roteiro em `docs/testes/fase-3-checklist.md`) ficam para uma sessão de testes junto com as da fase 4.
+
+> Gabs Remote — escrever o plano da **fase 4 (Atualização e CI)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (§8 Atualização automática, §9.1, §10 linha da fase 4), `docs/decisoes/` (a 0002 trava o `applicationId`; a 0005 diz que nada do host fica aberto para a internet), `docs/segredos.md`, `docs/testes/fase-3-checklist.md` (o que ficou para testar em lote) e `graphify-out/GRAPH_REPORT.md`. Use o graphify para achar nos forks o build, a versão e o painel do host. A fase 3 tem verificações de campo pendentes: o plano termina com uma task de testes em lote (fase 3 + fase 4). Escreva com a skill writing-plans, terminando com a seção "Próxima sessão".
+
+Para fechar só a fase 3 (testes do escritório e Task 9), se preferir antes da fase 4:
+
+> Gabs Remote — continuar a fase 3 (`docs/superpowers/plans/2026-11-07-fase-3-fora-de-casa.md`): as Tasks 1–8 estão feitas; falta a Task 9 (latência em casa) e a Task 10 (medição no escritório, checklist e fechamento). Leia o `CLAUDE.md`, a decisão 0005, `docs/testes/fase-3-checklist.md` e o ledger `.superpowers/sdd/2026-11-07-fase-3-fora-de-casa/progress.md`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (serviço, firewall, push). Trago os números do escritório. Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
 
 Estado ao pausar a fase 3 (09/11/2026):
-- Código das Tasks 1–8 feito: host `d544f702`, app `43c20bbf`, principal com os ponteiros. Host instalado no serviço `GabsRemote`; APK de release no tablet. **Nada enviado ao GitHub** (push só com o ok do Gab).
+- Código das Tasks 1–8 feito, mais o IPv4 de casa por STUN (`ExternalIP`): host `f02a71f3`, app `43c20bbf`. Host instalado no serviço `GabsRemote` (STUN conferido no log); APK de release no tablet. **Enviado ao GitHub em 09/11/2026** (host, app e principal), com o ok do Gab.
 - Decisão 0005: fora de casa só pelo Tailscale (nenhuma porta aberta; IPv6 de entrada barrado no roteador); WoL de fora pelo roteador (UDP 8080 → PC, IP do PC reservado no DHCP); sem 2º fator e sem bloqueio ao desconectar.
 - Verificado em casa: 0 erros `WSASendMsg` (eram 10022 e depois 10014), MAC e endereço de casa certos pelo Tailscale, "Conectado por Rede de casa".
 - Uso real do Gab: tablet no Wi-Fi do escritório, PC pelo Tailscale; ele quase não usa o tablet em casa (a troca casa ↔ fora não é testada).
-- Presença na hospedagem **não publicada** (o `rsync --delete` do deploy do site apagaria a pasta); código em `web/presenca/`. Sem ela, o WoL de fora usa o último IP de casa que o app aprendeu.
+- Presença na hospedagem **não publicada** (o `rsync --delete` do deploy do site apagaria a pasta); código em `web/presenca/`. O WoL de fora usa o IP de casa que o host descobre por STUN e o app guarda ao ver o PC; só falha se o IP da Vivo mudar com o PC desligado.
 - Pendências fora do código: prova do backup da keystore em `docs/segredos.md`; minors adiados nos ledgers das fases 2 e 3.
 
 Decisões do Gab ao planejar a fase 3 (07/11/2026): sem 2º fator e sem bloqueio do PC ao desconectar; a reconexão automática não muda a decisão 0004.
