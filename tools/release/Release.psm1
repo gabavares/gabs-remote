@@ -151,7 +151,10 @@ function Test-AssinaturaManifesto {
     try {
         [IO.File]::WriteAllBytes($der, [byte[]]($script:PrefixoSpkiEd25519 + $bruta))
         $openssl = Get-OpenSsl
-        $null = & $openssl pkeyutl -verify -pubin -inkey $der -keyform DER -rawin -in $Manifesto -sigfile $Assinatura 2>&1
+        # Assinatura que não confere = OpenSSL escreve no stderr e sai com 1. Com ErrorActionPreference
+        # Stop (CI), o stderr de um programa nativo vira exceção no PowerShell 5.1: aqui é só "falso".
+        $ErrorActionPreference = 'Continue'
+        $null = & $openssl pkeyutl -verify -pubin -inkey $der -keyform DER -rawin -in $Manifesto -sigfile $Assinatura 2>$null
         return ($LASTEXITCODE -eq 0)
     }
     finally { Remove-Item -LiteralPath $der -Force -ErrorAction SilentlyContinue }
@@ -172,6 +175,27 @@ function Get-ChavePublica {
     finally { Remove-Item -LiteralPath $der -Force -ErrorAction SilentlyContinue }
 }
 
+function Test-OrigemRascunho {
+    <#
+    Antes de assinar: a Release ainda é rascunho e cada arquivo foi enviado pelo CI (github-actions[bot]).
+    Devolve a lista de problemas (vazia = ok). Revisão final da fase 4: a chave só prova que o Gab aprovou
+    o manifesto; isto confere que ele assina o que o CI gerou, e não um arquivo trocado no rascunho.
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]$Release,
+        [Parameter(Mandatory)][string[]]$Arquivos
+    )
+    $problemas = @()
+    if ($Release.isDraft -ne $true) { $problemas += 'A Release não é mais rascunho (já publicada).' }
+    foreach ($nome in $Arquivos) {
+        $a = @($Release.assets) | Where-Object { $_.name -eq $nome } | Select-Object -First 1
+        if (-not $a) { $problemas += "Falta $nome no rascunho."; continue }
+        if ($a.uploader.login -ne 'github-actions[bot]') { $problemas += "$nome foi enviado por '$($a.uploader.login)', não pelo CI." }
+    }
+    $problemas
+}
+
 function Get-ArgumentosVersaoHost {
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Versao)
@@ -189,4 +213,4 @@ function Get-ArgumentosVersaoApp {
 }
 
 Export-ModuleMember -Function Get-OpenSsl, Get-VersaoGabs, Get-VersionCode, New-Manifesto, Test-Manifesto,
-    Invoke-AssinarManifesto, Test-AssinaturaManifesto, Get-ChavePublica, Get-ArgumentosVersaoHost, Get-ArgumentosVersaoApp
+    Invoke-AssinarManifesto, Test-AssinaturaManifesto, Get-ChavePublica, Test-OrigemRascunho, Get-ArgumentosVersaoHost, Get-ArgumentosVersaoApp

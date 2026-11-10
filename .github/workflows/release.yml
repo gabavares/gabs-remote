@@ -90,6 +90,17 @@ jobs:
             mingw-w64-ucrt-x86_64-opus
             mingw-w64-ucrt-x86_64-toolchain
             mingw-w64-ucrt-x86_64-qt6-static
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-pkgconf
+            mingw-w64-ucrt-x86_64-libtiff
+            mingw-w64-ucrt-x86_64-harfbuzz
+            mingw-w64-ucrt-x86_64-freetype
+            mingw-w64-ucrt-x86_64-libjpeg-turbo
+            mingw-w64-ucrt-x86_64-brotli
+            mingw-w64-ucrt-x86_64-libwebp
+            mingw-w64-ucrt-x86_64-vulkan-headers
+            mingw-w64-ucrt-x86_64-md4c
+            mingw-w64-ucrt-x86_64-double-conversion
             mingw-w64-ucrt-x86_64-MinHook
             mingw-w64-ucrt-x86_64-nsis
 

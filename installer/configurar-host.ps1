@@ -153,29 +153,41 @@ function Invoke-ConfigurarHost {
         return
     }
 
-    # 1. Pasta das atualizações baixadas, só para SYSTEM e Administradores.
-    $updates = Join-Path $Pasta 'config\updates'
-    New-Item -ItemType Directory -Force -Path $updates | Out-Null
-    Set-AclPastaUpdates -Pasta $updates
+    $ok = $false
+    try {
+        # 1. Pasta das atualizações baixadas, só para SYSTEM e Administradores.
+        $updates = Join-Path $Pasta 'config\updates'
+        New-Item -ItemType Directory -Force -Path $updates | Out-Null
+        Set-AclPastaUpdates -Pasta $updates
 
-    # 2. Serviço, início automático e recuperação.
-    Stop-Servico
-    Invoke-Bat (Join-Path $Pasta 'scripts\install-service.bat')
-    Invoke-Bat (Join-Path $Pasta 'scripts\autostart-service.bat')
-    Invoke-ScRecuperacao
+        # 2. Serviço, início automático e recuperação.
+        Stop-Servico
+        Invoke-Bat (Join-Path $Pasta 'scripts\install-service.bat')
+        Invoke-Bat (Join-Path $Pasta 'scripts\autostart-service.bat')
+        Invoke-ScRecuperacao
 
-    # 3. Firewall: só LAN e Tailscale (decisão 0005).
-    Remove-Regras
-    Add-Regras
+        # 3. Firewall: só LAN e Tailscale (decisão 0005).
+        Remove-Regras
+        Add-Regras
 
-    # 4. Tela virtual: só na instalação, e só se o dispositivo não existir.
-    if (-not $Atualizacao -and -not (Test-DispositivoSudoVda)) {
-        Invoke-Bat (Join-Path $Pasta 'drivers\sudovda\install.bat')
+        # 4. Tela virtual: só na instalação, e só se o dispositivo não existir.
+        if (-not $Atualizacao -and -not (Test-DispositivoSudoVda)) {
+            Invoke-Bat (Join-Path $Pasta 'drivers\sudovda\install.bat')
+        }
+        $ok = $true
     }
-
-    # 5. Inicia.
-    Start-Servico
+    finally {
+        # 5. Inicia, mesmo se um passo falhou: numa atualização silenciosa sem ninguém no PC, um serviço
+        # parado deixaria o PC inacessível de fora até reiniciar.
+        if ($ok -or (Test-ServicoExiste)) {
+            try { Start-Servico } catch { if ($ok) { throw } }
+        }
+    }
     Write-Host "OK: Gabs Remote configurado em $Pasta. Painel: https://localhost:47990"
+}
+
+function Test-ServicoExiste {
+    [bool](Get-Service -Name $NomeServico -ErrorAction SilentlyContinue)
 }
 
 # Carregado com ". .\configurar-host.ps1": só define as funções.

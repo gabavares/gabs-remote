@@ -41,10 +41,12 @@ if ($PSScriptRoot -match '\s') {
 
 $raiz = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 $hostDir = Join-Path $raiz 'host'
+# Lido antes do dot-source: o param() do configurar-host.ps1 também tem -Desinstalar e zeraria esta variável.
+$remover = $Desinstalar.IsPresent
 # Serviço, firewall, config\updates e SudoVDA: as mesmas funções do instalador.
 . (Join-Path $raiz 'installer\configurar-host.ps1')
 
-if ($Desinstalar) {
+if ($remover) {
     Invoke-ConfigurarHost -Pasta $PastaInstalacao -Desinstalar
     if (Test-Path -LiteralPath $PastaInstalacao) {
         Get-ChildItem -LiteralPath $PastaInstalacao -Force | Where-Object Name -ne 'config' |

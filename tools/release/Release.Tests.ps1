@@ -157,6 +157,16 @@ Describe 'Assinatura do manifesto' {
             -Assinatura (Join-Path $script:dados 'manifest-outra-chave.json.sig') -ChavePublicaBase64 $script:pubTeste | Should -BeFalse
     }
 
+    It 'com ErrorActionPreference Stop (como no CI), o adulterado dá $false em vez de exceção' {
+        $antes = $global:ErrorActionPreference
+        try {
+            $global:ErrorActionPreference = 'Stop'
+            Test-AssinaturaManifesto -Manifesto (Join-Path $script:dados 'manifest-adulterado.json') `
+                -Assinatura (Join-Path $script:dados 'manifest.json.sig') -ChavePublicaBase64 $script:pubTeste | Should -BeFalse
+        }
+        finally { $global:ErrorActionPreference = $antes }
+    }
+
     It 'assinar e conferir de novo dá certo (64 bytes)' {
         $m = Join-Path $TestDrive 'm.json'
         [IO.File]::WriteAllText($m, '{"schema": 1}', (New-Object Text.UTF8Encoding $false))
@@ -192,5 +202,32 @@ Describe 'Argumentos de versão para os builds (Task 3)' {
 
     It 'app: -PgabsVersion e -PgabsMinHost' {
         @(Get-ArgumentosVersaoApp -Versao $script:v) -join '|' | Should -Be '-PgabsVersion=0.4.0|-PgabsMinHost=0.3.8'
+    }
+}
+
+Describe 'Test-OrigemRascunho (revisão final: só assinar o que o CI gerou)' {
+    BeforeAll {
+        function script:Asset([string]$nome, [string]$quem) { [pscustomobject]@{ name = $nome; uploader = [pscustomobject]@{ login = $quem } } }
+        $script:arquivos = @('GabsRemote-Setup-0.4.0.exe', 'GabsRemote-0.4.0-unsigned.apk')
+    }
+
+    It 'rascunho com os arquivos enviados pelo CI: sem problemas' {
+        $r = [pscustomobject]@{ isDraft = $true; assets = @((Asset $script:arquivos[0] 'github-actions[bot]'), (Asset $script:arquivos[1] 'github-actions[bot]')) }
+        @(Test-OrigemRascunho -Release $r -Arquivos $script:arquivos).Count | Should -Be 0
+    }
+
+    It 'Release já publicada: recusa' {
+        $r = [pscustomobject]@{ isDraft = $false; assets = @((Asset $script:arquivos[0] 'github-actions[bot]'), (Asset $script:arquivos[1] 'github-actions[bot]')) }
+        @(Test-OrigemRascunho -Release $r -Arquivos $script:arquivos).Count | Should -BeGreaterThan 0
+    }
+
+    It 'arquivo enviado por outra conta: recusa' {
+        $r = [pscustomobject]@{ isDraft = $true; assets = @((Asset $script:arquivos[0] 'gabavares'), (Asset $script:arquivos[1] 'github-actions[bot]')) }
+        @(Test-OrigemRascunho -Release $r -Arquivos $script:arquivos) -join ' ' | Should -Match 'GabsRemote-Setup-0.4.0.exe'
+    }
+
+    It 'arquivo faltando: recusa' {
+        $r = [pscustomobject]@{ isDraft = $true; assets = @((Asset $script:arquivos[0] 'github-actions[bot]')) }
+        @(Test-OrigemRascunho -Release $r -Arquivos $script:arquivos) -join ' ' | Should -Match 'unsigned'
     }
 }

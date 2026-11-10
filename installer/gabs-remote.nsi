@@ -86,6 +86,9 @@ Function .onInit
 FunctionEnd
 
 Function .onInstFailed
+  ; O serviço foi parado no passo 1: religa para o PC não ficar inacessível de fora até reiniciar.
+  nsExec::ExecToLog '"$SYSDIR\sc.exe" start GabsRemote'
+  Pop $0
   SetErrorLevel 2
 FunctionEnd
 

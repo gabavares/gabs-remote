@@ -135,6 +135,14 @@ Describe 'Invoke-ConfigurarHost' {
         }
     }
 
+    It 'se um passo falhar, ainda tenta ligar o serviço de novo (o PC não fica inacessível)' {
+        Mock Test-DispositivoSudoVda { $true }
+        Mock Add-Regras { throw 'firewall falhou' }
+        Mock Test-ServicoExiste { $true }
+        { Invoke-ConfigurarHost -Pasta $script:pasta -Atualizacao } | Should -Throw
+        Should -Invoke Start-Servico -Times 1
+    }
+
     It '-Parar só para o serviço e o host da pasta, sem configurar nada' {
         Mock Stop-HostDaPasta {}
         Mock Test-DispositivoSudoVda { $false }

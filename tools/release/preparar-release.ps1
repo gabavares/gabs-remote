@@ -78,6 +78,27 @@ New-Item -ItemType Directory -Path $pasta | Out-Null
 $nomeExe = "GabsRemote-Setup-$Versao.exe"
 $nomeUnsigned = "GabsRemote-$Versao-unsigned.apk"
 $nomeApk = "GabsRemote-$Versao.apk"
+
+# Origem: só assina o que o CI gerou a partir da tag que está neste PC (revisão final da fase 4).
+function Get-Rascunho {
+    $json = & gh api "repos/$Repositorio/releases?per_page=30"
+    if ($LASTEXITCODE -ne 0) { Parar 'gh api releases falhou.' }
+    $r = @($json | ConvertFrom-Json) | Where-Object { $_.tag_name -eq $tag } | Select-Object -First 1
+    if (-not $r) { Parar "Não achei a Release $tag (o workflow Release já terminou?)." }
+    [pscustomobject]@{ isDraft = [bool]$r.draft; assets = @($r.assets) }
+}
+$problemas = @(Test-OrigemRascunho -Release (Get-Rascunho) -Arquivos @($nomeExe, $nomeUnsigned))
+if ($problemas.Count -gt 0) { Parar ("Rascunho recusado: " + ($problemas -join ' ')) }
+$commitLocal = (& git -C $raiz rev-parse "$tag^{commit}" 2>$null)
+if ($LASTEXITCODE -ne 0 -or -not $commitLocal) { Parar "A tag $tag não existe neste PC (git fetch --tags)." }
+$commitRemoto = (& gh api "repos/$Repositorio/commits/$tag" --jq .sha)
+if ($commitRemoto -ne $commitLocal) { Parar "A tag $tag no GitHub ($commitRemoto) não é a deste PC ($commitLocal)." }
+$runs = & gh run list --repo $Repositorio --workflow release.yml --limit 20 --json headSha,conclusion,status | ConvertFrom-Json
+if (-not (@($runs) | Where-Object { $_.headSha -eq $commitLocal -and $_.conclusion -eq 'success' })) {
+    Parar "Não achei um workflow Release concluído com sucesso no commit $commitLocal."
+}
+Write-Host "Origem conferida: rascunho do CI, commit $commitLocal (tag $tag igual à local)." -ForegroundColor Green
+
 Write-Host ">> Baixando $tag de $Repositorio" -ForegroundColor Cyan
 Invoke-Exe 'gh' @('release', 'download', $tag, '--repo', $Repositorio, '--dir', $pasta, '--pattern', $nomeExe, '--pattern', $nomeUnsigned) 'gh release download'
 $exe = Join-Path $pasta $nomeExe
@@ -144,6 +165,8 @@ if (-not $Enviar) {
     exit 0
 }
 
+$problemas = @(Test-OrigemRascunho -Release (Get-Rascunho) -Arquivos @($nomeExe, $nomeUnsigned))
+if ($problemas.Count -gt 0) { Parar ("Rascunho mudou desde a conferência: " + ($problemas -join ' ')) }
 Write-Host ">> Enviando para o rascunho $tag" -ForegroundColor Cyan
 Invoke-Exe 'gh' @('release', 'upload', $tag, '--repo', $Repositorio, '--clobber', $apk, $manifesto, "$manifesto.sig") 'gh release upload'
 Invoke-Exe 'gh' @('release', 'delete-asset', $tag, $nomeUnsigned, '--repo', $Repositorio, '-y') 'gh release delete-asset'

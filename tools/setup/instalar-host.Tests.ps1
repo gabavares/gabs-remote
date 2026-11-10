@@ -16,6 +16,13 @@ Describe 'instalar-host.ps1' {
         $script:texto | Should -Match 'Invoke-ConfigurarHost -Pasta \$PastaInstalacao -Desinstalar'
     }
 
+    It 'lê -Desinstalar antes de carregar o configurar-host.ps1 (o param dele sobrescreve a variável)' {
+        $carga = $script:texto.IndexOf("installer\configurar-host.ps1')")
+        $carga | Should -BeGreaterThan 0
+        # Depois de carregar, o script não pode mais ler $Desinstalar.
+        $script:texto.Substring($carga) | Should -Not -Match '\$Desinstalar\b'
+    }
+
     It 'não cria regras de firewall por conta própria' {
         $script:texto | Should -Not -Match 'New-NetFirewallRule'
     }
