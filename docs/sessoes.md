@@ -10,17 +10,25 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 0. Design | spec aprovada (06/11/2026) | — |
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
 | 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
-| 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | — |
+| 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | **código feito (09/11/2026)**: Tasks 1–8, host e APK instalados; faltam as verificações no escritório e as Tasks 9–10 (`docs/testes/fase-3-checklist.md`) |
 | 4. Atualização e CI | — | — |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
 | 6. Webcam | — | — |
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 3, execução)
-> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-07-fase-3-fora-de-casa.md`. Leia o `CLAUDE.md`, o plano e as decisões em `docs/decisoes/`. Execução nativa (executing-plans), pedindo meu ok nos passos marcados (roteador, firewall, serviço, hospedagem, token, push). A Task 1 precisa de mim no tablet e no app Alexa. Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
+## Próxima sessão (fase 3, verificação e fechamento)
+> Gabs Remote — continuar a fase 3 (`docs/superpowers/plans/2026-11-07-fase-3-fora-de-casa.md`): as Tasks 1–8 estão feitas; falta a Task 9 (latência em casa) e a Task 10 (medição no escritório, checklist e fechamento). Leia o `CLAUDE.md`, a decisão 0005, `docs/testes/fase-3-checklist.md` (roteiro do escritório e o que já foi verificado) e o ledger `.superpowers/sdd/2026-11-07-fase-3-fora-de-casa/progress.md` (rulings e minors adiados). Execução nativa (executing-plans), pedindo meu ok nos passos marcados (serviço, firewall, push). Trago os números do escritório (Toast, `tailscale status`, medidor, 15 min de uso, WoL de fora). Ao terminar, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt da próxima sessão.
 
-Decisões do Gab ao planejar a fase 3 (07/11/2026): sem 2º fator e sem bloqueio do PC ao desconectar (mora sozinho; vira a decisão 0005 na Task 1); a Alexa liga o PC hoje por uma skill/app de WoL; a reconexão automática não muda a decisão 0004.
+Estado ao pausar a fase 3 (09/11/2026):
+- Código das Tasks 1–8 feito: host `d544f702`, app `43c20bbf`, principal com os ponteiros. Host instalado no serviço `GabsRemote`; APK de release no tablet. **Nada enviado ao GitHub** (push só com o ok do Gab).
+- Decisão 0005: fora de casa só pelo Tailscale (nenhuma porta aberta; IPv6 de entrada barrado no roteador); WoL de fora pelo roteador (UDP 8080 → PC, IP do PC reservado no DHCP); sem 2º fator e sem bloqueio ao desconectar.
+- Verificado em casa: 0 erros `WSASendMsg` (eram 10022 e depois 10014), MAC e endereço de casa certos pelo Tailscale, "Conectado por Rede de casa".
+- Uso real do Gab: tablet no Wi-Fi do escritório, PC pelo Tailscale; ele quase não usa o tablet em casa (a troca casa ↔ fora não é testada).
+- Presença na hospedagem **não publicada** (o `rsync --delete` do deploy do site apagaria a pasta); código em `web/presenca/`. Sem ela, o WoL de fora usa o último IP de casa que o app aprendeu.
+- Pendências fora do código: prova do backup da keystore em `docs/segredos.md`; minors adiados nos ledgers das fases 2 e 3.
+
+Decisões do Gab ao planejar a fase 3 (07/11/2026): sem 2º fator e sem bloqueio do PC ao desconectar; a reconexão automática não muda a decisão 0004.
 
 Estado ao fechar a fase 2 (07/11/2026):
 - Host como serviço `GabsRemote` e APK de release instalados, na versão atual (host `eaa0d85a`, app `d666d2cb`). Host, app e principal enviados ao GitHub em 07/11/2026, com o ok do Gab.

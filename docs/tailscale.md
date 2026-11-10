@@ -1,6 +1,6 @@
 # Acesso de fora pelo Tailscale
 
-Fora de casa, o tablet chega ao PC pelo Tailscale, uma rede privada entre os aparelhos do Gab. O host já trata os endereços do Tailscale (`100.64.0.0/10`) como rede local, então o pareamento feito em casa vale também de fora. A escolha automática entre IPv6, redirecionamento de porta e Tailscale fica para a fase 3.
+Fora de casa, o tablet chega ao PC pelo Tailscale, uma rede privada entre os aparelhos do Gab. O host já trata os endereços do Tailscale (`100.64.0.0/10`) como rede local, então o pareamento feito em casa vale também de fora. Desde a fase 3 (decisão 0005) o Tailscale é o único caminho de fora: nenhuma porta do host é aberta para a internet. O app testa todos os endereços conhecidos do PC ao mesmo tempo, usa a rede de casa quando ela responde e, fora dela, o Tailscale; ao conectar, mostra "Conectado por <caminho> · <ms>", e o overlay de desempenho ganha a linha "Caminho". Em Configurações › Acesso de fora dá para forçar um caminho.
 
 ## Instalação (feita em 07/11/2026)
 
