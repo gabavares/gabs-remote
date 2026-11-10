@@ -30,3 +30,17 @@ Plano: `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md`. Decisão 
 - `releases/latest/download/manifest.json` responde 200 por HTTPS. ✓
 - PC: instalador da Release por cima, login do painel igual, "Procurar atualizações" → **0.4.0 · Em dia**. ✓
 - Tablet: mantido o APK 0.4.0 (4000) já instalado (mesmo código e assinatura do da Release).
+
+## Segunda versão 0.4.1: cursor no tablet (Task 11, Step 1; 10/11/2026)
+Motivo: no escritório, pelo Tailscale, o Gab sentiu o mouse atrasado em qualquer fps e resolução. O atraso vinha do cursor desenhado dentro do vídeo (chega com toda a latência da imagem, ~40 ms); o app já mandava o mouse sem lote (1 ms). A 0.4.1 desenha o cursor no tablet e manda a posição absoluta (`grCursor=local`); o host tira o cursor do vídeo e conta o formato pelo `/gabs/cursor`.
+- Host `86804db0`, app `97d26abe`, principal `b86761c`, tag `v0.4.1`. Testes: host 12 novos (`GabsCursorTest`, 984 no total, verdes); app 21 novos (`LocalCursorTest` 15, `CursorShapePollerTest` 6, verdes).
+- Workflow Release `42837612301`: verde em 14 min; rascunho com `GabsRemote-Setup-0.4.1.exe` (85,7 MB) e `GabsRemote-0.4.1-unsigned.apk` (11,2 MB).
+- `preparar-release.ps1` (Gab digitou a senha): APK assinado (versionCode 4001, 11,2 MB), manifesto e `.sig` no rascunho; manifesto baixado e conferido de novo (assinatura e regras). Publicada às 12:11 de 10/11/2026 (horário de Brasília); `releases/latest/download/manifest.json` responde 200 com 0.4.1. ✓
+
+### Critério 7 com duas versões reais
+- App (0.4.0 → 0.4.1): diálogo ao abrir, toques até a 0.4.1 aberta, tempo: pendente.
+- Host (0.4.0 → 0.4.1): espera com sessão aberta, instala com 0 sessões, tempo até "0.4.1 · Em dia": pendente.
+
+### Cursor no tablet (uso real)
+- Seta sem atraso no trackpad da tela, no trackpad do teclado e no mouse; formato de texto em caixa de texto e mão em link: pendente.
+- Some com toque direto e caneta; reaparece ao mexer o mouse; gira com a tela: pendente.

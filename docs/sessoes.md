@@ -11,14 +11,19 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
 | 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
 | 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | **código feito (09/11/2026)**: Tasks 1–8, host e APK instalados; faltam as verificações no escritório e as Tasks 9–10 (`docs/testes/fase-3-checklist.md`) |
-| 4. Atualização e CI | `plans/2026-11-09-fase-4-atualizacao-e-ci.md` (09/11/2026) | **Tasks 1–10 feitas (10/11/2026)**: revisão final, CI verde e **Release 0.4.0 publicada e instalada**; falta a Task 11 (testes em lote das fases 3 e 4, com a 0.4.1) |
+| 4. Atualização e CI | `plans/2026-11-09-fase-4-atualizacao-e-ci.md` (09/11/2026) | **Tasks 1–10 feitas (10/11/2026)**: revisão final, CI verde e **Release 0.4.0 publicada e instalada**. Task 11 Step 1 feito: **Release 0.4.1 (cursor no tablet) publicada**; falta o resto da Task 11 (critério 7 no tablet e no PC, testes da fase 3) |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
 | 6. Webcam | — | — |
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
 ## Próxima sessão (fase 4, Task 11: testes em lote)
-Estado ao pausar (10/11/2026):
+Estado ao pausar (10/11/2026, depois da 0.4.1):
+- **Release v0.4.1 publicada** às 12:11 (Task 11 Step 1): cursor desenhado no tablet. O host tira o cursor do vídeo com `grCursor=local` e conta o formato pelo `/gabs/cursor` (long poll); o app desenha o cursor (seta, texto, mão, redimensionar...) e manda a posição absoluta. Preferência "Cursor no tablet", ligada. Motivo: no escritório o mouse parecia atrasado porque o cursor vinha no vídeo (~40 ms). Host `86804db0`, app `97d26abe`, principal `b86761c`.
+- A conferir na sessão de testes: o app e o host oferecerem a 0.4.1 sozinhos (toques e tempos em `docs/testes/fase-4-checklist.md`, seção da 0.4.1) e o cursor no uso real (formato, toque direto e caneta, rotação, velocidade 1:1 sem a aceleração do Windows). Se o Gab já anotou algo, está nessa seção.
+- Não testado ao vivo antes da Release (o Gab estava usando o PC pelo Tailscale): a rota `/gabs/cursor` só tem os testes unitários do tracker.
+
+Estado anterior (10/11/2026, 0.4.0):
 - Tasks 1–10 feitas. Release **v0.4.0 publicada** (github.com/gabavares/gabs-remote/releases/tag/v0.4.0), com instalador, APK assinado e manifesto assinado. PC com o host 0.4.0 da Release (painel "Em dia"); tablet com o app 0.4.0 (4000).
 - Como fazer uma Release: `docs/release.md` (o `preparar-release.ps1` roda com `-ExecutionPolicy Bypass`). CI: `.github/workflows/testes.yml` (verde) e `release.yml`.
 - Revisão final: 4 achados importantes corrigidos; os menores ficaram no ledger `.superpowers/sdd/2026-11-09-fase-4-atualizacao-e-ci/progress.md` (linhas `Final: minor (deferred)`). Os mais visíveis: a atualização do app ainda pede um toque; os atalhos da tela inicial não passam pelo aviso de compatibilidade; o painel diz "sessão ativa" quando o motivo é o PC pronto.
@@ -28,7 +33,7 @@ Estado ao pausar (10/11/2026):
 
 A sessão de testes em lote (fase 3 + fase 4) usa:
 
-> Gabs Remote — sessão de testes em lote: Task 11 do plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md` (Release 0.4.1 e critério 7 no app e no host) junto do roteiro pendente em `docs/testes/fase-3-checklist.md` (escritório, WoL de fora e a Task 9 da fase 3). Leia o `CLAUDE.md`, os dois checklists e `docs/release.md`. Eu trago os números do escritório. Commit, push, tag e Release sem pedir. No fim, escreva `docs/testes/fase-4-checklist.md`, feche o da fase 3, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt do plano da fase 5.
+> Gabs Remote — sessão de testes em lote: Task 11 do plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md` (a 0.4.1 já está publicada: Steps 2 em diante, critério 7 no app e no host, e o cursor no tablet) junto do roteiro pendente em `docs/testes/fase-3-checklist.md` (escritório, WoL de fora e a Task 9 da fase 3). Leia o `CLAUDE.md`, os dois checklists e `docs/release.md`. Eu trago os números do escritório. Commit, push, tag e Release sem pedir. No fim, escreva `docs/testes/fase-4-checklist.md`, feche o da fase 3, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt do plano da fase 5.
 
 Para fechar só a fase 3 (testes do escritório e Task 9), se preferir antes da fase 4:
 
