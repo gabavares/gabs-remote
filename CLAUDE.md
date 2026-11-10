@@ -11,7 +11,7 @@ Sistema próprio de acesso remoto: PC Windows do Gab (host) ↔ Galaxy Tab S10+ 
 - Idioma: tudo em pt-BR (docs, notas de versão, UI). Código e identificadores em inglês, seguindo o upstream.
 - Nunca mexer no que já roda na hospedagem (site gabtavares.com, Vagabs, executor do Claude).
 - Mudanças nos forks: pequenas, em módulos/pastas próprias, para facilitar merge do upstream.
-- Publicar Release, criar repositório no GitHub ou dar push: só com o ok do Gab.
+- Commit, push, tag e Release do Gabs Remote: o Claude faz quando precisar, sem pedir (Gab, 09/11/2026). Pede o ok só quando a ação afetar outro projeto do Gab (site, hospedagem, Vagabs, executor do Claude, outros repositórios).
 - Commits com `gabavares <43415454+gabavares@users.noreply.github.com>`.
 - Segredos (keystore do APK, chave Ed25519 do manifesto, senhas) nunca entram no repositório.
 

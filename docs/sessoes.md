@@ -11,16 +11,20 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
 | 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
 | 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | **código feito (09/11/2026)**: Tasks 1–8, host e APK instalados; faltam as verificações no escritório e as Tasks 9–10 (`docs/testes/fase-3-checklist.md`) |
-| 4. Atualização e CI | — | — |
+| 4. Atualização e CI | `plans/2026-11-09-fase-4-atualizacao-e-ci.md` (09/11/2026) | — (Task 11 = testes em lote das fases 3 e 4) |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
 | 6. Webcam | — | — |
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 4, plano)
-O Gab decidiu (09/11/2026) seguir para a fase 4 e testar em lote depois: as verificações de campo da fase 3 (roteiro em `docs/testes/fase-3-checklist.md`) ficam para uma sessão de testes junto com as da fase 4.
+## Próxima sessão (fase 4, execução)
+O plano da fase 4 está escrito (09/11/2026) e o Gab aprovou as decisões que viram a 0006 (assinaturas só no PC do Gab, versão única 0.4.0 no `versao.json`, updater dentro do host, configuração mantida em `Program Files\Gabs Remote\config`, instalador NSIS próprio, CI só no principal). A execução para depois da Task 10 (primeira Release 0.4.0 instalada); a Task 11 é uma sessão de testes em lote que junta o roteiro pendente da fase 3 (escritório, WoL de fora, Task 9) e o critério 7 com a 0.4.1.
 
-> Gabs Remote — escrever o plano da **fase 4 (Atualização e CI)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (§8 Atualização automática, §9.1, §10 linha da fase 4), `docs/decisoes/` (a 0002 trava o `applicationId`; a 0005 diz que nada do host fica aberto para a internet), `docs/segredos.md`, `docs/testes/fase-3-checklist.md` (o que ficou para testar em lote) e `graphify-out/GRAPH_REPORT.md`. Use o graphify para achar nos forks o build, a versão e o painel do host. A fase 3 tem verificações de campo pendentes: o plano termina com uma task de testes em lote (fase 3 + fase 4). Escreva com a skill writing-plans, terminando com a seção "Próxima sessão".
+> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md`. Leia o `CLAUDE.md`, o plano, as decisões em `docs/decisoes/` e `docs/segredos.md`. Execução nativa (executing-plans), fazendo commit, push, tag e Release sem pedir (só peça meu ok se algo afetar outro projeto meu); eu digito as senhas e rodo o instalador como administrador. A Task 1 precisa de mim no terminal para criar a chave. Pare depois da Task 10 (primeira Release instalada): a Task 11 é a sessão de testes em lote. Ao parar, atualize `docs/sessoes.md` e me dê o prompt da próxima sessão.
+
+Depois da 0.4.0 instalada, a sessão de testes em lote (fase 3 + fase 4) usa:
+
+> Gabs Remote — sessão de testes em lote: Task 11 do plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md` (Release 0.4.1 e critério 7 no app e no host) junto do roteiro pendente em `docs/testes/fase-3-checklist.md` (escritório, WoL de fora e a Task 9 da fase 3). Leia o `CLAUDE.md`, os dois checklists e `docs/release.md`. Eu trago os números do escritório. Commit, push, tag e Release sem pedir. No fim, escreva `docs/testes/fase-4-checklist.md`, feche o da fase 3, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt do plano da fase 5.
 
 Para fechar só a fase 3 (testes do escritório e Task 9), se preferir antes da fase 4:
 
