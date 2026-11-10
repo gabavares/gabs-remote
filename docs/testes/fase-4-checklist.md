@@ -50,3 +50,10 @@ Motivo: no escritório, pelo Tailscale, o Gab sentiu o mouse atrasado em qualque
 - ✗ Mouse andando menos: na posição absoluta a aceleração do Windows não age.
 - Correção 0.4.2 (app `e32b8edd`, principal `0a797aa`): o cursor local só liga com a primeira resposta válida do `/gabs/cursor` (até lá e com host antigo, mouse relativo como na 0.4.0); o `status_code="404"` no corpo conta como host sem a rota; aceleração própria, ganho = 0,8 + 1,2 × velocidade (px/ms), entre 1 e 3,5. Testes do app: `LocalCursorTest` 18, `CursorShapePollerTest` 6, verdes.
 - Workflow Release `42842601666`: verde; rascunho com `GabsRemote-Setup-0.4.2.exe` (85,7 MB) e `GabsRemote-0.4.2-unsigned.apk` (11,2 MB). Assinada pelo Gab (APK 11,2 MB, versionCode 4002); manifesto e assinatura conferidos (`Test-Manifesto` e `Test-AssinaturaManifesto`); publicada às 13:40 de 10/11/2026, `releases/latest/download/manifest.json` responde 0.4.2. Workflow Testes `42842595840`: verde.
+
+### Uso da 0.4.2 (Gab, 10/11/2026) e correção 0.4.3
+- ✗ Rápido demais; o Gab prefere 1 para 1 e quer a velocidade nas configurações.
+- ✗ Cursor sem fluidez, pulando, com o tablet e a transmissão em 120 fps. Causa: a aceleração media a velocidade pela hora do processamento (`uptimeMillis`), não a do toque; os pontos do dedo chegam em lote no mesmo instante e o ganho oscilava entre 1 e 3,5 de um evento para o outro. A escala do trackpad da tela para a grade de 1280 x 720, com arredondamento para inteiro, piorava os passos.
+- Correção 0.4.3 (app `824c5500`): sem aceleração; o trackpad da tela manda o deslocamento do dedo em pixels da tela e o cursor anda na tela o mesmo que o dedo (zoom local incluído); preferência "Velocidade do cursor" (`gr_cursor_speed`, 25% a 300%, padrão 100%) multiplica também o mouse e o trackpad do teclado. Host sem mudança. `LocalCursorTest` 21, verde.
+- Release 0.4.3: pendente.
+
