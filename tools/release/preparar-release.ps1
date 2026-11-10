@@ -130,9 +130,14 @@ Remove-Item -LiteralPath $alinhado, "$apk.idsig" -Force -ErrorAction SilentlyCon
 # 4. Conferir certificado, pacote e versionCode
 $certs = & $apksigner verify --print-certs $apk
 if ($LASTEXITCODE -ne 0) { Parar 'apksigner verify falhou.' }
-$linhaCert = $certs | Where-Object { $_ -match 'Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F:]+)' } | Select-Object -First 1
-$impressao = if ($linhaCert -match 'digest:\s*([0-9a-fA-F:]+)') { $Matches[1].Replace(':', '').ToUpperInvariant() } else { '' }
-if ($impressao -ne $ImpressaoCertificado) { Parar "O APK foi assinado com outro certificado ($impressao). Pare e confira a keystore." }
+# "Signer #1 certificate SHA-256 digest: ..." (apksigner antigo) ou "V2 Signer: certificate SHA-256 digest: ..." (37+):
+# todo certificado listado precisa ser o do Gab, e precisa haver ao menos um.
+$impressoes = @($certs | ForEach-Object {
+    if ($_ -match 'certificate SHA-256 digest:\s*([0-9a-fA-F:]+)') { $Matches[1].Replace(':', '').ToUpperInvariant() }
+} | Sort-Object -Unique)
+if ($impressoes.Count -ne 1 -or $impressoes[0] -ne $ImpressaoCertificado) {
+    Parar "O APK foi assinado com outro certificado ($($impressoes -join ', ')). Pare e confira a keystore."
+}
 $badging = (& $aapt2 dump badging $apk) | Select-Object -First 1
 $codigoEsperado = Get-VersionCode -Versao $Versao
 if ($badging -notmatch "name='$([regex]::Escape($PacoteApp))'" -or $badging -notmatch "versionCode='$codigoEsperado'" -or $badging -notmatch "versionName='$([regex]::Escape($Versao))'") {
