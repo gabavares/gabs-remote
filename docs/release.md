@@ -14,12 +14,12 @@ Decisão 0006: o CI compila sem segredos e cria um **rascunho**; as assinaturas 
    O workflow **Release** (`.github/workflows/release.yml`) confere que a tag é `v` + `versao.json`, compila o host e o instalador (`GabsRemote-Setup-<versão>.exe`) e o APK sem assinatura (`GabsRemote-<versão>-unsigned.apk`), e cria o rascunho. Leva cerca de 40 minutos. Acompanhe com `gh run watch` ou em github.com/gabavares/gabs-remote/actions.
 4. **Assinar no PC** (o Gab digita a senha da chave do manifesto; a da keystore vem do `keystore.properties`):
    ```powershell
-   powershell -File C:\gr\tools\release\preparar-release.ps1 -Versao <versão>
+   powershell -ExecutionPolicy Bypass -File C:\gr\tools\release\preparar-release.ps1 -Versao <versão>
    ```
-   Confira o resumo (versão, tamanhos, SHA-256, "certificado confere", "assinatura confere").
+   (`-ExecutionPolicy Bypass` vale só para esse comando: o Windows bloqueia scripts por padrão.) Confira o resumo (versão, tamanhos, SHA-256, "certificado confere", "assinatura confere").
 5. **Subir para o rascunho:**
    ```powershell
-   powershell -File C:\gr\tools\release\preparar-release.ps1 -Versao <versão> -Enviar
+   powershell -ExecutionPolicy Bypass -File C:\gr\tools\release\preparar-release.ps1 -Versao <versão> -Enviar
    ```
    No rascunho ficam: `GabsRemote-Setup-<versão>.exe`, `GabsRemote-<versão>.apk` (assinado), `manifest.json`, `manifest.json.sig`. O `-unsigned.apk` é apagado.
 6. **Publicar:**
