@@ -11,16 +11,21 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 1. Ambiente e forks | `plans/2026-11-06-fase-1-ambiente-e-forks.md` | **feita (07/11/2026)**: host e app compilam, linha de base em `docs/testes/fase-1-checklist.md` |
 | 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
 | 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | **código feito (09/11/2026)**: Tasks 1–8, host e APK instalados; faltam as verificações no escritório e as Tasks 9–10 (`docs/testes/fase-3-checklist.md`) |
-| 4. Atualização e CI | `plans/2026-11-09-fase-4-atualizacao-e-ci.md` (09/11/2026) | — (Task 11 = testes em lote das fases 3 e 4) |
+| 4. Atualização e CI | `plans/2026-11-09-fase-4-atualizacao-e-ci.md` (09/11/2026) | **código feito (10/11/2026)**: Tasks 1–9, revisão final e CI verde; Release 0.4.0 em rascunho, falta o Gab assinar e publicar (Task 10, passos 2–5); depois a Task 11 (testes em lote das fases 3 e 4) |
 | 5. Áudio, mic, clipboard, arquivos | — | — |
 | 6. Webcam | — | — |
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 4, execução)
-O plano da fase 4 está escrito (09/11/2026) e o Gab aprovou as decisões que viram a 0006 (assinaturas só no PC do Gab, versão única 0.4.0 no `versao.json`, updater dentro do host, configuração mantida em `Program Files\Gabs Remote\config`, instalador NSIS próprio, CI só no principal). A execução para depois da Task 10 (primeira Release 0.4.0 instalada); a Task 11 é uma sessão de testes em lote que junta o roteiro pendente da fase 3 (escritório, WoL de fora, Task 9) e o critério 7 com a 0.4.1.
+## Próxima sessão (fase 4, terminar a Task 10)
+Estado ao pausar (10/11/2026, madrugada):
+- Tasks 1–9 feitas e enviadas ao GitHub: chave Ed25519 (pública em `docs/segredos.md`), `versao.json` 0.4.0, `tools/release/` (manifesto assinado, `preparar-release.ps1`), versão no `/serverinfo`, updater do host (painel e bandeja), instalador NSIS (`installer/`), updater do app e aviso de compatibilidade, CI (`.github/workflows/`), `docs/release.md`. Revisão final feita: 4 achados importantes corrigidos; os menores estão no ledger `.superpowers/sdd/2026-11-09-fase-4-atualizacao-e-ci/progress.md`.
+- No PC: host 0.4.0 instalado **pelo instalador novo** (build local, mesmo código), serviço e firewall iguais aos de antes. No tablet: APK 0.4.0 (versionCode 4000) de release. Tudo funciona como antes; o updater só passa a ter o que oferecer depois da Release publicada.
+- Tag `v0.4.0` enviada; o workflow Release cria o rascunho com o instalador e o APK sem assinatura.
+- Falta (precisa do Gab, ~10 min): `preparar-release.ps1 -Versao 0.4.0` (senha da chave do manifesto), depois `-Enviar`, publicar, e conferir o login do painel no PC (`https://localhost:47990`).
+- Pendências do Gab fora do código: refazer o `.7z` de backup com a keystore **e** a chave do manifesto e trocar as cópias do Drive e do pendrive (`docs/segredos.md`).
 
-> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md`. Leia o `CLAUDE.md`, o plano, as decisões em `docs/decisoes/` e `docs/segredos.md`. Execução nativa (executing-plans), fazendo commit, push, tag e Release sem pedir (só peça meu ok se algo afetar outro projeto meu); eu digito as senhas e rodo o instalador como administrador. A Task 1 precisa de mim no terminal para criar a chave. Pare depois da Task 10 (primeira Release instalada): a Task 11 é a sessão de testes em lote. Ao parar, atualize `docs/sessoes.md` e me dê o prompt da próxima sessão.
+> Gabs Remote — terminar a Task 10 do plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md`: o rascunho da Release v0.4.0 já foi criado pelo CI. Leia o `CLAUDE.md`, `docs/release.md` e o ledger `.superpowers/sdd/2026-11-09-fase-4-atualizacao-e-ci/progress.md`. Eu rodo o `preparar-release.ps1` e digito a senha; você confere o rascunho, publica, confere a 0.4.0 no PC e no tablet (painel "Em dia", app sem oferecer atualização), atualiza `docs/sessoes.md` e me dá o prompt da sessão de testes em lote. Commit, push e Release sem pedir.
 
 Depois da 0.4.0 instalada, a sessão de testes em lote (fase 3 + fase 4) usa:
 
