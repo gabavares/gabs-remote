@@ -23,6 +23,7 @@ Estado ao pausar (10/11/2026, depois da 0.4.1):
 - A conferir na sessão de testes: o app e o host oferecerem a 0.4.1 sozinhos (toques e tempos em `docs/testes/fase-4-checklist.md`, seção da 0.4.1) e o cursor no uso real (formato, toque direto e caneta, rotação, velocidade 1:1 sem a aceleração do Windows). Se o Gab já anotou algo, está nessa seção.
 - **0.4.2 (correção, mesmo dia):** na 0.4.1 o Gab viu a seta do app por cima do cursor do Windows (host ainda 0.4.0) e o mouse mais lento (sem a aceleração do Windows). A 0.4.2 só liga o cursor local depois que o host confirma pelo `/gabs/cursor` e aplica uma aceleração própria (`LocalCursor.gain`). Detalhes no checklist da fase 4.
 - **0.4.3 (correção, mesmo dia):** a aceleração da 0.4.2 ficou rápida demais e fazia o cursor pular (ganho calculado pela hora do processamento, com eventos em lote). A 0.4.3 tira a aceleração: o cursor anda na tela o mesmo que o dedo, e a velocidade fica em Configurações → "Velocidade do cursor" (`gr_cursor_speed`).
+- **0.4.4 (mesmo dia):** o mouse e o trackpad do teclado passam a usar o ponteiro nativo do Android (sem captura, ícone por `PointerIcon` conforme o formato do Windows), igual ao de fora do app. O trackpad na tela segue com o cursor desenhado pelo app. Se a rolagem de dois dedos vier invertida, trocar o sinal em `NativePointer.SwipeScroll`.
 - Não testado ao vivo antes da Release (o Gab estava usando o PC pelo Tailscale): a rota `/gabs/cursor` só tem os testes unitários do tracker.
 
 Estado anterior (10/11/2026, 0.4.0):
@@ -35,7 +36,7 @@ Estado anterior (10/11/2026, 0.4.0):
 
 A sessão de testes em lote (fase 3 + fase 4) usa:
 
-> Gabs Remote — sessão de testes em lote: Task 11 do plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md` (a 0.4.1, a 0.4.2 e a 0.4.3 já estão publicadas: Steps 2 em diante, critério 7 no app e no host, e o cursor no tablet) junto do roteiro pendente em `docs/testes/fase-3-checklist.md` (escritório, WoL de fora e a Task 9 da fase 3). Leia o `CLAUDE.md`, os dois checklists e `docs/release.md`. Eu trago os números do escritório. Commit, push, tag e Release sem pedir. No fim, escreva `docs/testes/fase-4-checklist.md`, feche o da fase 3, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt do plano da fase 5.
+> Gabs Remote — sessão de testes em lote: Task 11 do plano `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md` (a 0.4.1 a 0.4.4 já estão publicadas: Steps 2 em diante, critério 7 no app e no host, e o cursor no tablet) junto do roteiro pendente em `docs/testes/fase-3-checklist.md` (escritório, WoL de fora e a Task 9 da fase 3). Leia o `CLAUDE.md`, os dois checklists e `docs/release.md`. Eu trago os números do escritório. Commit, push, tag e Release sem pedir. No fim, escreva `docs/testes/fase-4-checklist.md`, feche o da fase 3, atualize `docs/sessoes.md`, rode `/graphify . --update` e me dê o prompt do plano da fase 5.
 
 Para fechar só a fase 3 (testes do escritório e Task 9), se preferir antes da fase 4:
 
