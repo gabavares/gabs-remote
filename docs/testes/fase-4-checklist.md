@@ -44,3 +44,9 @@ Motivo: no escritório, pelo Tailscale, o Gab sentiu o mouse atrasado em qualque
 ### Cursor no tablet (uso real)
 - Seta sem atraso no trackpad da tela, no trackpad do teclado e no mouse; formato de texto em caixa de texto e mão em link: pendente.
 - Some com toque direto e caneta; reaparece ao mexer o mouse; gira com a tela: pendente.
+
+### Primeiro uso da 0.4.1 (Gab, 10/11/2026) e correção 0.4.2
+- ✗ Seta do app por cima do cursor do Windows: o PC ainda estava no host 0.4.0 (o updater espera não haver sessão), que não conhece `grCursor` e desenha o cursor no vídeo. O app devia perceber, mas o "não encontrado" do Sunshine responde HTTP 200 com `status_code="404"` no XML, e o app ficava tentando de novo com a seta ligada.
+- ✗ Mouse andando menos: na posição absoluta a aceleração do Windows não age.
+- Correção 0.4.2 (app `e32b8edd`, principal `0a797aa`): o cursor local só liga com a primeira resposta válida do `/gabs/cursor` (até lá e com host antigo, mouse relativo como na 0.4.0); o `status_code="404"` no corpo conta como host sem a rota; aceleração própria, ganho = 0,8 + 1,2 × velocidade (px/ms), entre 1 e 3,5. Testes do app: `LocalCursorTest` 18, `CursorShapePollerTest` 6, verdes.
+- Workflow Release `42842601666`: verde; rascunho com `GabsRemote-Setup-0.4.2.exe` (85,7 MB) e `GabsRemote-0.4.2-unsigned.apk` (11,2 MB). Assinada pelo Gab (APK 11,2 MB, versionCode 4002); manifesto e assinatura conferidos (`Test-Manifesto` e `Test-AssinaturaManifesto`); publicada às 13:40 de 10/11/2026, `releases/latest/download/manifest.json` responde 0.4.2. Workflow Testes `42842595840`: verde.
