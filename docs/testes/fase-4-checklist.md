@@ -22,3 +22,11 @@ Plano: `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md`. Decisão 
 ## CI (Task 9, 10/11/2026)
 - 1º run: Pester falhou (stderr do OpenSSL virava exceção com `ErrorActionPreference Stop`) e o host falhou (pacotes do `qt6-static` que o upstream não lista). Corrigidos.
 - 2º run (`42745627507`): tudo verde. Tempos: Presença (PHP) 10 s; Scripts (Pester) 2 min; App (testes unitários) 2,5 min; Host (build e testes, Gabs Remote + upstream) 28,6 min. ✓
+
+## Primeira Release 0.4.0 (Task 10, 10/11/2026)
+- Workflow Release (`42748908250`): rascunho com `GabsRemote-Setup-0.4.0.exe` (85,7 MB) e `GabsRemote-0.4.0-unsigned.apk`, ambos de `github-actions[bot]`. ✓
+- `preparar-release.ps1`: três correções no caminho (ExecutionPolicy, leitura da chave pública no `segredos.md`, formato do `apksigner` 37), todas antes de qualquer assinatura. Resumo: versionCode 4000, certificado do APK confere, assinatura do manifesto confere. ✓
+- Rascunho final: `.exe`, `.apk` assinado, `manifest.json`, `manifest.json.sig`, sem `-unsigned`; manifesto baixado e conferido de novo (assinatura e regras). Publicada às 00:46 de 10/11/2026 (horário de Brasília). ✓
+- `releases/latest/download/manifest.json` responde 200 por HTTPS. ✓
+- PC: instalador da Release por cima, login do painel igual, "Procurar atualizações" → **0.4.0 · Em dia**. ✓
+- Tablet: mantido o APK 0.4.0 (4000) já instalado (mesmo código e assinatura do da Release).
