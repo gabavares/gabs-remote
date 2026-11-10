@@ -18,3 +18,7 @@ Plano: `docs/superpowers/plans/2026-11-09-fase-4-atualizacao-e-ci.md`. Decisão 
 
 ## Observação do Gab (09/11/2026)
 - Tablet no 4G roteado pelo celular, pelo Tailscale: mais de 60 fps e menos de 40 ms, na mesma internet instável que antes tinha ficado ruim.
+
+## CI (Task 9, 10/11/2026)
+- 1º run: Pester falhou (stderr do OpenSSL virava exceção com `ErrorActionPreference Stop`) e o host falhou (pacotes do `qt6-static` que o upstream não lista). Corrigidos.
+- 2º run (`42745627507`): tudo verde. Tempos: Presença (PHP) 10 s; Scripts (Pester) 2 min; App (testes unitários) 2,5 min; Host (build e testes, Gabs Remote + upstream) 28,6 min. ✓
