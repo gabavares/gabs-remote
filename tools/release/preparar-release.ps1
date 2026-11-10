@@ -56,7 +56,7 @@ $notas = [IO.File]::ReadAllText($notasArq, [Text.Encoding]::UTF8).Trim()
 foreach ($arq in $Chave, $KeystoreProps) { if (-not (Test-Path -LiteralPath $arq)) { Parar "Não achei $arq (veja docs\segredos.md)." } }
 
 $segredos = [IO.File]::ReadAllText((Join-Path $raiz 'docs\segredos.md'), [Text.Encoding]::UTF8)
-$m = [regex]::Match($segredos, '\*\*Chave pública\*\*[^`]*`([A-Za-z0-9+/]{43}=)`')
+$m = [regex]::Match($segredos, '\*\*Chave pública\*\*[^\r\n]*?`([A-Za-z0-9+/]{43}=)`')
 if (-not $m.Success) { Parar 'Não achei a chave pública do manifesto em docs\segredos.md.' }
 $publica = $m.Groups[1].Value
 
