@@ -1,0 +1,214 @@
+# Rascunho de Release do Gabs Remote (plano da fase 4, Task 9; decisão 0006).
+# Compila o instalador do host e o APK SEM ASSINATURA e cria o rascunho da Release.
+# As assinaturas (APK e manifesto) acontecem só no PC do Gab: tools/release/preparar-release.ps1.
+# Este workflow nunca publica. Passo a passo: docs/release.md.
+name: Release
+permissions:
+  contents: read
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag da versão (ex.: v0.4.0)'
+        required: true
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  versao:
+    name: Conferir a versão
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      tag: ${{ steps.v.outputs.tag }}
+      min_app: ${{ steps.v.outputs.min_app }}
+      min_host: ${{ steps.v.outputs.min_host }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - name: Tag = v + versao.json, e as notas existem
+        id: v
+        env:
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          VERSION=$(jq -r .version versao.json)
+          if [ "$TAG" != "v$VERSION" ]; then
+            echo "::error::A tag $TAG não bate com versao.json ($VERSION)."
+            exit 1
+          fi
+          if [ ! -f "docs/notas/$VERSION.md" ]; then
+            echo "::error::Faltam as notas em docs/notas/$VERSION.md."
+            exit 1
+          fi
+          {
+            echo "version=$VERSION"
+            echo "tag=$TAG"
+            echo "min_app=$(jq -r .minApp versao.json)"
+            echo "min_host=$(jq -r .minHost versao.json)"
+          } >> "$GITHUB_OUTPUT"
+
+  instalador:
+    name: Instalador do host
+    needs: versao
+    runs-on: windows-2022
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          ref: ${{ needs.versao.outputs.tag }}
+          submodules: recursive
+
+      - name: MSYS2
+        id: msys2
+        uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e  # v2.33.0
+        with:
+          msystem: ucrt64
+          update: true
+          install: >-
+            git
+            mingw-w64-ucrt-x86_64-boost
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-cppwinrt
+            mingw-w64-ucrt-x86_64-curl-winssl
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-miniupnpc
+            mingw-w64-ucrt-x86_64-nlohmann-json
+            mingw-w64-ucrt-x86_64-onevpl
+            mingw-w64-ucrt-x86_64-openssl
+            mingw-w64-ucrt-x86_64-opus
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-qt6-static
+            mingw-w64-ucrt-x86_64-MinHook
+            mingw-w64-ucrt-x86_64-nsis
+
+      - name: NodeJS
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1  # v7.1.0
+        with:
+          node-version: 'lts/*'
+
+      - name: Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: '3.14'
+
+      - name: Caminho do Node
+        shell: pwsh
+        run: |
+          $node = Split-Path -Path (Get-Command node).Source -Parent
+          echo "NODEJS_PATH=$node" >> $env:GITHUB_ENV
+
+      - name: Build do host
+        working-directory: host
+        env:
+          BRANCH: main
+          BUILD_VERSION: ${{ needs.versao.outputs.version }}
+          MIN_APP: ${{ needs.versao.outputs.min_app }}
+          MSYS2_PATH_TYPE: inherit
+        run: |
+          export PATH="$PATH:$(cygpath "$NODEJS_PATH")"
+          cmake -B build -G Ninja -S . \
+            -DBUILD_DOCS=OFF \
+            -DBUILD_TESTS=OFF \
+            -DGABS_MIN_APP="$MIN_APP" \
+            -DCMAKE_BUILD_TYPE=Release
+          ninja -C build
+
+      - name: Instalador
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File tools\build\build-instalador.ps1 -Msys2 "${{ steps.msys2.outputs.msys2-location }}"
+
+      - name: Guardar o instalador
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: instalador
+          path: installer/out/GabsRemote-Setup-${{ needs.versao.outputs.version }}.exe
+          if-no-files-found: error
+
+  apk:
+    name: APK (sem assinatura)
+    needs: versao
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          ref: ${{ needs.versao.outputs.tag }}
+          submodules: recursive
+
+      - name: JDK 17
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78  # v6.2.0
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Build de release sem keystore
+        working-directory: android
+        env:
+          VERSION: ${{ needs.versao.outputs.version }}
+          MIN_HOST: ${{ needs.versao.outputs.min_host }}
+          # Garante que nenhuma keystore é lida no CI (decisão 0006).
+          GABS_KEYSTORE_PROPS: /nao/existe/keystore.properties
+        run: |
+          ./gradlew assembleNonRootRelease -PgabsVersion="$VERSION" -PgabsMinHost="$MIN_HOST" --console=plain
+          mkdir -p ../out
+          cp app/build/outputs/apk/nonRoot/release/app-nonRoot-release-unsigned.apk "../out/GabsRemote-$VERSION-unsigned.apk"
+
+      - name: Guardar o APK
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: apk
+          path: out/GabsRemote-${{ needs.versao.outputs.version }}-unsigned.apk
+          if-no-files-found: error
+
+  rascunho:
+    name: Rascunho da Release
+    needs: [versao, instalador, apk]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          ref: ${{ needs.versao.outputs.tag }}
+
+      - name: Baixar os arquivos
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333  # v8.0.2
+        with:
+          path: arquivos
+          merge-multiple: true
+
+      - name: Criar o rascunho (nunca publica)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.versao.outputs.tag }}
+          VERSION: ${{ needs.versao.outputs.version }}
+        run: |
+          ls -la arquivos
+          if gh release view "$TAG" --json isDraft --jq .isDraft 2>/dev/null | grep -q false; then
+            echo "::error::A Release $TAG já está publicada; não mexo nela."
+            exit 1
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" arquivos/* --clobber
+          else
+            gh release create "$TAG" --draft --verify-tag \
+              --title "Gabs Remote $VERSION" \
+              --notes-file "docs/notas/$VERSION.md" \
+              arquivos/*
+          fi
+          echo "Rascunho pronto. No PC do Gab: tools/release/preparar-release.ps1 -Versao $VERSION" >> "$GITHUB_STEP_SUMMARY"

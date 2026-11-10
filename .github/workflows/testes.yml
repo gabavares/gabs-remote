@@ -1,0 +1,158 @@
+# Testes do Gabs Remote (plano da fase 4, Task 9; decisão 0006).
+# Nenhum segredo: só compila e testa. O CI dos forks (upstream) fica desligado.
+name: Testes
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: testes-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    name: App (testes unitários)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          submodules: recursive
+
+      - name: JDK 17
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78  # v6.2.0
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Testes do app
+        working-directory: android
+        run: |
+          VERSION=$(jq -r .version ../versao.json)
+          MIN_HOST=$(jq -r .minHost ../versao.json)
+          ./gradlew testNonRootDebugUnitTest -PgabsVersion="$VERSION" -PgabsMinHost="$MIN_HOST" --console=plain
+
+  scripts:
+    name: Scripts PowerShell (Pester)
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          submodules: true  # servico.Tests.ps1 lê o host
+
+      - name: Pester
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Scope CurrentUser | Out-Null
+          Install-Module -Name Pester -RequiredVersion 6.2.0 -Force -SkipPublisherCheck -Scope CurrentUser
+          Import-Module Pester -RequiredVersion 6.2.0
+          $testes = @(Get-ChildItem -Path tools -Recurse -Filter '*.Tests.ps1') + @(Get-ChildItem -Path installer -Filter '*.Tests.ps1')
+          $cfg = New-PesterConfiguration
+          $cfg.Run.Path = $testes.FullName
+          $cfg.Run.PassThru = $true
+          $cfg.Filter.ExcludeTag = 'Local'
+          $cfg.Output.Verbosity = 'Detailed'
+          $r = Invoke-Pester -Configuration $cfg
+          if ($r.FailedCount -gt 0 -or $r.Result -ne 'Passed') { exit 1 }
+
+  presenca:
+    name: Presença (PHP)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+
+      - name: Testes da presença
+        working-directory: web/presenca
+        run: php -d zend.assertions=1 -d assert.exception=1 testes.php
+
+  host:
+    name: Host (build e testes)
+    runs-on: windows-2022
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          submodules: recursive
+
+      - name: MSYS2
+        id: msys2
+        uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e  # v2.33.0
+        with:
+          msystem: ucrt64
+          update: true
+          install: >-
+            git
+            mingw-w64-ucrt-x86_64-boost
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-cppwinrt
+            mingw-w64-ucrt-x86_64-curl-winssl
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-miniupnpc
+            mingw-w64-ucrt-x86_64-nlohmann-json
+            mingw-w64-ucrt-x86_64-onevpl
+            mingw-w64-ucrt-x86_64-openssl
+            mingw-w64-ucrt-x86_64-opus
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-qt6-static
+            mingw-w64-ucrt-x86_64-MinHook
+            mingw-w64-ucrt-x86_64-nsis
+
+      - name: NodeJS
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1  # v7.1.0
+        with:
+          node-version: 'lts/*'
+
+      - name: Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: '3.14'
+
+      - name: Caminho do Node
+        shell: pwsh
+        run: |
+          $node = Split-Path -Path (Get-Command node).Source -Parent
+          echo "NODEJS_PATH=$node" >> $env:GITHUB_ENV
+
+      - name: Build do host com testes
+        working-directory: host
+        env:
+          BRANCH: main
+          MSYS2_PATH_TYPE: inherit
+        run: |
+          export BUILD_VERSION=$(python -c "import json;print(json.load(open('../versao.json'))['version'])")
+          MIN_APP=$(python -c "import json;print(json.load(open('../versao.json'))['minApp'])")
+          export PATH="$PATH:$(cygpath "$NODEJS_PATH")"
+          cmake -B build -G Ninja -S . \
+            -DBUILD_DOCS=OFF \
+            -DBUILD_TESTS=ON \
+            -DGABS_MIN_APP="$MIN_APP" \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          ninja -C build
+
+      - name: Testes do Gabs Remote
+        working-directory: host/build/tests
+        run: >-
+          ./test_sunshine.exe --gtest_color=yes
+          --gtest_filter='ExternalIp*:KeyboardLayout*:LocalIp*:Presence*:SendSource*:Stun*:Update*:VirtualDisplay*:WolMac*'
+
+      - name: Testes do upstream (informativo)
+        # Alguns testes do upstream dependem de tela, bandeja e GPU do runner; não bloqueiam.
+        continue-on-error: true
+        working-directory: host/build/tests
+        run: ./test_sunshine.exe --gtest_color=yes --gtest_brief=1
