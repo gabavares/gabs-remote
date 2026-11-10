@@ -84,7 +84,7 @@ A primeira tarefa da fase 1 reconfirma a escolha conferindo atividade e licença
 | H4 | **Webcam virtual** | DirectShow (base softcam/OBS) | Expõe "Câmera Gabs Remote"; o host entrega os quadros decodificados vindos do tablet | — |
 | H5 | **Canal de dados** | C++ dentro do host | Clipboard (texto + imagem), transferência de arquivos, comandos (bloquear, suspender, reiniciar, desligar), perfis por app | H1 |
 | H6 | **Bandeja + painel** | painel web do Sunshine, rebatizado | Status, clientes pareados, perfis, logs de acesso, botão "Procurar atualizações" | H1 |
-| H7 | **Updater do host** | pequeno executável à parte (C# .NET ou C++) | Confere a Release, mostra notas, baixa, verifica, instala em silêncio e reinicia o serviço | GitHub Releases |
+| H7 | **Updater do host** | C++ dentro do host (decisão 0006) | Confere a Release, mostra notas, baixa, verifica, instala em silêncio e reinicia o serviço | GitHub Releases |
 | A1 | **App core** (fork moonlight-android) | Java/Kotlin + C (NDK) | Conexão, decodificação, áudio, entrada básica | — |
 | A2 | **Entrada avançada** | Kotlin | S Pen completa, modos de toque, gestos, teclado virtual com teclas especiais, barra de atalhos, teclado físico | A1 |
 | A3 | **Uplink de mídia** | Kotlin | Captura mic (Opus) e câmera (Camera2 → H.264 por MediaCodec) e envia | A1 |
@@ -180,13 +180,13 @@ Padrão igual ao do vagabs: Releases do GitHub, notas em pt-BR, ok do Gab para p
   - `gabavares/gabs-remote-android`: fork do moonlight-android.
 - **Release única** em `gabs-remote` com: `GabsRemote-Setup-x.y.z.exe`, `GabsRemote-x.y.z.apk`, `manifest.json` (versões, SHA-256, versão mínima compatível entre host e app, notas) e `manifest.json.sig`.
 - **Assinatura própria:** um par de chaves Ed25519 do Gab (fora do repositório). O updater só instala o que bate com o SHA-256 do manifesto assinado. Isso protege mesmo sem certificado de assinatura de código do Windows: na primeira instalação o Windows mostra o aviso do SmartScreen, como no vagabs.
-- **Host:** o updater confere ao iniciar e a cada 24 h, mostra as notas na bandeja, baixa, verifica e instala em silêncio quando não há sessão ativa. O serviço reinicia sozinho e as configurações ficam em `%ProgramData%\GabsRemote`, fora da pasta do programa.
+- **Host:** o updater confere ao iniciar e a cada 24 h, mostra as notas na bandeja, baixa, verifica e instala em silêncio quando não há sessão ativa. O serviço reinicia sozinho e as configurações ficam em `C:\Program Files\Gabs Remote\config`, que o instalador nunca toca (decisão 0006). O updater vive dentro do host.
 - **App:** confere ao abrir; mostra as notas; baixa o APK, verifica e instala por `PackageInstaller`.
   - O APK é sempre assinado com a mesma keystore do Gab, guardada fora do repositório com backup (onde fica cada cópia: `docs/segredos.md`, criado na fase 2).
   - O `applicationId` é definido na fase 2 e **não muda depois da primeira Release**: trocar o ID faz o Android tratar o app como outro, e o updater deixa de funcionar (decisão 0002).
   - Na primeira instalação o Android pede para permitir "instalar apps desta fonte". Depois que o próprio app for o instalador registrado, as atualizações podem ser feitas com menos toques (Android 12+ `USER_ACTION_NOT_REQUIRED`).
 - **Compatibilidade:** o manifesto diz a versão mínima de cada lado. Se host e app forem incompatíveis, o app avisa e oferece atualizar antes de conectar.
-- **CI:** GitHub Actions compila o host (Windows) e o APK e gera o rascunho da Release. Publicar é sempre ação do Gab.
+- **CI:** GitHub Actions compila o host (Windows) e o APK **sem assinatura** e gera o rascunho da Release. As assinaturas (APK e manifesto) só acontecem no PC do Gab; versão única `x.y.z` no `versao.json`, começando em 0.4.0 (decisão 0006).
 
 ### 8.1 Identidade visual
 O app, o painel do host e o instalador seguem o **design system GAB/S** (cartaz neo-brutalista: cor chapada com significado, borda de 2px, sombra dura, cantos retos). Tokens, ícone e o que entra em cada fase: `docs/marca/README.md`.

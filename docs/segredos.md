@@ -40,4 +40,25 @@ keytool -genkeypair -v -keystore $env:USERPROFILE\.gabs-remote\gabs-remote-relea
 
 ## Chave Ed25519 do manifesto (fase 4)
 
-Reservado. A chave que assina o manifesto do updater vai para os mesmos três lugares da keystore (original em `%USERPROFILE%\.gabs-remote\`, `.7z` no Drive e no pendrive, senha no gerenciador).
+A chave que assina o `manifest.json` de cada Release (decisão 0006). Os updaters do host e do app só aceitam um manifesto assinado por ela. **Perder a chave** = host e app param de aceitar versões novas; vira reinstalar os dois à mão com uma chave nova embutida.
+
+| Cópia | Onde | O que tem |
+|---|---|---|
+| **Original** | `%USERPROFILE%\.gabs-remote\` | `manifesto-ed25519.pem` (PKCS#8 cifrado, AES-256-CBC) e `manifesto-ed25519.pub.der` (só a pública) |
+| **Backup 1, nuvem** | Google Drive do Gab, pasta `Gabs Remote/segredos/` | `gabs-remote-segredos.7z` refeito com a keystore **e** a chave juntas |
+| **Backup 2, offline** | pendrive guardado em casa | o mesmo `gabs-remote-segredos.7z` |
+| **Senha** | gerenciador de senhas do Gab, item "Gabs Remote — chave do manifesto" | senha da chave |
+
+- Criada em 09/11/2026 pelo Gab (`openssl genpkey -algorithm ed25519 -aes-256-cbc`, OpenSSL do Git for Windows).
+- **Chave pública** (base64 dos 32 bytes crus; é a que vai embutida no host, `update_key.h`, e no app, `UpdateKey.java`): `vt/Fsd5CTf97gakAjSs4U3ugaDp5pM2hBkNKlA+RibA=`
+- SHA-256 do arquivo `manifesto-ed25519.pem`: `E723D75C52540566BD6A75C2FC851E131D8943411F365AE3414C124CFFE14CC4`
+- Backups no Drive e no pendrive (`.7z` novo com `gabs-remote-release.jks`, `keystore.properties`, `manifesto-ed25519.pem`): **pendente** (o Gab refaz o `.7z` e troca os dois).
+- Teste do backup: **pendente**, junto do da keystore (Task 11 da fase 4): baixar o `.7z`, extrair numa pasta temporária, `Get-FileHash` dos dois arquivos contra os SHA-256 deste arquivo, apagar a pasta e anotar a data.
+
+### Como tirar a pública de novo (pede a senha)
+
+```powershell
+& 'C:\Program Files\Git\usr\bin\openssl.exe' pkey -in $env:USERPROFILE\.gabs-remote\manifesto-ed25519.pem -pubout -outform DER -out $env:USERPROFILE\.gabs-remote\manifesto-ed25519.pub.der
+```
+
+Os últimos 32 bytes do `.der` em base64 são a chave pública (`Get-ChavePublica` em `tools/release/Release.psm1` faz isso).
