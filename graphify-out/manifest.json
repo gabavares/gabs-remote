@@ -12,10 +12,10 @@
     "semantic_hash": "960afc3847121bbfb75ea3250fcd69bc"
   },
   "docs/superpowers/specs/2026-11-06-gabs-remote-design.md": {
-    "mtime": 1794077279.8084643,
-    "seen": 1794077705.5289352,
-    "ast_hash": "0ec635523edde41ab83f68f58bfd04d8",
-    "semantic_hash": "0ec635523edde41ab83f68f58bfd04d8"
+    "mtime": 1794265252.9751925,
+    "seen": 1794271872.093212,
+    "ast_hash": "18356b108ae711985af0e854bdc2c224",
+    "semantic_hash": "18356b108ae711985af0e854bdc2c224"
   },
   "android/app/src/main/java/com/limelight/AppView.java": {
     "mtime": 1794018052.616425,
@@ -24,10 +24,10 @@
     "semantic_hash": "57283d8ef3c27e9e2d1a11bef35cf398"
   },
   "android/app/src/main/java/com/limelight/Game.java": {
-    "mtime": 1794071318.311697,
-    "seen": 1794077705.527935,
-    "ast_hash": "eb7c67cb24c70bf40c7de4654f7b6430",
-    "semantic_hash": "eb7c67cb24c70bf40c7de4654f7b6430"
+    "mtime": 1794267759.204424,
+    "seen": 1794271872.0922124,
+    "ast_hash": "1727f208fdfafc7d4589d40ef8000347",
+    "semantic_hash": "1727f208fdfafc7d4589d40ef8000347"
   },
   "android/app/src/main/java/com/limelight/HelpActivity.java": {
     "mtime": 1794018052.617425,
@@ -42,10 +42,10 @@
     "semantic_hash": "1a13390e4a3a80a713dd3bc8177d3575"
   },
   "android/app/src/main/java/com/limelight/PcView.java": {
-    "mtime": 1794018052.618425,
-    "seen": 1794022071.971783,
-    "ast_hash": "245f024118067a26faacf06c894da139",
-    "semantic_hash": "245f024118067a26faacf06c894da139"
+    "mtime": 1794267744.2160876,
+    "seen": 1794271872.0922124,
+    "ast_hash": "4fa370ce2ea2156e3bd7ac323a10064b",
+    "semantic_hash": "4fa370ce2ea2156e3bd7ac323a10064b"
   },
   "android/app/src/main/java/com/limelight/PosterContentProvider.java": {
     "mtime": 1794018052.619424,
@@ -300,10 +300,10 @@
     "semantic_hash": "d858b761972f9f9e1e45717b443e8404"
   },
   "android/app/src/main/java/com/limelight/computers/ComputerManagerService.java": {
-    "mtime": 1794018052.643425,
-    "seen": 1794022071.9722822,
-    "ast_hash": "779bcd70414f114679118f14a81686b0",
-    "semantic_hash": "779bcd70414f114679118f14a81686b0"
+    "mtime": 1794266906.033123,
+    "seen": 1794271872.0922124,
+    "ast_hash": "9bbba8883a20bf05955bdbf1fde24ac3",
+    "semantic_hash": "9bbba8883a20bf05955bdbf1fde24ac3"
   },
   "android/app/src/main/java/com/limelight/computers/IdentityManager.java": {
     "mtime": 1794018052.643425,
@@ -426,10 +426,10 @@
     "semantic_hash": "13ec0db9d0cada67b55b2aecd1fa6914"
   },
   "android/app/src/main/java/com/limelight/nvstream/http/ComputerDetails.java": {
-    "mtime": 1794018052.6545472,
-    "seen": 1794022071.9722822,
-    "ast_hash": "6388d82acd84da3d3ff3da15c424c1df",
-    "semantic_hash": "6388d82acd84da3d3ff3da15c424c1df"
+    "mtime": 1794266857.6150963,
+    "seen": 1794271872.0922124,
+    "ast_hash": "0800672149fd1ff3f9d884d73e1a0951",
+    "semantic_hash": "0800672149fd1ff3f9d884d73e1a0951"
   },
   "android/app/src/main/java/com/limelight/nvstream/http/HostHttpResponseException.java": {
     "mtime": 1794018052.655548,
@@ -624,10 +624,10 @@
     "semantic_hash": "1c7da3a155be1f808121795730ee04a9"
   },
   "android/app/src/main/java/com/limelight/utils/ServerHelper.java": {
-    "mtime": 1794018052.673063,
-    "seen": 1794022071.9722822,
-    "ast_hash": "899bd994688cfb3de0211bab94cefe2e",
-    "semantic_hash": "899bd994688cfb3de0211bab94cefe2e"
+    "mtime": 1794266906.047641,
+    "seen": 1794271872.0922124,
+    "ast_hash": "acac79ce0df99d74fb8ef3f26d35358f",
+    "semantic_hash": "acac79ce0df99d74fb8ef3f26d35358f"
   },
   "android/app/src/main/java/com/limelight/utils/ShortcutHelper.java": {
     "mtime": 1794018052.6740625,
@@ -2244,10 +2244,10 @@
     "semantic_hash": "c0322b9f41073f5aa7daa8591ede33de"
   },
   "host/src/main.cpp": {
-    "mtime": 1794068338.880287,
-    "seen": 1794077705.527935,
-    "ast_hash": "30821dcf6395c9e6f5c87399ce2d2ba2",
-    "semantic_hash": "30821dcf6395c9e6f5c87399ce2d2ba2"
+    "mtime": 1794265909.2551868,
+    "seen": 1794271872.093212,
+    "ast_hash": "3428525f507d4cd3a2eee9c08cfbfb14",
+    "semantic_hash": "3428525f507d4cd3a2eee9c08cfbfb14"
   },
   "host/src/main.h": {
     "mtime": 1794018044.7479384,
@@ -2406,10 +2406,10 @@
     "semantic_hash": "e9c3952bc63ee5fc63a9c154a2aa03c0"
   },
   "host/src/nvhttp.cpp": {
-    "mtime": 1794073743.142276,
-    "seen": 1794077705.5289352,
-    "ast_hash": "75744addf3a9be4481c1fc4d07c55ff5",
-    "semantic_hash": "75744addf3a9be4481c1fc4d07c55ff5"
+    "mtime": 1794270672.09373,
+    "seen": 1794271872.093212,
+    "ast_hash": "0e709090387d0bf442caa2d500233217",
+    "semantic_hash": "0e709090387d0bf442caa2d500233217"
   },
   "host/src/nvhttp.h": {
     "mtime": 1794018044.7619398,
@@ -2748,10 +2748,10 @@
     "semantic_hash": "4f3109e84b7a5c66fc5f162c60e78247"
   },
   "host/src/platform/windows/misc.cpp": {
-    "mtime": 1794018044.7954547,
-    "seen": 1794022071.9722822,
-    "ast_hash": "f1b9a8d64761302afb90044fa2f661da",
-    "semantic_hash": "f1b9a8d64761302afb90044fa2f661da"
+    "mtime": 1794270461.362599,
+    "seen": 1794271872.093212,
+    "ast_hash": "76f3c201b84f49370eb6fc49556d9c8c",
+    "semantic_hash": "76f3c201b84f49370eb6fc49556d9c8c"
   },
   "host/src/platform/windows/misc.h": {
     "mtime": 1794018044.7964537,
@@ -3006,10 +3006,10 @@
     "semantic_hash": "a5e53e2cc32c3a043a7084d81a90ff8a"
   },
   "CLAUDE.md": {
-    "mtime": 1794077307.8479793,
-    "seen": 1794077705.5289352,
-    "ast_hash": "2238e32718042fb03a8332609cb10e65",
-    "semantic_hash": "2238e32718042fb03a8332609cb10e65"
+    "mtime": 1794271502.9850729,
+    "seen": 1794271872.093212,
+    "ast_hash": "d4242daaefd979fadfe3afb8cf517c05",
+    "semantic_hash": "d4242daaefd979fadfe3afb8cf517c05"
   },
   "README.md": {
     "mtime": 1794021663.5738685,
@@ -3042,10 +3042,10 @@
     "semantic_hash": "a720cc89360a7a6a8607726cd0271171"
   },
   "docs/sessoes.md": {
-    "mtime": 1794077307.8389773,
-    "seen": 1794077705.5289352,
-    "ast_hash": "ba2b51016d8b8551d5304f0d6afc7f2d",
-    "semantic_hash": "ba2b51016d8b8551d5304f0d6afc7f2d"
+    "mtime": 1794271522.509127,
+    "seen": 1794271872.093212,
+    "ast_hash": "b5169ca8e7c85913cbfc305f511b2f8d",
+    "semantic_hash": "b5169ca8e7c85913cbfc305f511b2f8d"
   },
   "docs/superpowers/plans/2026-11-06-fase-1-ambiente-e-forks.md": {
     "mtime": 1794016853.798393,
@@ -3150,10 +3150,10 @@
     "semantic_hash": "7e3165db9548402f2f0c31e4dc3c92a2"
   },
   "android/app/src/main/java/com/limelight/gabs/session/SessionExit.java": {
-    "mtime": 1794071311.995473,
-    "seen": 1794077705.527935,
-    "ast_hash": "ba9e3c437d3d6e551c3041887db2b9bf",
-    "semantic_hash": "ba9e3c437d3d6e551c3041887db2b9bf"
+    "mtime": 1794267121.1624365,
+    "seen": 1794271872.0922124,
+    "ast_hash": "0ee544491d9306e2562d441c4de54213",
+    "semantic_hash": "0ee544491d9306e2562d441c4de54213"
   },
   "android/app/src/test/java/com/limelight/gabs/display/DisplayProfileTest.java": {
     "mtime": 1794030967.6717467,
@@ -3216,10 +3216,10 @@
     "semantic_hash": "279c7434e56e84aab250cbe14a3cd77f"
   },
   "android/app/src/test/java/com/limelight/gabs/session/SessionExitTest.java": {
-    "mtime": 1794071263.368278,
-    "seen": 1794077705.527935,
-    "ast_hash": "b9fad1f7a3aea1999279c4cf93f326b1",
-    "semantic_hash": "b9fad1f7a3aea1999279c4cf93f326b1"
+    "mtime": 1794267099.4022725,
+    "seen": 1794271872.093212,
+    "ast_hash": "c66783ee26fbe5b176e23e4bae50a4c0",
+    "semantic_hash": "c66783ee26fbe5b176e23e4bae50a4c0"
   },
   "host/src/gabs/keyboard_layout.cpp": {
     "mtime": 1794070505.8882735,
@@ -3396,10 +3396,10 @@
     "semantic_hash": "e53d8dbb9ea3dac623b340cf323d5cc6"
   },
   "docs/tailscale.md": {
-    "mtime": 1794076524.8056927,
-    "seen": 1794077705.5289352,
-    "ast_hash": "3567489977cbf803a3d8dfd7c1ac1177",
-    "semantic_hash": "3567489977cbf803a3d8dfd7c1ac1177"
+    "mtime": 1794271502.9760725,
+    "seen": 1794271872.093212,
+    "ast_hash": "5cdcb52ff1b6a3ee891588e0fc6c07fa",
+    "semantic_hash": "5cdcb52ff1b6a3ee891588e0fc6c07fa"
   },
   "docs/testes/fase-2-checklist.md": {
     "mtime": 1794077279.807463,
@@ -3430,5 +3430,209 @@
     "seen": 1794077705.5289352,
     "ast_hash": "827587e57c7f7b24b0d6c75ec41587f7",
     "semantic_hash": "827587e57c7f7b24b0d6c75ec41587f7"
+  },
+  "android/app/src/main/java/com/limelight/gabs/net/Candidate.java": {
+    "mtime": 1794266906.0321221,
+    "seen": 1794271872.0922124,
+    "ast_hash": "0a684fb18bf00f64e2f0cc4826ec9186",
+    "semantic_hash": "0a684fb18bf00f64e2f0cc4826ec9186"
+  },
+  "android/app/src/main/java/com/limelight/gabs/net/GabsNetPrefs.java": {
+    "mtime": 1794269489.6821377,
+    "seen": 1794271872.0922124,
+    "ast_hash": "187a6057f90cbf27d8ab2166aae13cf5",
+    "semantic_hash": "187a6057f90cbf27d8ab2166aae13cf5"
+  },
+  "android/app/src/main/java/com/limelight/gabs/net/ParallelPathPoller.java": {
+    "mtime": 1794266800.7712233,
+    "seen": 1794271872.0922124,
+    "ast_hash": "40d56745471d1e3183652134e8f6ed35",
+    "semantic_hash": "40d56745471d1e3183652134e8f6ed35"
+  },
+  "android/app/src/main/java/com/limelight/gabs/net/PathKind.java": {
+    "mtime": 1794266881.6673079,
+    "seen": 1794271872.0922124,
+    "ast_hash": "d4394c8137d987fd81bead95a42c1c3e",
+    "semantic_hash": "d4394c8137d987fd81bead95a42c1c3e"
+  },
+  "android/app/src/main/java/com/limelight/gabs/net/PathSelector.java": {
+    "mtime": 1794266800.7762234,
+    "seen": 1794271872.0922124,
+    "ast_hash": "3cdc9d30c09b5303f675835a64b3d677",
+    "semantic_hash": "3cdc9d30c09b5303f675835a64b3d677"
+  },
+  "android/app/src/main/java/com/limelight/gabs/net/PresenceClient.java": {
+    "mtime": 1794266818.0111883,
+    "seen": 1794271872.0922124,
+    "ast_hash": "cea2fa3fc64578b928d4c94369ca8700",
+    "semantic_hash": "cea2fa3fc64578b928d4c94369ca8700"
+  },
+  "android/app/src/main/java/com/limelight/gabs/session/ReconnectPolicy.java": {
+    "mtime": 1794267744.2140865,
+    "seen": 1794271872.0922124,
+    "ast_hash": "4ca4c3d013cad0ee4e99e19970e0a1d6",
+    "semantic_hash": "4ca4c3d013cad0ee4e99e19970e0a1d6"
+  },
+  "android/app/src/main/java/com/limelight/gabs/session/Reconnector.java": {
+    "mtime": 1794267744.2140865,
+    "seen": 1794271872.0922124,
+    "ast_hash": "7e870f1785111c378be44c3fb65f6f92",
+    "semantic_hash": "7e870f1785111c378be44c3fb65f6f92"
+  },
+  "android/app/src/main/java/com/limelight/gabs/wake/MagicPacket.java": {
+    "mtime": 1794267010.65562,
+    "seen": 1794271872.0922124,
+    "ast_hash": "951360d77eeaa68f0578a941067118a4",
+    "semantic_hash": "951360d77eeaa68f0578a941067118a4"
+  },
+  "android/app/src/main/java/com/limelight/gabs/wake/RemoteWake.java": {
+    "mtime": 1794267744.2150872,
+    "seen": 1794271872.0922124,
+    "ast_hash": "8572e4a4b9ae719d326864b5e19ad335",
+    "semantic_hash": "8572e4a4b9ae719d326864b5e19ad335"
+  },
+  "android/app/src/main/java/com/limelight/gabs/wake/WakeDialog.java": {
+    "mtime": 1794267025.3246474,
+    "seen": 1794271872.0922124,
+    "ast_hash": "c24b0e806f64b60a19675a9d09eb1dea",
+    "semantic_hash": "c24b0e806f64b60a19675a9d09eb1dea"
+  },
+  "android/app/src/main/java/com/limelight/gabs/wake/WakeFlow.java": {
+    "mtime": 1794267010.632231,
+    "seen": 1794271872.0922124,
+    "ast_hash": "3a5fdcfb5cc696f54a7afd7058747b34",
+    "semantic_hash": "3a5fdcfb5cc696f54a7afd7058747b34"
+  },
+  "android/app/src/test/java/com/limelight/gabs/net/ParallelPathPollerTest.java": {
+    "mtime": 1794266127.910411,
+    "seen": 1794271872.093212,
+    "ast_hash": "e9791cd48ffc8f11b7cb70b91073c983",
+    "semantic_hash": "e9791cd48ffc8f11b7cb70b91073c983"
+  },
+  "android/app/src/test/java/com/limelight/gabs/net/PathKindTest.java": {
+    "mtime": 1794266857.6140964,
+    "seen": 1794271872.093212,
+    "ast_hash": "0a284c5c4d70a0af1df9a8784b9103bb",
+    "semantic_hash": "0a284c5c4d70a0af1df9a8784b9103bb"
+  },
+  "android/app/src/test/java/com/limelight/gabs/net/PathSelectorTest.java": {
+    "mtime": 1794266127.3550572,
+    "seen": 1794271872.093212,
+    "ast_hash": "495c7643ec6b1d56c452a6b99fbd9796",
+    "semantic_hash": "495c7643ec6b1d56c452a6b99fbd9796"
+  },
+  "android/app/src/test/java/com/limelight/gabs/net/PresenceClientTest.java": {
+    "mtime": 1794266128.4779317,
+    "seen": 1794271872.093212,
+    "ast_hash": "1cf0263b882a9be3bd160fab54f3b045",
+    "semantic_hash": "1cf0263b882a9be3bd160fab54f3b045"
+  },
+  "android/app/src/test/java/com/limelight/gabs/session/ReconnectPolicyTest.java": {
+    "mtime": 1794267677.1362262,
+    "seen": 1794271872.093212,
+    "ast_hash": "fbfa23b6319fb645043d31ead9aa4f7f",
+    "semantic_hash": "fbfa23b6319fb645043d31ead9aa4f7f"
+  },
+  "android/app/src/test/java/com/limelight/gabs/wake/RemoteWakeTest.java": {
+    "mtime": 1794267677.1362262,
+    "seen": 1794271872.093212,
+    "ast_hash": "9a209335a3668edfd0134f6c33c7a188",
+    "semantic_hash": "9a209335a3668edfd0134f6c33c7a188"
+  },
+  "android/app/src/test/java/com/limelight/gabs/wake/WakeFlowTest.java": {
+    "mtime": 1794266945.782406,
+    "seen": 1794271872.093212,
+    "ast_hash": "cc0ac2915e86bbe1e329200eeeb8270f",
+    "semantic_hash": "cc0ac2915e86bbe1e329200eeeb8270f"
+  },
+  "host/src/gabs/network.cpp": {
+    "mtime": 1794270672.0927303,
+    "seen": 1794271872.093212,
+    "ast_hash": "14669a61e12807871bfcc51d8ef6c931",
+    "semantic_hash": "14669a61e12807871bfcc51d8ef6c931"
+  },
+  "host/src/gabs/network.h": {
+    "mtime": 1794270482.6496959,
+    "seen": 1794271872.093212,
+    "ast_hash": "533c0b670cdff686fb72e3c44c429db9",
+    "semantic_hash": "533c0b670cdff686fb72e3c44c429db9"
+  },
+  "host/src/gabs/presence.cpp": {
+    "mtime": 1794265909.191059,
+    "seen": 1794271872.093212,
+    "ast_hash": "a033735b710b0783f994a244f72aeb42",
+    "semantic_hash": "a033735b710b0783f994a244f72aeb42"
+  },
+  "host/src/gabs/presence.h": {
+    "mtime": 1794265896.5138938,
+    "seen": 1794271872.093212,
+    "ast_hash": "1be4c8fe5366d73c932fcd2c732799c8",
+    "semantic_hash": "1be4c8fe5366d73c932fcd2c732799c8"
+  },
+  "host/src/platform/windows/gabs/adapters_win.cpp": {
+    "mtime": 1794264065.6521509,
+    "seen": 1794271872.093212,
+    "ast_hash": "380b0cfcc5604e4b85d55df896577acd",
+    "semantic_hash": "380b0cfcc5604e4b85d55df896577acd"
+  },
+  "tools/setup/conferir-wol.Tests.ps1": {
+    "mtime": 1794264291.1696432,
+    "seen": 1794271872.093212,
+    "ast_hash": "a402ba564817279de2d5dea837abc65d",
+    "semantic_hash": "a402ba564817279de2d5dea837abc65d"
+  },
+  "tools/setup/conferir-wol.ps1": {
+    "mtime": 1794264311.3979704,
+    "seen": 1794271872.093212,
+    "ast_hash": "544013beee6b83712d7af13f02d3f596",
+    "semantic_hash": "544013beee6b83712d7af13f02d3f596"
+  },
+  "web/presenca/presenca.php": {
+    "mtime": 1794267693.7667124,
+    "seen": 1794271872.093212,
+    "ast_hash": "daa2f1e3a3428429bab23060bf8e1217",
+    "semantic_hash": "daa2f1e3a3428429bab23060bf8e1217"
+  },
+  "web/presenca/presenca_lib.php": {
+    "mtime": 1794267693.2829568,
+    "seen": 1794271872.093212,
+    "ast_hash": "3e2b091cefd0f4ddd621033a11ed2c8e",
+    "semantic_hash": "3e2b091cefd0f4ddd621033a11ed2c8e"
+  },
+  "web/presenca/testes.php": {
+    "mtime": 1794267681.749946,
+    "seen": 1794271872.093212,
+    "ast_hash": "cd343ffd83b822d98bd5e45c3692db95",
+    "semantic_hash": "cd343ffd83b822d98bd5e45c3692db95"
+  },
+  "docs/decisoes/0005-fora-de-casa.md": {
+    "mtime": 1794265234.4480681,
+    "seen": 1794271872.093212,
+    "ast_hash": "d3c176f5447222cf7c63dc2376456bd9",
+    "semantic_hash": "d3c176f5447222cf7c63dc2376456bd9"
+  },
+  "docs/rede-fora.md": {
+    "mtime": 1794265233.954216,
+    "seen": 1794271872.093212,
+    "ast_hash": "93e7ae891e50ae1cafdcaf61d313eb09",
+    "semantic_hash": "93e7ae891e50ae1cafdcaf61d313eb09"
+  },
+  "docs/superpowers/plans/2026-11-07-fase-3-fora-de-casa.md": {
+    "mtime": 1794080378.211064,
+    "seen": 1794271872.093212,
+    "ast_hash": "3dd1880eb0e5ca068db14df526cea605",
+    "semantic_hash": "3dd1880eb0e5ca068db14df526cea605"
+  },
+  "docs/testes/fase-3-checklist.md": {
+    "mtime": 1794271488.5076306,
+    "seen": 1794271872.093212,
+    "ast_hash": "bb7a25387520e39282217ce26224767c",
+    "semantic_hash": "bb7a25387520e39282217ce26224767c"
+  },
+  "web/presenca/README.md": {
+    "mtime": 1794269489.7191787,
+    "seen": 1794271872.093212,
+    "ast_hash": "a7dbec2f15fde3949cec6341db57ce02",
+    "semantic_hash": "a7dbec2f15fde3949cec6341db57ce02"
   }
 }

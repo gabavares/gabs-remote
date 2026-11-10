@@ -18,6 +18,13 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "files": 80
+    },
+    {
+      "date": "2026-11-10T00:52:29.384503+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 48,
+      "note": "semantic via 1 subagent (~160k tokens, not itemized)"
     }
   ],
   "total_input_tokens": 266232,

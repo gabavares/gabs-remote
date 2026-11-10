@@ -33,4 +33,5 @@ O Gab quase não usa o tablet em casa: chega ao trabalho, conecta no Wi-Fi do es
 
 ## Fora da fase (decisões de 09/11/2026)
 - **Presença na hospedagem não publicada:** o deploy do site (`rsync --delete` em `tools/post-receive` do repositório Gabtavares.com) apagaria a pasta. Código pronto em `web/presenca/`. Para publicar: uma exclusão `/gabs-remote/` no deploy ou a pasta dentro do repositório do site. Sem ela, o WoL de fora usa o último IP de casa que o app aprendeu.
+- **Redirecionamentos antigos do roteador para o PC** (`RuleName1` TCP 21, "Battlefield 4", "GeoVision Webcam"; anteriores a esta fase): em 09/11/2026 nada no PC escutava nessas portas. O Gab conhece o motivo de cada um e decidiu mantê-los; a revisão fica para um projeto próprio de segurança. A reserva de DHCP faz essas regras sempre apontarem para o PC.
 - Minors adiados da revisão final: `.superpowers/sdd/2026-11-07-fase-3-fora-de-casa/progress.md` (linhas `Final: minor (deferred)`).
