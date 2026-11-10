@@ -42,6 +42,13 @@ if (-not (Test-Path (Join-Path $hostDir 'CMakeLists.txt'))) {
     exit 4
 }
 
+# Versão única do sistema (versao.json, decisão 0006): BUILD_VERSION/BRANCH no ambiente e GABS_MIN_APP no CMake.
+Import-Module (Join-Path $PSScriptRoot '..\release\Release.psm1') -Force
+$argsVersao = Get-ArgumentosVersaoHost -Versao (Get-VersaoGabs)
+foreach ($k in $argsVersao.Env.Keys) { Set-Item "env:$k" $argsVersao.Env[$k] }
+$cmakeVersao = ($argsVersao.CMake | ForEach-Object { "'$_'" }) -join ' '
+Write-Host "Gabs Remote $($env:BUILD_VERSION)" -ForegroundColor Cyan
+
 $env:MSYSTEM = 'UCRT64'
 $env:CHERE_INVOKING = '1'
 # O Sunshine exige o Node nativo do Windows (o do MSYS2 não serve): herdar o PATH do Windows.
@@ -70,7 +77,7 @@ try {
         Write-Host "ERRO: Git for Windows não encontrado em $gitWin." -ForegroundColor Red
         exit 3
     }
-    Invoke-Ucrt64 "cmake -B build -G Ninja -S . -DBUILD_DOCS=OFF -DBUILD_TESTS=$opcaoTestes '-DGIT_EXECUTABLE=$gitWin'"
+    Invoke-Ucrt64 "cmake -B build -G Ninja -S . -DBUILD_DOCS=OFF -DBUILD_TESTS=$opcaoTestes '-DGIT_EXECUTABLE=$gitWin' $cmakeVersao"
     Invoke-Ucrt64 "ninja -C build -j $Jobs"
 
     if (-not (Test-Path 'build\sunshine.exe')) {

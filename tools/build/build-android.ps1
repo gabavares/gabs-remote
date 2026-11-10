@@ -68,6 +68,9 @@ try {
     $tipo = if ($Release) { 'release' } else { 'debug' }
     [string[]]$tarefas = if ($Release) { 'assembleNonRootRelease' } else { 'assembleNonRootDebug' }
     if ($Testes) { $tarefas += 'testNonRootDebugUnitTest' }
+    # Versão única do sistema (versao.json, decisão 0006).
+    Import-Module (Join-Path $PSScriptRoot '..\release\Release.psm1') -Force
+    $tarefas += Get-ArgumentosVersaoApp -Versao (Get-VersaoGabs)
     Invoke-Passo '.\gradlew.bat' ($tarefas + '--console=plain')
 
     $apk = Get-ChildItem "app\build\outputs\apk\nonRoot\$tipo\*.apk" -ErrorAction SilentlyContinue |

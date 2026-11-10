@@ -175,3 +175,22 @@ Describe 'Assinatura do manifesto' {
         ($json | ConvertFrom-Json).version | Should -Be '0.4.1'
     }
 }
+
+Describe 'Argumentos de versão para os builds (Task 3)' {
+    BeforeAll {
+        $arq = Escrever-Versao '{"version": "0.4.0", "minApp": "0.3.9", "minHost": "0.3.8"}'
+        $script:v = Get-VersaoGabs -Arquivo $arq
+    }
+
+    It 'host: BUILD_VERSION e BRANCH no ambiente, GABS_MIN_APP no CMake' {
+        $a = Get-ArgumentosVersaoHost -Versao $script:v
+        $a.Env.BUILD_VERSION | Should -Be '0.4.0'
+        $a.Env.BRANCH | Should -Be 'main'
+        $a.Env.Count | Should -Be 2
+        @($a.CMake) -join '|' | Should -Be '-DGABS_MIN_APP=0.3.9'
+    }
+
+    It 'app: -PgabsVersion e -PgabsMinHost' {
+        @(Get-ArgumentosVersaoApp -Versao $script:v) -join '|' | Should -Be '-PgabsVersion=0.4.0|-PgabsMinHost=0.3.8'
+    }
+}

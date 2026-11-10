@@ -172,5 +172,21 @@ function Get-ChavePublica {
     finally { Remove-Item -LiteralPath $der -Force -ErrorAction SilentlyContinue }
 }
 
+function Get-ArgumentosVersaoHost {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)]$Versao)
+    # build_version.cmake aceita BUILD_VERSION + BRANCH do ambiente (caminho do CI do upstream).
+    @{
+        Env   = @{ BUILD_VERSION = $Versao.Version; BRANCH = 'main' }
+        CMake = @("-DGABS_MIN_APP=$($Versao.MinApp)")
+    }
+}
+
+function Get-ArgumentosVersaoApp {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)]$Versao)
+    @("-PgabsVersion=$($Versao.Version)", "-PgabsMinHost=$($Versao.MinHost)")
+}
+
 Export-ModuleMember -Function Get-OpenSsl, Get-VersaoGabs, Get-VersionCode, New-Manifesto, Test-Manifesto,
-    Invoke-AssinarManifesto, Test-AssinaturaManifesto, Get-ChavePublica
+    Invoke-AssinarManifesto, Test-AssinaturaManifesto, Get-ChavePublica, Get-ArgumentosVersaoHost, Get-ArgumentosVersaoApp
