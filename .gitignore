@@ -14,3 +14,4 @@ keystore.properties
 tools/latencia/bin/
 tools/latencia/**/bin/
 tools/latencia/**/obj/
+installer/out/
