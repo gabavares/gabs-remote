@@ -12,15 +12,19 @@ Regra: **todo plano termina com a seção "Próxima sessão"**, com o prompt pro
 | 2. Streaming (casa e fora via Tailscale) | `plans/2026-11-07-fase-2-streaming.md` (07/11/2026) | **feita (07/11/2026)**: critérios 2–4 e 6 atendidos, sessão no 4G pelo Tailscale; checklist em `docs/testes/fase-2-checklist.md` |
 | 3. Fora de casa completo | `plans/2026-11-07-fase-3-fora-de-casa.md` (07/11/2026) | **código feito (09/11/2026)**: Tasks 1–8, host e APK instalados; faltam as verificações no escritório e as Tasks 9–10 (`docs/testes/fase-3-checklist.md`) |
 | 4. Atualização e CI | `plans/2026-11-09-fase-4-atualizacao-e-ci.md` (09/11/2026) | **Tasks 1–10 feitas (10/11/2026)**, Release 0.4.0. Task 11 Step 1 feito com as Releases **0.4.1 a 0.4.4 (cursor no tablet)**, PC e tablet na 0.4.4 e cursor aprovado pelo Gab (11/11/2026); resto da Task 11 (critério 7 com toques e tempos, testes da fase 3) **adiado** pelo Gab (11/11/2026) |
-| 5. Áudio, mic, clipboard, arquivos | **próxima sessão: escrever o plano** | — |
+| 5. Áudio, mic, clipboard, arquivos | `plans/2026-11-11-fase-5-audio-mic-clipboard-arquivos.md` (11/11/2026) | **próxima sessão: executar** (Releases 0.5.0, 0.5.1 e 0.5.2) |
 | 6. Webcam | — | — |
 | 7. Extras | — | — |
 | 8. Cliente web | — | — |
 
-## Próxima sessão (fase 5: escrever o plano)
-Decisão do Gab (11/11/2026): as baterias de testes das fases 3 e 4 ficam **para depois**. Ele usou o sistema o dia inteiro em 10/11 (escritório, pelo Tailscale) e tudo o que existe até a 0.4.4 funcionou bem; prefere desenvolver as próximas funções antes. Os testes adiados estão na seção "Testes adiados (fases 3 e 4)" abaixo, com o prompt pronto, e não bloqueiam as fases seguintes.
+## Próxima sessão (fase 5: executar o plano)
+Plano escrito em 11/11/2026. Pontos que o Gab confirma ao revisar (viram a decisão 0007 na Task 1):
+- Microfone com transporte próprio (UDP 48002, já liberada no firewall; cifrado com a chave da sessão), sem mexer no `moonlight-common-c`.
+- Driver do microfone: **VB-CABLE** (o Virtual-Audio-Driver citado na spec não deixa outro programa escrever no microfone; a Task 1 confere no código). O VB-CABLE não pode ir no instalador: script baixa e instala uma vez, com o ok do Gab.
+- Caixas do PC em silêncio pela opção do upstream "Tocar som no PC", com um alto-falante virtual (Steam Streaming Speakers ou o do Virtual-Audio-Driver).
+- Microfone começa mudo em toda sessão e para com o app em segundo plano; clipboard automático (1 MiB de texto, 16 MiB de imagem); "Enviar para o PC" funciona sem sessão aberta; ações bloquear, suspender, reiniciar e desligar.
 
-> Gabs Remote — escrever o plano da **fase 5 (áudio, microfone, clipboard e arquivos)**. Leia o `CLAUDE.md`, a spec `docs/superpowers/specs/2026-11-06-gabs-remote-design.md` (seções 6.3, 6.5, 10 e o critério 5, sem a câmera), `docs/decisoes/`, `docs/release.md` e `graphify-out/GRAPH_REPORT.md`; use o graphify para achar nos forks onde mexer. PC e tablet estão na 0.4.4; os testes pendentes das fases 3 e 4 foram adiados por decisão minha e não bloqueiam esta fase. Escreva com a skill writing-plans, com as entregas saindo em Releases pelo fluxo da decisão 0006, e termine com a seção "Próxima sessão".
+> Gabs Remote — executar o plano `docs/superpowers/plans/2026-11-11-fase-5-audio-mic-clipboard-arquivos.md`. Leia o `CLAUDE.md`, o plano, as decisões em `docs/decisoes/` e `docs/release.md`. Execução nativa (executing-plans), fazendo commit, push, tag e Release sem pedir (só peça meu ok se algo afetar outro projeto meu); eu digito a senha da chave do manifesto e rodo como administrador o que instala driver ou mexe no serviço. A Task 1 precisa de mim para instalar o VB-CABLE. As Tasks 6, 9 e 13 são Releases com teste ao vivo comigo; se eu não estiver por perto, publique e deixe a conferência anotada no checklist. Ao parar, atualize `docs/sessoes.md` e me dê o prompt da próxima sessão.
 
 ## Testes adiados (fases 3 e 4)
 Estado ao pausar (11/11/2026, depois da 0.4.4):
