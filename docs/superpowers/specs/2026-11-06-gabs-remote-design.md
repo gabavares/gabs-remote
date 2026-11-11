@@ -80,7 +80,7 @@ A primeira tarefa da fase 1 reconfirma a escolha conferindo atividade e licença
 |---|---|---|---|---|
 | H1 | **Host core** (fork Sunshine) | C++ | Captura, encoder, transporte, pareamento, entrada, áudio do sistema, tela virtual | NVENC, libvirtualhid, driver de tela virtual |
 | H2 | **Tela virtual** | driver IddCx (SudoVDA do Apollo ou Virtual-Display-Driver) | Cria um monitor com a resolução/Hz pedidos pelo cliente; remove ao desconectar | — |
-| H3 | **Microfone virtual** | driver de áudio (Virtual-Audio-Driver da VirtualDrivers, assinado) | Expõe "Microfone Gabs Remote" no Windows; o host escreve nele o áudio vindo do tablet | — |
+| H3 | **Microfone virtual** | cabo de áudio virtual VB-CABLE (VB-Audio, assinado; decisão 0007 — o microfone do Virtual-Audio-Driver só entrega silêncio) | O host escreve em "Alto-falantes (VB-Audio Virtual Cable)" e o Windows vê "CABLE Output" como microfone | — |
 | H4 | **Webcam virtual** | DirectShow (base softcam/OBS) | Expõe "Câmera Gabs Remote"; o host entrega os quadros decodificados vindos do tablet | — |
 | H5 | **Canal de dados** | C++ dentro do host | Clipboard (texto + imagem), transferência de arquivos, comandos (bloquear, suspender, reiniciar, desligar), perfis por app | H1 |
 | H6 | **Bandeja + painel** | painel web do Sunshine, rebatizado | Status, clientes pareados, perfis, logs de acesso, botão "Procurar atualizações" | H1 |
@@ -239,7 +239,7 @@ O Gab usa o sistema quase sempre **fora de casa**, então o acesso externo vem l
 
 ## 11. Riscos e decisões em aberto
 - ~~**CGNAT da Vivo**~~ — resolvido na fase 3: sem CGNAT (IPv4 público por PPPoE); IPv6 de entrada barrado pelo roteador; caminho de fora pelo Tailscale (decisão 0005).
-- **Drivers no Windows 10:** os drivers de tela, mic e webcam precisam ser assinados. Usar drivers já assinados (VirtualDrivers, SudoVDA). Driver próprio só se for inevitável, e então com test-signing apenas no PC do Gab.
+- **Drivers no Windows 10:** os drivers de tela, mic e webcam precisam ser assinados. Usar drivers já assinados (SudoVDA para a tela, VB-CABLE para o microfone: decisões 0003 e 0007). Driver próprio só se for inevitável, e então com test-signing apenas no PC do Gab.
 - ~~**4:4:4 no Tab S10+**~~ — resolvido na fase 2: nenhum decodificador do tablet anuncia 4:4:4; fica HEVC 4:2:0 (§6.1).
 - **Divergência do upstream:** manter as mudanças em módulos e commits pequenos para facilitar merges do Sunshine e do Moonlight. Merge do upstream a cada release estável deles.
 - ~~**Conflito com Parsec/SuperDisplay**~~ — resolvido na fase 2: os três adaptadores virtuais convivem (decisão 0003), e com o Parsec e o SuperDisplay abertos o Espelhar usa o monitor principal.

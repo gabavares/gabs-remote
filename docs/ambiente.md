@@ -83,3 +83,8 @@ Login feito pelo Gab (`gh auth login`, pelo navegador), na conta `gabavares`.
 - O `Invoke-WebRequest` do PowerShell 5.1 travou ao baixar o zip do Android. O `curl` resolveu.
 - No `sdkmanager`, `platforms;android-37` não existe; o nome certo é `platforms;android-37.0`.
 - Redirecionar "y" pelo PowerShell não aceita as licenças do SDK. Pelo bash (`yes | sdkmanager --licenses`) funciona.
+
+## Drivers de áudio (fase 5)
+- **VB-CABLE (Pack46)**, instalado em 11/11/2026 por `tools/setup/instalar-audio.ps1` (administrador). Por que este: `docs/decisoes/0007-audio-microfone-clipboard-arquivos.md`. Cria "Alto-falantes (VB-Audio Virtual Cable)" (o host escreve aí), "CABLE Output (VB-Audio Virtual Cable)" (o microfone do tablet no Windows) e "CABLE In 16 Ch" (não usado). A saída padrão do Windows não mudou.
+- Reinstalar: `powershell -ExecutionPolicy Bypass -File C:\gr\tools\setup\instalar-audio.ps1` como administrador. Desinstalar: `VBCABLE_Setup_x64.exe` (em `%TEMP%\gabs-remote-vbcable\pacote`) → Remove Driver.
+- **Steam Streaming Speakers** (vem com o Steam): o alto-falante virtual que deixa as caixas do PC em silêncio na sessão (`virtual_sink`).
